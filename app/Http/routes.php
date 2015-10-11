@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('default');
+});
+
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+
+    Route::resource('clientes', 'ClientController');
+
 });
