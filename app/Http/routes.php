@@ -21,3 +21,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::resource('clientes', 'ClientController');
 
 });
+
+Route::group(['namespace' => 'Entity', 'prefix' => 'entidades'], function () {
+
+    Route::resource('trabajadores', 'EmployeeController');
+    Route::resource('cargos', 'ChargeController');
+
+});
