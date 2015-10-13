@@ -20,7 +20,9 @@
 	        <thead>
 	          	<tr>
 	          		<th>Nombre</th>
-	              	<th>Centro de Gestión</th>	              	
+	              	<th>Sucursal</th>	              	
+	              	<th>Gerencia</th>
+	              	<th>Área</th>
 	          	</tr>
 	        </thead>
 
