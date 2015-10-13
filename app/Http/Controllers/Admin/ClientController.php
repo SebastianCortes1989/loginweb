@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 class ClientController extends Controller
 {
     /*
-     *crud
+     *mantenedor de clientes
     */
 
     public function index()
@@ -18,5 +18,10 @@ class ClientController extends Controller
     public function create()
     {
     	return view('admin.clients.create');
+    }
+
+    public function edit($clientId)
+    {
+    	return view('admin.clientes.edit');
     }
 }
