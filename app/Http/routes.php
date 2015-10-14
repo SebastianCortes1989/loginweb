@@ -26,5 +26,8 @@ Route::group(['namespace' => 'Entity', 'prefix' => 'entidades'], function () {
 
     Route::resource('trabajadores', 'EmployeeController');
     Route::resource('cargos', 'ChargeController');
+    Route::resource('unidades', 'UnitController');
+    Route::resource('gerencias', 'ManagementController');
+    Route::resource('sucursales', 'BranchController');
 
 });
