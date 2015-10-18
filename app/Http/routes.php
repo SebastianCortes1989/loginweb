@@ -16,12 +16,14 @@ Route::get('/', function () {
 });
 
 
+//administrador
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
     Route::resource('clientes', 'ClientController');
 
 });
 
+//entidades de clientes
 Route::group(['namespace' => 'Entity', 'prefix' => 'entidades'], function () {
 
     Route::resource('trabajadores', 'EmployeeController');
@@ -29,5 +31,12 @@ Route::group(['namespace' => 'Entity', 'prefix' => 'entidades'], function () {
     Route::resource('unidades', 'UnitController');
     Route::resource('gerencias', 'ManagementController');
     Route::resource('sucursales', 'BranchController');
+
+});
+
+//recursos humanos
+Route::group(['namespace' => 'HumanResource', 'prefix' => 'rrhh'], function () {
+
+    Route::resource('contratos', 'ContractController');
 
 });
