@@ -10,11 +10,9 @@
 
 
 <div class="row">
-	<div class="col s12 m12">	    	
-    	<div class="card-panel purple darken-1 white-text">
-      		<span class="card-title">Aguinaldos</span> 	      		      		
-    	</div>
-
+	<div class="col s12 m12">
+    	<h5 class="deep-purple-text center-align">Aguinaldos</h5>
+    	<hr>
     	
     	<table>
 	        <thead>

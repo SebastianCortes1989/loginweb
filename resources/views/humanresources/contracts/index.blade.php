@@ -8,13 +8,12 @@
     </a>				    
 </div>
 
+@include('humanresources.menu')
 
 <div class="row">
 	<div class="col s12 m12">	    	
-    	<div class="card-panel purple darken-1 white-text">
-      		<span class="card-title">Contratos</span> 	      		      		
-    	</div>
-
+    	<h5 class="deep-purple-text center-align">Contratos</h5>
+    	<hr>
     	
     	<table>
 	        <thead>
