@@ -31,7 +31,7 @@ class ContractController extends Controller
 	 *
 	 *return Response
     */
-    public function edit($branchId)
+    public function edit($contractId)
     {
         return view('humanresources.contracts.edit');
     }
