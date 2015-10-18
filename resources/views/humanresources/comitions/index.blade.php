@@ -12,7 +12,7 @@
 <div class="row">
 	<div class="col s12 m12">	    	
     	<div class="card-panel purple darken-1 white-text">
-      		<span class="card-title">Bonos</span> 	      		      		
+      		<span class="card-title">Comisiones</span> 	      		      		
     	</div>
 
     	
