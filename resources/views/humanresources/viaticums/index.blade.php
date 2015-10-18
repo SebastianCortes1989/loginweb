@@ -3,11 +3,12 @@
 @section('content')
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('HumanResources\ContractController@create') }}" class="btn-floating btn-large amber darken-2">
+    <a href="{{ action('HumanResources\ViaticumController@create') }}" class="btn-floating btn-large purple darken-1">
     	<i class="large material-icons">add</i>
     </a>				    
 </div>
 
+@include('humanresources.menu')
 
 <div class="row">
 	<div class="col s12 m12">	    	
