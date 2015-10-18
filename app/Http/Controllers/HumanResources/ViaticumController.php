@@ -4,35 +4,35 @@ namespace App\Http\Controllers\HumanResources;
 
 use App\Http\Controllers\Controller;
 
-class BonuController extends Controller
+class ViaticumController extends Controller
 {
     /**
-     *listar aguinaldos por empresa
+     *listar viaticos por empresa
 	 *
 	 *return Response
     */
     public function index($clientId = null)
     {
-        return view('humanresources.bonus.index');
+        return view('humanresources.viaticums.index');
     }
 
     /**
-     *crear aguinaldo
+     *crear viatico
 	 *
 	 *return Response
     */
     public function create()
     {
-        return view('humanresources.bonus.create');
+        return view('humanresources.viaticums.create');
     }
 
     /**
-     *editar aguinaldo
+     *editar viatico
 	 *
 	 *return Response
     */
-    public function edit($bonuId)
+    public function edit($viaticumId)
     {
-        return view('humanresources.bonus.edit');
+        return view('humanresources.viaticums.edit');
     }
 }
