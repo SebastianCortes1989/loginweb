@@ -35,7 +35,7 @@ Route::group(['namespace' => 'Entity', 'prefix' => 'entidades'], function () {
 });
 
 //recursos humanos
-Route::group(['namespace' => 'HumanResource', 'prefix' => 'rrhh'], function () {
+Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh'], function () {
 
     Route::resource('contratos', 'ContractController');
 
