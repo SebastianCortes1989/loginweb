@@ -38,9 +38,15 @@ Route::group(['namespace' => 'Entity', 'prefix' => 'entidades'], function () {
 Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh'], function () {
 
     Route::resource('contratos', 'ContractController');
+
     Route::resource('bonos', 'BondController');
     Route::resource('aguinaldos', 'BonuController');
     Route::resource('comisiones', 'ComitionController');
     Route::resource('viaticos', 'ViaticumController');
+
+    Route::resource('apv', 'ApvController');
+    Route::resource('anticipos', 'AdvanceController');
+    Route::resource('descuentos', 'DiscountController');
+    Route::resource('licencias', 'LicensingController');
 
 });
