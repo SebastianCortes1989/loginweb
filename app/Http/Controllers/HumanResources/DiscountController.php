@@ -13,7 +13,7 @@ class DiscountController extends Controller
     */
     public function index($clientId = null)
     {
-        return view('humanresources.discutions.index');
+        return view('humanresources.discounts.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class DiscountController extends Controller
     */
     public function create()
     {
-        return view('humanresources.discutions.create');
+        return view('humanresources.discounts.create');
     }
 
     /**
@@ -33,6 +33,6 @@ class DiscountController extends Controller
     */
     public function edit($discutionId)
     {
-        return view('humanresources.discutions.edit');
+        return view('humanresources.discounts.edit');
     }
 }
