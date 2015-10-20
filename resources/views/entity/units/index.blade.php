@@ -8,12 +8,13 @@
     </a>				    
 </div>
 
+@include('entity.menu')
 
 <div class="row">
 	<div class="col s12 m12">	    	
-    	<div class="card-panel amber darken-2 white-text">
-      		<span class="card-title">Administración de Unidades</span> 	      		      		
-    	</div>
+
+    	<h5 class="amber-text center-align">Administración de Unidades</h5>
+    	<hr>
 
     	
     	<table>

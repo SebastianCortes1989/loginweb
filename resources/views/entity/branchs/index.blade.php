@@ -9,12 +9,12 @@
 </div>
 
 
-<div class="row">
-	<div class="col s12 m12">	    	
-    	<div class="card-panel amber darken-2 white-text">
-      		<span class="card-title">Administración de Sucursales</span> 	      		      		
-    	</div>
+@include('entity.menu')
 
+<div class="row">
+	<div class="col s12 m12">
+    	<h5 class="amber-text center-align">Administración de Sucursales</h5>
+    	<hr>
     	
     	<table>
 	        <thead>
