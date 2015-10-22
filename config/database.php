@@ -54,7 +54,7 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => 'localhost',
+            'host'      => 'loginweb1.c07gqkljwgsd.us-west-2.rds.amazonaws.com',
             'database'  => 'loginweb',
             'username'  => 'forge',
             'password'  => 'loginweb',
