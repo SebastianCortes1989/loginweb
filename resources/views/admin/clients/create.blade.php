@@ -43,18 +43,15 @@
         </div>
 
         <div class="input-field">
-        	{!! Form::select('region_id', [], '', ['class' => 'browser-default']) !!}
-        	{!! Form::label('region_id', 'Región') !!}
+        	{!! Form::select('region_id', $regions, '', ['class' => 'browser-default']) !!}
         </div>
 
         <div class="input-field">
-        	{!! Form::select('city_id', [], '', ['class' => 'browser-default']) !!}
-        	{!! Form::label('city_id', 'Ciudad') !!}
+        	{!! Form::select('city_id', $cities, '', ['class' => 'browser-default']) !!}
         </div>
 
         <div class="input-field">
-        	{!! Form::select('commune_id', [], '', ['class' => 'browser-default']) !!}
-        	{!! Form::label('commune_id', 'Comuna') !!}
+        	{!! Form::select('commune_id', $communes, '', ['class' => 'browser-default']) !!}
         </div>
 
         <div class="input-field">
@@ -78,30 +75,29 @@
   		
   		<div class="input-field">
         	{!! Form::text('name_representative', '', ['class'=>'validate']) !!}
-        	{!! Form::label('name_representative', 'Nombre') !!}
+        	{!! Form::label('name_representative', 'Nombre Representante') !!}
         </div>
 
         <div class="input-field">
         	{!! Form::text('rut_representative', '', ['class'=>'validate']) !!}
-        	{!! Form::label('rut_representative', 'R.U.T.') !!}
+        	{!! Form::label('rut_representative', 'R.U.T. Representante') !!}
         </div>
 
-    	{!! Form::radio('insurance', 'INP', false, ['id' => 'inp']) !!}
-    	{!! Form::label('inp', 'INP') !!}
+        @foreach($insurances as $id => $name)
 
-    	{!! Form::radio('insurance', 'Mutual', true, ['id' => 'mutual']) !!}
-    	{!! Form::label('mutual', 'Mutual') !!}
+          {!! Form::radio('insurance_id', $id) !!}
+          {!! Form::label('insurance_id', $name) !!}
+
+        @endforeach        
 
         <br>
 
         <div class="input-field">
-        	{!! Form::select('complementary', [], '', ['class' => 'browser-default']) !!}
-        	{!! Form::label('complementary', 'Seguro Complementario') !!}
+        	{!! Form::select('complementary', $complementaries, '', ['class' => 'browser-default']) !!}
         </div>
 
         <div class="input-field">
-        	{!! Form::select('compensacion', [], '', ['class' => 'browser-default']) !!}
-        	{!! Form::label('compensacion', 'Caja de Compensación') !!}
+        	{!! Form::select('compensacion', $compensacions, '', ['class' => 'browser-default']) !!}
         </div>
 
         <div class="input-field">
