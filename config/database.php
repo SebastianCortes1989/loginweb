@@ -54,7 +54,7 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => $_SERVER['RDS_HOSTNAME'],
+            'host'      => 'loginweb1.c07gqkljwgsd.us-west-2.rds.amazonaws.com',
             'port'      => 3306,
             'database'  => 'loginweb',
             'username'  => 'forge',
