@@ -60,10 +60,10 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => $host,
-            'database'  => $database,
-            'username'  => $username,
-            'password'  => $password,
+            'host'      => 'localhost',
+            'database'  => 'loginweb',
+            'username'  => 'root',
+            'password'  => 'mysql',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
