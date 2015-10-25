@@ -16,7 +16,7 @@ class CreateCommunesTable extends Migration
         Schema::create('general_communes', function(Blueprint $table){
             $table->increments('id');
             $table->timestamps();
-            $table->integer('commune_id', false);
+            $table->integer('city_id', false);
             $table->string('name', 50);
             $table->softDeletes();
         });
