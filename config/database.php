@@ -54,11 +54,11 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => $_ENV['DB_HOST'],
-            'port'      => $_ENV['DB_PORT'],
-            'database'  => $_ENV['DB_NAME'],
-            'username'  => $_ENV['DB_USER'],
-            'password'  => $_ENV['DB_PASS'],
+            'host'      => 'loginweb1.c07gqkljwgsd.us-west-2.rds.amazonaws.com',
+            'port'      => '3306',
+            'database'  => 'loginweb',
+            'username'  => 'forge',
+            'password'  => 'loginweb',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
