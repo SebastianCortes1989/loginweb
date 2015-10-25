@@ -25,7 +25,16 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+	        	@foreach($clients as $client)
+
+	        		<tr>
+	        			<td>{{ $client->name }}</td>
+	        			<td>{{ $client->rut }}</td>
+	        			<td>{{ $client->email }}</td>
+	        			<td>{{ $client->phone }}</td>
+	        		</tr>
+
+	        	@endforeach	       
 	        </tbody>
 	    </table>	    
 	</div>

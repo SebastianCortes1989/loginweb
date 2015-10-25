@@ -10,7 +10,9 @@
     </div>
 </div>
 
- <div class="row">
+  {!! Form::open(['files' => true, 'action' => 'Admin\ClientController@store']) !!}
+
+  <div class="row">
   	<div class="col m4">
   		
   		<div class="input-field">
@@ -85,7 +87,7 @@
 
         @foreach($insurances as $id => $name)
 
-          {!! Form::radio('insurance_id', $id) !!}
+          {!! Form::radio('insurance_id[]', $id) !!}
           {!! Form::label('insurance_id', $name) !!}
 
         @endforeach        
@@ -116,17 +118,20 @@
 	    </div>
 
   	</div> 
-</div>
+  </div>
 
 
-<div class="row">
-	<div class="col s12 m12">	    	
-    	<div class="card-panel blue-grey lighten-5">
-      		<button class="btn btn-large waves-effect waves-light amber darken-2" type="submit" name="action">
-      			Guardar
-			</button>
-    	</div>
-    </div>
-</div>
+  <div class="row">
+  	<div class="col s12 m12">	    	
+      	<div class="card-panel blue-grey lighten-5">
+        	<button class="btn btn-large waves-effect waves-light amber darken-2" type="submit" name="action">
+        		Guardar
+  			  </button>
+      	</div>
+      </div>
+  </div>
+
+{!! Form::close() !!}
+
 
 @endsection
