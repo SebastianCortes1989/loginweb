@@ -54,11 +54,11 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => 'loginweb1.c07gqkljwgsd.us-west-2.rds.amazonaws.com',
+            'host'      => 'localhost',
             'port'      => '3306',
             'database'  => 'loginweb',
-            'username'  => 'forge',
-            'password'  => 'loginweb',
+            'username'  => 'root',
+            'password'  => 'mysql',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
