@@ -12,8 +12,8 @@ use App\Models\Admin\Commune;
 use App\Models\Admin\Compensacion;
 use App\Models\Admin\Complementary;
 use App\Models\Admin\Insurance;
-
 use App\Models\Admin\User;
+use App\Models\Admin\File;
 
 use \Hash;
 
@@ -21,11 +21,13 @@ class ClientController extends Controller
 {
     protected $client;
     protected $user;
+    protected $imageableType = 'App\Models\Admin\Client';
 
-    public function __construct(Client $client, User $user)
+    public function __construct(Client $client, User $user, File $file)
     {
         $this->client = $client;
         $this->user = $user;
+        $this->file = $file;
     }
 
 
@@ -81,6 +83,27 @@ class ClientController extends Controller
 
         $user = $this->user->create($data);
 
-        return redirect()->back();
+        $fileName = date('YmdHis').rand(1, 1000);
+        $fileData['filename'] = $fileName;
+        $fileData['name'] = $request->file('logo')->getClientOriginalName();
+        $fileData['mime'] = $request->file('logo')->getClientMimeType();
+        $fileData['size'] = $request->file('logo')->getClientSize();
+        $fileData['imageable_id'] = $client->id;
+        $fileData['imageable_type'] = $this->imageableType;
+
+        if($request->file('logo')->move($this->file->destinationPath, $fileName)){
+            //$file = $this->file->create($fileData);
+
+            $file = $this->file;
+            $file->name =  $fileData['name'];
+            $file->filename =  $fileData['filename'];
+            $file->mime =  $fileData['mime'];
+            $file->size =  $fileData['size'];
+            $file->imageable_id =  $fileData['imageable_id'];
+            $file->imageable_type =  $fileData['imageable_type'];
+            $file->save();
+        }
+
+        return redirect()->action('Admin\ClientController@index');
     }
 }
