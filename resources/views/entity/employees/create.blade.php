@@ -48,18 +48,15 @@
         </div>
 
         <div class="input-field">
-        	{!! Form::select('nationality_id', [], '', ['class' => 'browser-default']) !!}
-        	{!! Form::label('nationality_id', 'Nacionalidad') !!}
+        	{!! Form::select('nationality_id', $nacionalities, '', ['class' => 'browser-default']) !!}
         </div>
 
         <div class="input-field">
-        	{!! Form::select('city_id', [], '', ['class' => 'browser-default']) !!}
-        	{!! Form::label('city_id', 'Ciudad') !!}
+        	{!! Form::select('city_id', $cities, '', ['class' => 'browser-default']) !!}
         </div>
 
         <div class="input-field">
-        	{!! Form::select('commune_id', [], '', ['class' => 'browser-default']) !!}
-        	{!! Form::label('commune_id', 'Comuna') !!}
+        	{!! Form::select('commune_id', $communes, '', ['class' => 'browser-default']) !!}
         </div>
 
         <div class="input-field">
@@ -72,33 +69,27 @@
   	<div class="col m3">
   		
   		<div class="input-field">
-        {!! Form::select('type_id', [], '', ['class' => 'browser-default']) !!}
-        {!! Form::label('type_id', 'Tipo de Trabajador') !!}
+        {!! Form::select('type_id', $employeeTypes, '', ['class' => 'browser-default']) !!}
       </div>
 
       <div class="input-field">
-        {!! Form::select('afc_id', [], '', ['class' => 'browser-default']) !!}
-        {!! Form::label('afc_id', 'AFC') !!}
+        {!! Form::select('afc_id', $afc, '', ['class' => 'browser-default']) !!}
       </div>
 
       <div class="input-field">
-        {!! Form::select('afp_id', [], '', ['class' => 'browser-default']) !!}
-        {!! Form::label('afp_id', 'AFP') !!}
+        {!! Form::select('afp_id', $afp, '', ['class' => 'browser-default']) !!}
       </div>
 
       <div class="input-field">
-        {!! Form::select('apv_id', [], '', ['class' => 'browser-default']) !!}
-        {!! Form::label('apv_id', 'APV') !!}
+        {!! Form::select('apv_id', $apv, '', ['class' => 'browser-default']) !!}
       </div>
 
       <div class="input-field">
-        {!! Form::select('bank_id', [], '', ['class' => 'browser-default']) !!}
-        {!! Form::label('bank_id', 'Bancos') !!}
+        {!! Form::select('bank_id', $banks, '', ['class' => 'browser-default']) !!}
       </div>
 
       <div class="input-field">
-        {!! Form::select('account_type_id', [], '', ['class' => 'browser-default']) !!}
-        {!! Form::label('account_type_id', 'Tipo de Cuenta') !!}
+        {!! Form::select('account_type_id', $accountTypes, '', ['class' => 'browser-default']) !!}
       </div>      
 
       <div class="input-field">
@@ -111,8 +102,7 @@
     <div class="col m3">
 
       <div class="input-field">
-        {!! Form::select('health_id', [], '', ['class' => 'browser-default']) !!}
-        {!! Form::label('health_id', 'Salud') !!}
+        {!! Form::select('health_id', $healths, '', ['class' => 'browser-default']) !!}
       </div>
 
       <div class="input-field">
@@ -126,8 +116,7 @@
       </div> 
 
       <div class="input-field">
-        {!! Form::select('familiar_charge', [], '', ['class' => 'browser-default']) !!}
-        {!! Form::label('famliar_charge', 'Cargas Familiares') !!}
+        {!! Form::select('family_charge', $familyCharges, '', ['class' => 'browser-default']) !!}
       </div> 
 
       <div class="input-field">
