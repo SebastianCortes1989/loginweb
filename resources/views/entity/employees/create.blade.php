@@ -10,10 +10,16 @@
     </div>
 </div>
 
+{!! Form::open(['action' => 'Entity\EmployeeController@store']) !!}
+
  <div class="row">
   	<div class="col m3">
   		
-  		<div class="input-field">
+        <div class="input-field">
+            {!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
+        </div>
+
+  		  <div class="input-field">
           	{!! Form::text('rut', '', ['class' => 'validate']) !!}
           	{!! Form::label('rut', 'R.U.T.') !!}
         </div>
@@ -147,5 +153,7 @@
     	</div>
     </div>
 </div>
+
+{!! Form::close() !!}
 
 @endsection

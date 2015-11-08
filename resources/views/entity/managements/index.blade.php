@@ -25,7 +25,12 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+	          	@foreach($managements as $management)
+	          		<tr>
+	          			<td>{{ $management->name }}</td>
+	          			<td>{{ $management->employee ? $management->employee->name : '' }}</td>
+	          		</tr>
+	          	@endforeach
 	        </tbody>
 	    </table>
 

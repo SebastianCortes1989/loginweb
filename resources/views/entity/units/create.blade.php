@@ -10,32 +10,32 @@
     </div>
 </div>
 
+{!! Form::open(['action' => 'Entity\UnitController@store']) !!}
+
  <div class="row">
-    <div class="col m4">
-  		
+    <div class="col m3">
+        <div class="input-field">
+            {!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
+        </div>
+    </div>
+
+    <div class="col m3">  		
       <div class="input-field">
           {!! Form::text('name', '', ['class' => 'validate']) !!}
           {!! Form::label('name', 'Nombre') !!}
-      </div>      
-  		
+      </div>        		
   	</div>
 
-  	<div class="col m4">
-  		
+  	<div class="col m3">  		
   		<div class="input-field">
-          {!! Form::select('responsible_id', [], '', ['class' => 'browser-default']) !!}
-          {!! Form::label('responsible_id', 'Responsable') !!}
+          {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
       </div> 
-
   	</div>
 
-    <div class="col m4">
-      
+    <div class="col m3">      
       <div class="input-field">
-          {!! Form::select('gerency_id', [], '', ['class' => 'browser-default']) !!}
-          {!! Form::label('gerency_id', 'Gerencia') !!}
+          {!! Form::select('management_id', $managements, '', ['class' => 'browser-default']) !!}
       </div> 
-
     </div>
 
   </div>
@@ -53,5 +53,7 @@
     	</div>
     </div>
 </div>
+
+{!! Form::close() !!}
 
 @endsection

@@ -5,12 +5,20 @@
 <div class="row">
 	<div class="col s12 m12">	    	
     	<div class="card-panel amber darken-2 white-text">
-      		<span class="card-title">Registrar Unidad</span> 	      		      		
+      		<span class="card-title">Registrar Sucursal</span> 	      		      		
     	</div>
     </div>
 </div>
 
+{!! Form::open(['action' => 'Entity\BranchController@store']) !!}
+
  <div class="row">
+    <div class="col m3">
+        <div class="input-field">
+            {!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
+        </div>
+    </div>
+    
     <div class="col m3">
   		
       <div class="input-field">
@@ -44,5 +52,7 @@
     	</div>
     </div>
 </div>
+
+{!! Form::close() !!}
 
 @endsection

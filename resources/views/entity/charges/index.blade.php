@@ -19,14 +19,19 @@
 	        <thead>
 	          	<tr>
 	          		<th>Nombre</th>
-	              	<th>Sucursal</th>	              	
 	              	<th>Gerencia</th>
 	              	<th>Área</th>
 	          	</tr>
 	        </thead>
 
 	        <tbody>
-	          		       
+	          	@foreach($charges as $charge)
+	          		<tr>
+	          			<td>{{ $charge->name }}</td>
+	          			<td>{{ $charge->management ? $charge->management->name : '' }}</td>
+	          			<td>{{ $charge->unit ? $charge->unit->name : '' }}</td>
+	          		</tr>
+	          	@endforeach	       
 	        </tbody>
 	    </table>
 

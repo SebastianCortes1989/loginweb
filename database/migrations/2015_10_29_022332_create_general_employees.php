@@ -22,6 +22,7 @@ class CreateGeneralEmployees extends Migration
             $table->date('birthday');
             $table->string('address', 255);
             $table->mediumInteger('phone', false, 15);
+            $table->mediumInteger('movil_phone', false, 15);
             $table->integer('nacionality_id', false);
             $table->integer('city_id', false);
             $table->integer('commune_id', false);

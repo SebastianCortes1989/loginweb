@@ -10,7 +10,15 @@
     </div>
 </div>
 
+{!! Form::open(['action' => 'Entity\ManagementController@store']) !!}
+
  <div class="row">
+    <div class="col m4">
+        <div class="input-field">
+            {!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
+        </div>
+    </div>
+
     <div class="col m4">
   		
       <div class="input-field">
@@ -23,8 +31,7 @@
   	<div class="col m4">
   		
   		<div class="input-field">
-          {!! Form::select('responsible_id', [], '', ['class' => 'browser-default']) !!}
-          {!! Form::label('responsible_id', 'Gerente') !!}
+          {!! Form::select('responsible_id', $employees, '', ['class' => 'browser-default']) !!}
       </div> 
 
   	</div>
@@ -44,5 +51,7 @@
     	</div>
     </div>
 </div>
+
+{!! Form::close() !!}
 
 @endsection

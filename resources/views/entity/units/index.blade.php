@@ -27,7 +27,13 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+	         	@foreach($units as $unit)
+	         		<tr>
+	         			<td>{{ $unit->management ? $unit->management->name : '' }}</td>
+	         			<td>{{ $unit->name }}</td>
+	         			<td>{{ $unit->employee ? $unit->employee->name : '' }}</td>
+	         		</tr>
+	         	@endforeach
 	        </tbody>
 	    </table>
 

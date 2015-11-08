@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('default');
-});
+
+Route::get('/', 'Auth\LoginController@index');
+Route::post('auth', 'Auth\LoginController@authenticate');
 
 
 //administrador

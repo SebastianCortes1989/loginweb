@@ -15,59 +15,29 @@
     	<h5 class="amber-text center-align">Administración de Trabajadores</h5>
     	<hr>
 
-    	<div class="row">
-		    <div class="col s12">
-		      	<ul class="tabs">
-			        <li class="tab col s3"><a href="#test1">Vigentes</a></li>
-			        <li class="tab col s3"><a class="active" href="#test2">Finiquitados</a></li>
-		      	</ul>
-		    </div>
+    	<table>
+	        <thead>
+	          	<tr>
+	              	<th>Nombre</th>
+	              	<th>R.U.T</th>
+	              	<th>AFP</th>
+	              	<th>Salud</th>
+	              	<th>Nacionalidad</th>
+	          	</tr>
+	        </thead>
 
-		    <div id="test1" class="col s12">
-		    	
-		    	<br><br>
-		    	<table>
-		    		<caption>Vigentes</caption>
-			        <thead>
-			          	<tr>
-			              	<th>Nombre</th>
-			              	<th>R.U.T</th>
-			              	<th>AFP</th>
-			              	<th>Salud</th>
-			              	<th>Nacionalidad</th>
-			          	</tr>
-			        </thead>
-
-			        <tbody>
-			          		       
-			        </tbody>
-			    </table>
-
-		    </div>
-
-		    <div id="test2" class="col s12">
-		    	
-		    	<br><br>
-		    	<table>
-		    		<caption>Finiquitados</caption>
-			        <thead>
-			          	<tr>
-			              	<th>Nombre</th>
-			              	<th>R.U.T</th>
-			              	<th>AFP</th>
-			              	<th>Salud</th>
-			              	<th>Nacionalidad</th>
-			          	</tr>
-			        </thead>
-
-			        <tbody>
-			          		       
-			        </tbody>
-			    </table>
-
-		    </div>		    
-		</div>
-
+	        <tbody>
+	          	@foreach($employees as $employee)
+	          		<tr>
+	          			<td>{{ $employee->name }}</td>
+	          			<td>{{ $employee->rut }}</td>
+	          			<td>{{ $employee->afp ? $employee->afp->name : '' }}</td>
+	          			<td>{{ $employee->health ? $employee->health->name : '' }}</td>
+	          			<td>{{ $employee->nacionality ? $employee->nacionality->name : '' }}</td>
+	          		</tr>
+	          	@endforeach
+	        </tbody>
+	    </table>	
     		    
 	</div>
 </div>

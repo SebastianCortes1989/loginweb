@@ -25,7 +25,12 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+	          	@foreach($branchs as $branch)
+	          		<tr>
+	          			<td>{{ $branch->name }}</td>
+	          			<td>{{ $branch->address }}</td>
+	          		</tr>
+	          	@endforeach
 	        </tbody>
 	    </table>
 

@@ -17,7 +17,8 @@
       <div class="nav-wrappe">
         <a href="#" class="brand-logo">LOGINWEB</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Administración</a></li>
+          <li><a href="{{ action('Admin\ClientController@index') }}">Administración</a></li>
+          <li><a href="{{ action('Entity\EmployeeController@index') }}">Entidades</a></li>
           <li><a href="badges.html">Laboral</a></li>
           <li>
             <a class='dropdown-button' href='#' data-activates='dropdown1'>Username</a>
