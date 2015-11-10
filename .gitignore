@@ -1,6 +1,7 @@
-/vendor
-/node_modules
-/config
-/public
+/vendor/
+/node_modules/
+/config/
+/config/database.php
+/public/uploads/
 Homestead.yaml
 Homestead.json

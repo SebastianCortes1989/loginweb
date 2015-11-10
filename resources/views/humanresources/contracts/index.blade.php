@@ -30,7 +30,18 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+				@foreach($contracts as $contract)
+					<tr>
+						<td></td>
+						<td>{{ $contract->employee ? $contract->employee->name : '' }}</td>
+						<td>{{ $contract->contractType ? $contract->contractType->name : '' }}</td>
+						<td></td>
+						<td></td>
+						<td>{{ $contract->charge ? $contract->charge->name : '' }}</td>
+						<td></td>
+						<td></td>
+					</tr>
+				@endforeach
 	        </tbody>
 	    </table>
 
