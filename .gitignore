@@ -1,6 +1,5 @@
 /vendor/
 /node_modules/
-/config/
 /config/database.php
 /public/uploads/
 Homestead.yaml
