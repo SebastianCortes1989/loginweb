@@ -13,14 +13,18 @@ use App\Models\Entity\Charge;
 use App\Models\Entity\Branch;
 
 use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\Journal;
 
 class ContractController extends Controller
 {
     protected $contract;
+    protected $journal;
     protected $workingTypes = ['Continua' => 'Jornada Continua', 'Turnos' => 'Turnos'];
+    protected $days = [1 => 'Lunes', 2 => 'Martes', 3 => 'Miércoles', 4 => 'Jueves', 5 => 'Viernes', 6 => 'Sabado', 7 => 'Domingo'];
 
-    public function __construct(Contract $contract){
+    public function __construct(Contract $contract, Journal $journal){
         $this->contract = $contract;
+        $this->journal = $journal;
     }
 
     /*
@@ -76,4 +80,46 @@ class ContractController extends Controller
 
         return redirect()->action('HumanResources\ContractController@workingType');
     }
+
+    /*
+     * formulario registrar jornada
+     *
+     * return Response
+    */
+    public function workingType(){
+        $days = $this->days;
+
+        return view('humanresources.contracts.working_type', compact('days'));
+    }
+
+    /*
+     * registrar jornada
+     *
+     * return Response
+    */
+    public function workingTypeStore(Request $request){
+        $data = $request->except('_token');
+
+        $journal = $this->journal->create($data);
+
+        return redirect()->action('HumanResources\ContractController@remunerations');
+    }
+
+    /*
+     * formulario registrar remuneraciones
+     *
+     * return Response
+    */
+    public function remunerations(){
+        return view('humanresources.contracts.remunerations');
+    }
+
+    /*
+     * registrar remuneraciones
+     *
+     * return Response
+    */
+    public function remunerationsStore(){
+    }
 }
+

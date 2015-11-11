@@ -4,7 +4,7 @@
 		<nav class="purple darken-1">
 	    	<div class="nav-wrapper">	    		
 	      		<ul id="nav-mobile" class="left hide-on-med-and-down">
-	        		<li><a href="#">Contratos</a></li>
+	        		<li><a href="{{ action('HumanResources\ContractController@index') }}">Contratos</a></li>
 		        	<li><a href="#">Haberes</a></li>
 		        	<li><a href="#">Descuentos</a></li>
 		        	<li><a href="#">Préstamos</a></li>

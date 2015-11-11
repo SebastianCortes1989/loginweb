@@ -37,6 +37,10 @@ Route::group(['namespace' => 'Entity', 'prefix' => 'entidades'], function () {
 //recursos humanos
 Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh'], function () {
 
+    Route::get('contratos/jornada', 'ContractController@workingType');
+    Route::post('contratos/jornada', 'ContractController@workingTypeStore');
+    Route::get('contratos/remuneraciones', 'ContractController@remunerations');
+    Route::post('contratos/remuneraciones', 'ContractController@remunerationsStore');
     Route::resource('contratos', 'ContractController');
 
     Route::resource('bonos', 'BondController');
