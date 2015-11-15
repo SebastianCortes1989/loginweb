@@ -13,7 +13,7 @@ class CreateRrhhExtraHoursTable extends Migration
     public function up()
     {
         //
-        Schema::create('rrhh_viaticals', function(Blueprint $table){
+        Schema::create('rrhh_extra_hours', function(Blueprint $table){
             $table->increments('id');
             $table->timestamps();
             $table->integer('client_id', false);
