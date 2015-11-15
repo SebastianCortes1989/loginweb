@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('HumanResources\ViaticumController@create') }}" class="btn-floating btn-large purple darken-1">
+    <a href="{{ action('HumanResources\ViaticalController@create') }}" class="btn-floating btn-large purple darken-1">
     	<i class="large material-icons">add</i>
     </a>				    
 </div>
@@ -27,7 +27,15 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+	          	@foreach($viaticals as $viatical)
+	        		<tr>
+	        			<td></td>
+	        			<td>{{ $viatical->employee->name }}</td>
+	        			<td></td>
+	        			<td>{{ $viatical->date }}</td>
+	        			<td>{{ $viatical->ammount }}</td>
+	        		</tr>
+	        	@endforeach  	       
 	        </tbody>
 	    </table>
 

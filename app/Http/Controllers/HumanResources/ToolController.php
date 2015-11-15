@@ -9,29 +9,30 @@ use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
 
-use App\Models\HumanResources\Bonus;
+use App\Models\HumanResources\Tool;
 
-class BonuController extends Controller
+class ToolController extends Controller
 {
-    protected $bonus;
+    protected $tool;
 
-    public function __construct(Bonus $bonus){
-        $this->bonus = $bonus;
+    public function __construct(Tool $tool){
+        $this->tool = $tool;
     }
 
     /**
-     *listar aguinaldos por empresa
+     *listar comisiones por empresa
 	 *
 	 *return Response
     */
     public function index($clientId = null)
     {
-        $bonus = $this->bonus->orderBy('date')->get();
+        $tools = $this->tool->orderBy('date')->get();
 
-        return view('humanresources.bonus.index', compact('bonus'));
+        return view('humanresources.tools.index', compact('tools'));
     }
+
     /**
-     *crear aguinaldo
+     *crear comision
 	 *
 	 *return Response
     */
@@ -40,29 +41,29 @@ class BonuController extends Controller
         $clients = Client::orderBy('name')->lists('name', 'id');
         $employees = Employee::orderBy('name')->lists('name', 'id');
 
-        return view('humanresources.bonus.create', compact('clients', 'employees'));
+        return view('humanresources.tools.create', compact('clients', 'employees'));
     }
 
     /**
-     *registrar aguinaldo
+     *registrar comision
      *
      *return Response
     */
     public function store(Request $request){
         $data = $request->except('_token');
 
-        $bonus = $this->bonus->create($data);
+        $tool = $this->tool->create($data);
 
-        return redirect()->action('HumanResources\BonuController@index');
+        return redirect()->action('HumanResources\ToolController@index');
     }
 
     /**
-     *editar aguinaldo
+     *editar comision
 	 *
 	 *return Response
     */
-    public function edit($bonuId)
+    public function edit($toolId)
     {
-        return view('humanresources.bonus.edit');
+        return view('humanresources.tools.edit');
     }
 }

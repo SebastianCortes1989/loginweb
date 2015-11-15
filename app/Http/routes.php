@@ -45,8 +45,10 @@ Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh'], function () 
 
     Route::resource('bonos', 'BondController');
     Route::resource('aguinaldos', 'BonuController');
-    Route::resource('comisiones', 'ComitionController');
-    Route::resource('viaticos', 'ViaticumController');
+    Route::resource('comisiones', 'CommissionController');
+    Route::resource('viaticos', 'ViaticalController');
+    Route::resource('herramientas', 'ToolController');
+    Route::resource('horas-extras', 'ExtraHourController');
 
     Route::resource('apv', 'ApvController');
     Route::resource('anticipos', 'AdvanceController');

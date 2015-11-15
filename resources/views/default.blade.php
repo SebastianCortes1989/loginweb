@@ -21,7 +21,7 @@
           <li><a href="{{ action('Entity\EmployeeController@index') }}">Entidades</a></li>
           <li><a href="{{ action('HumanResources\ContractController@index') }}">Laboral</a></li>
           <li>
-            <a class='dropdown-button' href='#' data-activates='dropdown1'>Username</a>
+            <a class='dropdown-button' href='#' data-activates='dropdown1'>Usuario</a>
 
             <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content'>

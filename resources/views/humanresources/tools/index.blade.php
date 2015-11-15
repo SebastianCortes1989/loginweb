@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('HumanResources\BonuController@create') }}" class="btn-floating btn-large purple darken-1">
+    <a href="{{ action('HumanResources\ToolController@create') }}" class="btn-floating btn-large purple darken-1">
     	<i class="large material-icons">add</i>
     </a>				    
 </div>
@@ -11,8 +11,8 @@
 @include('humanresources.menu')
 
 <div class="row">
-	<div class="col s12 m12">
-    	<h5 class="deep-purple-text center-align">Aguinaldos</h5>
+	<div class="col s12 m12">	    	
+    	<h5 class="deep-purple-text center-align">Desgaste de Herramientas</h5>
     	<hr>
     	
     	<table>
@@ -27,15 +27,15 @@
 	        </thead>
 
 	        <tbody>
-	        	@foreach($bonus as $bonu)
+	          	@foreach($tools as $tool)
 	        		<tr>
 	        			<td></td>
-	        			<td>{{ $bonu->employee->name }}</td>
+	        			<td>{{ $tool->employee->name }}</td>
 	        			<td></td>
-	        			<td>{{ $bonu->date }}</td>
-	        			<td>{{ $bonu->ammount }}</td>
+	        			<td>{{ $tool->date }}</td>
+	        			<td>{{ $tool->ammount }}</td>
 	        		</tr>
-	        	@endforeach
+	        	@endforeach       
 	        </tbody>
 	    </table>
 

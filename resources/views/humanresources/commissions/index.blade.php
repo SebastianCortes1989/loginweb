@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('HumanResources\ComitionController@create') }}" class="btn-floating btn-large purple darken-1">
+    <a href="{{ action('HumanResources\CommissionController@create') }}" class="btn-floating btn-large purple darken-1">
     	<i class="large material-icons">add</i>
     </a>				    
 </div>
@@ -27,7 +27,15 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+	          	@foreach($commissions as $commission)
+	        		<tr>
+	        			<td></td>
+	        			<td>{{ $commission->employee->name }}</td>
+	        			<td></td>
+	        			<td>{{ $commission->date }}</td>
+	        			<td>{{ $commission->ammount }}</td>
+	        		</tr>
+	        	@endforeach       
 	        </tbody>
 	    </table>
 

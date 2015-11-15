@@ -27,7 +27,15 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+	          	@foreach($bonds as $bond)
+	        		<tr>
+	        			<td></td>
+	        			<td>{{ $bond->employee->name }}</td>
+	        			<td></td>
+	        			<td>{{ $bond->date }}</td>
+	        			<td>{{ $bond->ammount }}</td>
+	        		</tr>
+	        	@endforeach	       
 	        </tbody>
 	    </table>
 
