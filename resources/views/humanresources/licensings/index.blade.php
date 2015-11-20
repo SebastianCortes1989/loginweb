@@ -29,7 +29,17 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+	        	@foreach($licensings as $licensing)
+					<tr>
+		          		<th></th>
+		              	<th>{{ $licensing->employee->name }}</th>
+		              	<th>{{ $licensing->start_date }}</th>
+		              	<th>{{ $licensing->end_date }}</th>
+		              	<th></th>
+		              	<th>{{ $licensing->number }}</th>
+						<th></th>
+		          	</tr>	        		
+	        	@endforeach
 	        </tbody>
 	    </table>
 

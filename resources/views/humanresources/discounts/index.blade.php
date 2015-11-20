@@ -28,7 +28,16 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+	          	@foreach($discounts as $discount)
+	          		<tr>
+	          			<th></th>
+		              	<th>{{ $discount->employee->name }}</th>
+		              	<th></th>
+		              	<th>{{ $discount->quotas }}</th>
+		              	<th>{{ $discount->ammount }}</th>
+						<th></th>
+	          		</tr>
+	          	@endforeach
 	        </tbody>
 	    </table>
 

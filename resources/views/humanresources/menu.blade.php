@@ -23,7 +23,19 @@
 			            </ul>
 			        </li>
 
-		        	<li><a href="#">Descuentos</a></li>
+		        	<li>
+		        		<a class='dropdown-button' href='#' data-activates='descuentos'>Descuentos <i class="material-icons right">arrow_drop_down</i></a>
+
+			        	<ul id='descuentos' class='dropdown-content'>
+			            	<li><a href="{{ action('HumanResources\AdvanceController@index') }}">Anticipos</a></li>
+			              	<li class="divider"></li>
+			            	<li><a href="{{ action('HumanResources\ApvController@index') }}">Ahorro APV</a></li>
+			              	<li class="divider"></li>
+			            	<li><a href="{{ action('HumanResources\DiscountController@index') }}">Descuentos</a></li>
+			              	<li class="divider"></li>
+			            	<li><a href="{{ action('HumanResources\LicensingController@index') }}">Licencias Medicas</a></li>
+			            </ul>
+		        	</li>
 		        	<li><a href="#">Préstamos</a></li>
 		        	<li><a href="#">Terminos de Contrato</a></li>
 		        	<li><a href="#">Certificados</a></li>

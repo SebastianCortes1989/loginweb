@@ -3,36 +3,68 @@
 namespace App\Http\Controllers\HumanResources;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use App\Models\Admin\Client;
+
+use App\Models\Entity\Employee;
+
+use App\Models\HumanResources\Licensing;
 
 class LicensingController extends Controller
 {
+    protected $licensing;
+
+    public function __construct(Licensing $licensing){
+        $this->licensing = $licensing;
+    }
+
     /**
-     *listar licencias por empresa
+     * listar licencias por empresa
 	 *
-	 *return Response
+	 * @return Response
     */
     public function index($clientId = null)
     {
-        return view('humanresources.licensings.index');
+        $licensings = $this->licensing->all();
+
+        return view('humanresources.licensings.index', compact('licensings'));
     }
 
     /**
-     *crear licencia
+     * crear licencia
 	 *
-	 *return Response
+	 * @return Response
     */
     public function create()
     {
-        return view('humanresources.licensings.create');
+        $clients = Client::orderBy('name')->lists('name', 'id');
+        $employees = Employee::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.licensings.create', compact('clients', 'employees'));
     }
 
     /**
-     *editar licencia
+     * editar licencia
 	 *
-	 *return Response
+	 * @return Response
     */
     public function edit($licensingId)
     {
         return view('humanresources.licensings.edit');
+    }
+
+    /**
+     * registrar anticipo
+     *
+     * @return Response
+    */
+    public function store(Request $request)
+    {
+        $data = $request->except('_token');
+
+        $licensing = $this->licensing->create($data);
+
+        return redirect()->action('HumanResources\LicensingController@index');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRrhhViaticalsTable extends Migration
+class CreateRrhhLicensingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateRrhhViaticalsTable extends Migration
     public function up()
     {
         //
-        Schema::create('rrhh_viaticals', function(Blueprint $table){
+        Schema::create('rrhh_licensings', function(Blueprint $table){
             $table->increments('id');
             $table->timestamps();
             $table->integer('client_id', false);
             $table->integer('employee_id', false);
-            $table->date('date');
-            $table->integer('ammount', false);
-            $table->integer('type_id', false);
-            $table->text('description');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->integer('number', false);
+            $table->tinyInteger('work_accident', false);
             $table->softDeletes();
         });
     }
@@ -34,6 +34,6 @@ class CreateRrhhViaticalsTable extends Migration
     public function down()
     {
         //
-        Schema::drop('rrhh_viaticals');
+        Schema::drop('rrhh_licensings');
     }
 }

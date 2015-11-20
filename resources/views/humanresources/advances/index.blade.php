@@ -27,7 +27,15 @@
 	        </thead>
 
 	        <tbody>
-	          		       
+	        	@foreach($advances as $advance)
+	        		<tr>
+	        			<td></td>
+	        			<td>{{ $advance->employee->name }}</td>
+	        			<td></td>
+	        			<td>{{ $advance->date }}</td>
+	        			<td>{{ $advance->ammount }}</td>
+	        		</tr>
+	        	@endforeach		       
 	        </tbody>
 	    </table>
 

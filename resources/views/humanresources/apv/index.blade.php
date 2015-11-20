@@ -21,13 +21,19 @@
 	          		<th>Código</th>
 	              	<th>Trabajador</th>
 	              	<th>Periodo</th>
-	              	<th>Entidad</th>
 	              	<th>Monto</th>
 	          	</tr>
 	        </thead>
 
 	        <tbody>
-	          		       
+	          	@foreach($savings as $saving)
+	          		<tr>
+		          		<th></th>
+		              	<th>{{ $saving->employee->name }}</th>
+		              	<th></th>
+		              	<th>{{ $saving->ammount }}</th>
+		          	</tr>
+	          	@endforeach
 	        </tbody>
 	    </table>
 

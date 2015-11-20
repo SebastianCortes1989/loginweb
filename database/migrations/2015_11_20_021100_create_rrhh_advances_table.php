@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRrhhViaticalsTable extends Migration
+class CreateRrhhAdvancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRrhhViaticalsTable extends Migration
     public function up()
     {
         //
-        Schema::create('rrhh_viaticals', function(Blueprint $table){
+        Schema::create('rrhh_advances', function(Blueprint $table){
             $table->increments('id');
             $table->timestamps();
             $table->integer('client_id', false);
@@ -34,6 +34,6 @@ class CreateRrhhViaticalsTable extends Migration
     public function down()
     {
         //
-        Schema::drop('rrhh_viaticals');
+        Schema::drop('rrhh_advances');
     }
 }
