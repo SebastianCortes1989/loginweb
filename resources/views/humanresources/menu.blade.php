@@ -38,8 +38,19 @@
 			            	<li><a href="{{ action('HumanResources\PermissionController@index') }}">Permisos</a></li>
 			            </ul>
 		        	</li>
-		        	<li><a href="#">Préstamos</a></li>
+
+		        	<li>
+		        		<a class='dropdown-button' href='#' data-activates='prestamos'>Préstamos <i class="material-icons right">arrow_drop_down</i></a>
+
+			        	<ul id='prestamos' class='dropdown-content'>
+			            	<li><a href="{{ action('HumanResources\LoanController@index') }}">Personales</a></li>
+			              	<li class="divider"></li>
+			            	<li><a href="{{ action('HumanResources\CcafController@index') }}">CCAF</a></li>
+			            </ul>
+		        	</li>
+
 		        	<li><a href="#">Terminos de Contrato</a></li>
+
 		        	<li>
 		        		<a class='dropdown-button' href='#' data-activates='certificados'>Certificados <i class="material-icons right">arrow_drop_down</i></a>
 

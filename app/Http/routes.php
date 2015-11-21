@@ -59,4 +59,7 @@ Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh'], function () 
     Route::resource('antiguedad', 'AntiqueController');
     Route::resource('traslados', 'TransferController');
 
+    Route::resource('prestamos', 'LoanController');
+    Route::resource('ccaf', 'CcafController');
+
 });
