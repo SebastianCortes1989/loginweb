@@ -54,5 +54,9 @@ Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh'], function () 
     Route::resource('anticipos', 'AdvanceController');
     Route::resource('descuentos', 'DiscountController');
     Route::resource('licencias', 'LicensingController');
+    Route::resource('permisos', 'PermissionController');
+    
+    Route::resource('antiguedad', 'AntiqueController');
+    Route::resource('traslados', 'TransferController');
 
 });
