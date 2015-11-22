@@ -49,7 +49,15 @@
 			            </ul>
 		        	</li>
 
-		        	<li><a href="#">Terminos de Contrato</a></li>
+		        	<li>
+		        		<a class='dropdown-button' href='#' data-activates='termino'>Terminos de Contrato <i class="material-icons right">arrow_drop_down</i></a>
+
+			        	<ul id='termino' class='dropdown-content'>
+			            	<li><a href="{{ action('HumanResources\LetterController@index') }}">Cartas de Aviso</a></li>
+			              	<li class="divider"></li>
+			            	<li><a href="{{ action('HumanResources\SettlementController@index') }}">Finiquitos</a></li>
+			            </ul>
+		        	</li>
 
 		        	<li>
 		        		<a class='dropdown-button' href='#' data-activates='certificados'>Certificados <i class="material-icons right">arrow_drop_down</i></a>

@@ -62,4 +62,7 @@ Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh'], function () 
     Route::resource('prestamos', 'LoanController');
     Route::resource('ccaf', 'CcafController');
 
+    Route::resource('cartas', 'LetterController');
+    Route::resource('finiquitos', 'SettlementController');
+
 });
