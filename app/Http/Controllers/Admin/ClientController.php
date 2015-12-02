@@ -15,6 +15,8 @@ use App\Models\Admin\Insurance;
 use App\Models\Admin\User;
 use App\Models\Admin\File;
 
+use App\Http\Requests\Admin\ClientFormRequest;
+
 use \Hash;
 
 class ClientController extends Controller
@@ -71,7 +73,7 @@ class ClientController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ClientFormRequest $request)
     {
         $client = $this->client->create($request->except('_token'));
 

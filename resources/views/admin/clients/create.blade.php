@@ -10,65 +10,74 @@
     </div>
 </div>
 
-  {!! Form::open(['files' => true, 'action' => 'Admin\ClientController@store']) !!}
+
+{!! Form::open(['files' => true, 'action' => 'Admin\ClientController@store']) !!}
 
   <div class="row">
   	<div class="col m4">
   		
-  		<div class="input-field">
-          	{!! Form::text('rut', '', ['class' => 'validate']) !!}
+  		  <div class="input-field">
+            {!! Form::text('rut', '', ['class' => 'validate rut']) !!}
           	{!! Form::label('rut', 'R.U.T.') !!}
-        </div>
+            <span class="red-text">{{ $errors->first('rut') }}</span>
+        </div>        
 
         <div class="input-field">
           	{!! Form::text('name', '', ['class' => 'validate']) !!}
           	{!! Form::label('name', 'Nombre Corto') !!}
+            <span class="red-text">{{ $errors->first('name') }}</span>
         </div>
 
         <div class="input-field">        	
           	{!! Form::textarea('social_reason', '', ['class' => 'materialize-textarea']) !!}
           	{!! Form::label('social_reason', 'Razón Social') !!}
+            <span class="red-text">{{ $errors->first('social_reason') }}</span>
         </div>
 
         <div class="input-field">
           	{!! Form::textarea('gyre', '', ['class' => 'materialize-textarea']) !!}
-	        {!! Form::label('gyre', 'Giro') !!}
+	          {!! Form::label('gyre', 'Giro') !!}
+            <span class="red-text">{{ $errors->first('gyre') }}</span>
         </div>
 
   	</div>
 
   	<div class="col m4">
-  		
-  		<div class="input-field">
+  		      
+  		  <div class="input-field">
         	{!! Form::text('address', '', ['class' => 'validate']) !!}
         	{!! Form::label('address', 'Dirección') !!}
-        </div>
+            <span class="red-text">{{ $errors->first('address') }}</span>
+        </div>        
 
-        <div class="input-field">
-        	{!! Form::select('region_id', $regions, '', ['class' => 'browser-default']) !!}
-        </div>
+        {!! Form::label('region_id', 'Región') !!}
+        {!! Form::select('region_id', $regions, '', ['class' => 'browser-default']) !!}
+        <span class="red-text">{{ $errors->first('region_id') }}</span>
 
-        <div class="input-field">
-        	{!! Form::select('city_id', $cities, '', ['class' => 'browser-default']) !!}
-        </div>
+        {!! Form::label('city_id', 'Ciudad') !!}
+        {!! Form::select('city_id', $cities, '', ['class' => 'browser-default']) !!}
+        <span class="red-text">{{ $errors->first('city_id') }}</span>
 
-        <div class="input-field">
-        	{!! Form::select('commune_id', $communes, '', ['class' => 'browser-default']) !!}
-        </div>
+        {!! Form::label('commune_id', 'Comuna') !!}
+        {!! Form::select('commune_id', $communes, '', ['class' => 'browser-default']) !!}
+        <span class="red-text">{{ $errors->first('commune_id') }}</span>
 
         <div class="input-field">
         	{!! Form::text('phone', '', ['class'=>'validate']) !!}
         	{!! Form::label('phone', 'Teléfono') !!}
+          <span class="red-text">{{ $errors->first('phone') }}</span>
         </div>
 
         <div class="input-field">
         	{!! Form::password('password', '', ['class'=>'validate']) !!}
         	{!! Form::label('password', 'Clave') !!}
+          <span class="red-text">{{ $errors->first('password') }}</span>
         </div>
 
         <div class="input-field">
         	{!! Form::email('email', '', ['class'=>'validate']) !!}
         	{!! Form::label('email', 'E-mail') !!}
+          <span class="red-text">{{ $errors->first('email') }}</span>
         </div>        
 
   	</div>
@@ -78,33 +87,40 @@
   		<div class="input-field">
         	{!! Form::text('name_representative', '', ['class'=>'validate']) !!}
         	{!! Form::label('name_representative', 'Nombre Representante') !!}
+          <span class="red-text">{{ $errors->first('name_representative') }}</span>
         </div>
 
         <div class="input-field">
-        	{!! Form::text('rut_representative', '', ['class'=>'validate']) !!}
+        	{!! Form::text('rut_representative', '', ['class'=>'validate rut']) !!}
         	{!! Form::label('rut_representative', 'R.U.T. Representante') !!}
+          <span class="red-text">{{ $errors->first('rut_representative') }}</span>
         </div>
+      
 
         @foreach($insurances as $id => $name)
-
-          {!! Form::radio('insurance_id[]', $id) !!}
-          {!! Form::label('insurance_id', $name) !!}
+          
+          <p>
+            {!! Form::radio('insurance_id', $id, false, ['id' => 'insurance_id'.$id, 'class' => 'with-gap']) !!}
+            {!! Form::label('insurance_id'.$id, $name) !!}
+            <span class="red-text">{{ $errors->first('insurance_id') }}</span>
+          </p>
 
         @endforeach        
 
         <br>
 
-        <div class="input-field">
-        	{!! Form::select('complementary', $complementaries, '', ['class' => 'browser-default']) !!}
-        </div>
+        {!! Form::label('complementary', 'Seguro Complementario') !!}
+        {!! Form::select('complementary', $complementaries, '', ['class' => 'browser-default']) !!}
+        <span class="red-text">{{ $errors->first('complementary') }}</span>
 
-        <div class="input-field">
-        	{!! Form::select('compensacion', $compensacions, '', ['class' => 'browser-default']) !!}
-        </div>
+        {!! Form::label('compensacion', 'Caja de Compensación') !!}
+        {!! Form::select('compensacion', $compensacions, '', ['class' => 'browser-default']) !!}
+        <span class="red-text">{{ $errors->first('compensacion') }}</span>
 
         <div class="input-field">
         	{!! Form::text('mideplan', '', ['class'=>'validate']) !!}
         	{!! Form::label('mideplan', 'N° Registro Mideplan') !!}
+          <span class="red-text">{{ $errors->first('mideplan') }}</span>
         </div>
 
         <div class="file-field input-field">
@@ -133,5 +149,12 @@
 
 {!! Form::close() !!}
 
+
+@endsection
+
+
+@section('scripts')
+
+{!! Html::script('plugins/jquery-rut/jquery.Rut.min.js') !!}
 
 @endsection

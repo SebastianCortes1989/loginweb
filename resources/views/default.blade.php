@@ -39,7 +39,8 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     {!! Html::script('bower_components/materialize/js/materialize.min.js') !!}
-  
-    @yield('script')
+    @yield('scripts')
+
+    {!! Html::script('js/main.js') !!}
   </body>
 </html>

@@ -18,6 +18,8 @@ use App\Models\Admin\EmployeeType;
 use App\Models\Admin\AccountType;
 use App\Models\Admin\Client;
 
+use App\Http\Requests\Entity\EmployeeFormRequest;
+
 use App\Models\Entity\Employee;
 
 class EmployeeController extends Controller
@@ -81,7 +83,7 @@ class EmployeeController extends Controller
      *
      * return Response
     */
-    public function store(Request $request){
+    public function store(EmployeeFormRequest $request){
         $data = $request->except('_token');
         $data['family_charge_id'] = $request->get('family_charge');
         $data['invalids'] = $request->get('invalidates');

@@ -15,9 +15,8 @@
  <div class="row">
   	<div class="col m3">
   		
-        <div class="input-field">
-            {!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
-        </div>
+        {!! Form::label('client_id', 'Cliente') !!}
+        {!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
 
   		  <div class="input-field">
           	{!! Form::text('rut', '', ['class' => 'validate']) !!}
@@ -36,7 +35,7 @@
 
         <div class="input-field">
           	{!! Form::text('address', '', ['class' => 'validate']) !!}
-	        {!! Form::label('address', 'Dirección') !!}
+	          {!! Form::label('address', 'Dirección') !!}
         </div>
 
   	</div>
@@ -53,17 +52,14 @@
           {!! Form::label('movil_phone', 'Teléfono Celular') !!}
         </div>
 
-        <div class="input-field">
-        	{!! Form::select('nationality_id', $nacionalities, '', ['class' => 'browser-default']) !!}
-        </div>
+        {!! Form::label('nationality_id', 'Nacionalidad') !!}
+       	{!! Form::select('nationality_id', $nacionalities, '', ['class' => 'browser-default']) !!}
 
-        <div class="input-field">
-        	{!! Form::select('city_id', $cities, '', ['class' => 'browser-default']) !!}
-        </div>
+        {!! Form::label('city_id', 'Ciudad') !!}
+        {!! Form::select('city_id', $cities, '', ['class' => 'browser-default']) !!}
 
-        <div class="input-field">
-        	{!! Form::select('commune_id', $communes, '', ['class' => 'browser-default']) !!}
-        </div>
+        {!! Form::label('commune_id', 'Comuna') !!}
+      	{!! Form::select('commune_id', $communes, '', ['class' => 'browser-default']) !!}
 
         <div class="input-field">
         	{!! Form::text('passport', '', ['class'=>'validate']) !!}
@@ -74,29 +70,23 @@
 
   	<div class="col m3">
   		
-  		<div class="input-field">
-        {!! Form::select('type_id', $employeeTypes, '', ['class' => 'browser-default']) !!}
-      </div>
+      {!! Form::label('type_id', 'Tipo de Empleado') !!}
+      {!! Form::select('type_id', $employeeTypes, '', ['class' => 'browser-default']) !!}
 
-      <div class="input-field">
-        {!! Form::select('afc_id', $afc, '', ['class' => 'browser-default']) !!}
-      </div>
+      {!! Form::label('afc_id', 'AFC') !!}
+      {!! Form::select('afc_id', $afc, '', ['class' => 'browser-default']) !!}
 
-      <div class="input-field">
-        {!! Form::select('afp_id', $afp, '', ['class' => 'browser-default']) !!}
-      </div>
+      {!! Form::label('afp_id', 'AFP') !!}
+      {!! Form::select('afp_id', $afp, '', ['class' => 'browser-default']) !!}
 
-      <div class="input-field">
-        {!! Form::select('apv_id', $apv, '', ['class' => 'browser-default']) !!}
-      </div>
+      {!! Form::label('apv_id', 'APV') !!}
+      {!! Form::select('apv_id', $apv, '', ['class' => 'browser-default']) !!}
 
-      <div class="input-field">
-        {!! Form::select('bank_id', $banks, '', ['class' => 'browser-default']) !!}
-      </div>
+      {!! Form::label('bank_id', 'Banco') !!}
+      {!! Form::select('bank_id', $banks, '', ['class' => 'browser-default']) !!}
 
-      <div class="input-field">
-        {!! Form::select('account_type_id', $accountTypes, '', ['class' => 'browser-default']) !!}
-      </div>      
+      {!! Form::label('account_type_id', 'Tipo de Cuenta') !!}
+      {!! Form::select('account_type_id', $accountTypes, '', ['class' => 'browser-default']) !!}
 
       <div class="input-field">
         {!! Form::text('account_number', '', ['class' => 'validate']) !!}
@@ -107,9 +97,8 @@
 
     <div class="col m3">
 
-      <div class="input-field">
-        {!! Form::select('health_id', $healths, '', ['class' => 'browser-default']) !!}
-      </div>
+      {!! Form::label('health_id', 'Tipo de Salud') !!}
+      {!! Form::select('health_id', $healths, '', ['class' => 'browser-default']) !!}
 
       <div class="input-field">
         {!! Form::text('ges', '', ['class' => 'validate']) !!}
@@ -121,9 +110,8 @@
         {!! Form::label('plan_value', 'Valor de Plan') !!}
       </div> 
 
-      <div class="input-field">
-        {!! Form::select('family_charge', $familyCharges, '', ['class' => 'browser-default']) !!}
-      </div> 
+      {!! Form::label('family_charge', 'Cargas Familiares') !!}
+      {!! Form::select('family_charge', $familyCharges, '', ['class' => 'browser-default']) !!}
 
       <div class="input-field">
         {!! Form::text('familiars', '', ['class' => 'validate']) !!}
