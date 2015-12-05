@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\ExtraHour;
 
+use App\Http\Requests\HumanResources\ExtraHourFormRequest;
+
 class ExtraHourController extends Controller
 {
     protected $extraHour;
@@ -49,7 +51,7 @@ class ExtraHourController extends Controller
      *
      *return Response
     */
-    public function store(Request $request){
+    public function store(ExtraHourFormRequest $request){
         $data = $request->except('_token');
 
         $extraHour = $this->extraHour->create($data);

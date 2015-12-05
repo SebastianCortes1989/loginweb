@@ -9,41 +9,43 @@
 
 {!! Form::open(['action' => 'HumanResources\ExtraHourController@store']) !!}
 
+  {!! Form::hidden('client_id') !!}
+
 	<div class="row">
   		<div class="col m3">
-  			  <div class="input-field">
-            	{!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
-        	</div>
 
           <div class="input-field">
             {!! Form::text('start_date', '', ['class' => 'validate']) !!}
             {!! Form::label('start_date', 'Fecha de Inicio') !!}
+            <span class="red-text">{{ $errors->first('start_date') }}</span>
           </div>    
           
   		</div>
 
       <div class="col m4">
 
-          <div class="input-field">
-            {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
-          </div>
+          {!! Form::label('employee_id', 'Trabajador') !!}
+          {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('employee_id') }}</span>
 
           <div class="input-field">
             {!! Form::text('end_date', '', ['class' => 'validate']) !!}
             {!! Form::label('end_date', 'Fecha de Término') !!}
+            <span class="red-text">{{ $errors->first('end_date') }}</span>
           </div>
 
       </div>
   		
   		<div class="col m4">
 
-          <div class="input-field">
-            {!! Form::select('percentaje_id', [], '', ['class' => 'browser-default']) !!}
-          </div>
+          {!! Form::label('percentaje_id', 'Porcentaje') !!}
+          {!! Form::select('percentaje_id', [], '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('percentaje_id') }}</span>
 
         	<div class="input-field">
           		{!! Form::textarea('description', '', ['class' => 'validate', 'rows' => 50]) !!}
           		{!! Form::label('description', 'Descripción') !!}
+              <span class="red-text">{{ $errors->first('descripcion') }}</span>
       		</div> 
           
   		</div>

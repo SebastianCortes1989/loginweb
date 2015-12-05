@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Advance;
 
+use App\Http\Requests\HumanResources\AdvanceFormRequest;
+
 class AdvanceController extends Controller
 {
     protected $advance;
@@ -59,7 +61,7 @@ class AdvanceController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(AdvanceFormRequest $request)
     {
         $data = $request->except('_token');
 

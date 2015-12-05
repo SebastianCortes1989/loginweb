@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Viatical;
 
+use App\Http\Requests\HumanResources\ViaticalFormRequest;
+
 class ViaticalController extends Controller
 {
     protected $viatical;
@@ -49,7 +51,7 @@ class ViaticalController extends Controller
      *
      *return Response
     */
-    public function store(Request $request){
+    public function store(ViaticalFormRequest $request){
         $data = $request->except('_token');
 
         $viaticals = $this->viatical->create($data);

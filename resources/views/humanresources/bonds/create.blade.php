@@ -9,11 +9,10 @@
 
 {!! Form::open(['action' => 'HumanResources\BondController@store']) !!}
 
+  {!! Form::hidden('client_id') !!}
+
 	<div class="row">
   		<div class="col m3">
-  			  <div class="input-field">
-            	{!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
-        	</div>
         
           <div class="input-field">
             {!! Form::number('ammount', '', ['class' => 'validate']) !!}
@@ -24,26 +23,28 @@
 
       <div class="col m4">
 
-          <div class="input-field">
-            {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
-          </div>
+          {!! Form::label('employee_id', 'Trabajador') !!}
+          {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('employee_id') }}</span>
 
-          <div class="input-field">
-            {!! Form::select('type_id', [], '', ['class' => 'browser-default']) !!}
-          </div>
+          {!! Form::label('type_id', 'Tipo') !!}
+          {!! Form::select('type_id', [], '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('type_id') }}</span>
 
       </div>
   		
   		<div class="col m4">
 
           <div class="input-field">
-            {!! Form::text('date', '', ['class' => 'validate']) !!}
+            {!! Form::text('date', '', ['class' => 'validate date']) !!}
             {!! Form::label('date', 'Fecha') !!}
+            <span class="red-text">{{ $errors->first('date') }}</span>
           </div>
 
         	<div class="input-field">
           		{!! Form::textarea('description', '', ['class' => 'validate', 'rows' => 50]) !!}
           		{!! Form::label('description', 'Descripción') !!}
+              <span class="red-text">{{ $errors->first('description') }}</span>
       		</div> 
           
   		</div>

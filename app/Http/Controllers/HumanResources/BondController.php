@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Bond;
 
+use App\Http\Requests\HumanResources\BondFormRequest;
+
 class BondController extends Controller
 {
     protected $bond;
@@ -49,7 +51,7 @@ class BondController extends Controller
      *
      *return Response
     */
-    public function store(Request $request){
+    public function store(BondFormRequest $request){
         $data = $request->except('_token');
 
         $bond = $this->bond->create($data);

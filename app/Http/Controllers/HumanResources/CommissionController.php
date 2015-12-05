@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Commission;
 
+use App\Http\Requests\HumanResources\CommissionFormRequest;
+
 class CommissionController extends Controller
 {
     protected $commission;
@@ -49,7 +51,7 @@ class CommissionController extends Controller
      *
      *return Response
     */
-    public function store(Request $request){
+    public function store(CommissionFormRequest $request){
         $data = $request->except('_token');
 
         $commission = $this->commission->create($data);

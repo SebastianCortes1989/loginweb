@@ -15,6 +15,8 @@ use App\Models\Entity\Branch;
 use App\Models\HumanResources\Contract;
 use App\Models\HumanResources\Journal;
 
+use App\Http\Requests\HumanResources\ContractFormRequest;
+
 class ContractController extends Controller
 {
     protected $contract;
@@ -71,7 +73,7 @@ class ContractController extends Controller
      *
      * return Response
     */
-    public function store(Request $request){
+    public function store(ContractFormRequest $request){
         $data = $request->except('_token');
         $data['employee_id'] = $request->get('responsible_id');
         $data['working_typ_id'] = $request->get('working_type');

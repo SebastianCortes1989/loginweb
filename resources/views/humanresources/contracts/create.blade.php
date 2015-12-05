@@ -9,45 +9,45 @@
 
 {!! Form::open(['action' => 'HumanResources\ContractController@store']) !!}
 
+  {!! Form::hidden('client_id') !!}
+
 	<div class="row">
   		<div class="col m3">
-  			<div class="input-field">
-            	{!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
-        	</div>
-
-        	<div class="input-field">
-	        	{!! Form::select('branch_id', $branchs, '', ['class' => 'browser-default']) !!}
-        	</div>
+          {!! Form::label('responsible_id', 'Responsable') !!}
+          {!! Form::select('responsible_id', $employees, '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('responsible_id') }}</span>
   		</div>
 
   		<div class="col m3">
-  			<div class="input-field">
-	        	{!! Form::select('responsible_id', $employees, '', ['class' => 'browser-default']) !!}
-        	</div>
+          {!! Form::label('branch_id', 'Sucursal') !!}
+          {!! Form::select('branch_id', $branchs, '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('branch_id') }}</span>
 
-        	<div class="input-field">
-	        	{!! Form::select('working_type', $workingTypes, '', ['class' => 'browser-default']) !!}
-        	</div>        	
+          
+          {!! Form::label('working_type', 'Tipo de Jornada') !!}
+        	{!! Form::select('working_type', $workingTypes, '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('working_type') }}</span>
   		</div>
 
   		<div class="col m3">
-  			<div class="input-field">
-	        	{!! Form::select('contract_type', $contractTypes, '', ['class' => 'browser-default']) !!}
-        	</div>
+          {!! Form::label('contract_type', 'Tipo de Contrato') !!}
+        	{!! Form::select('contract_type', $contractTypes, '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('contract_type') }}</span>
 
         	<div class="input-field">
-          		{!! Form::text('start_date', '', ['class' => 'validate']) !!}
+          		{!! Form::text('start_date', '', ['class' => 'validate date']) !!}
           		{!! Form::label('start_date', 'Fecha de Inicio') !!}
+              <span class="red-text">{{ $errors->first('start_date') }}</span>
       		</div> 
   		</div>
 
   		<div class="col m3">
-  			<div class="input-field">
-	        	{!! Form::select('charge_id', $charges, '', ['class' => 'browser-default']) !!}
-        	</div>
+          {!! Form::label('charge_id', 'Cargo') !!}
+        	{!! Form::select('charge_id', $charges, '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('charge_id') }}</span>
 
         	<div class="input-field">
-          		{!! Form::text('end_date', '', ['class' => 'validate']) !!}
+          		{!! Form::text('end_date', '', ['class' => 'validate date']) !!}
           		{!! Form::label('end_date', 'Fecha de Término') !!}
       		</div> 
   		</div>

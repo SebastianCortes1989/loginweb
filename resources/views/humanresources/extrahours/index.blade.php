@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('HumanResources\ViaticalController@create') }}" class="btn-floating btn-large purple darken-1">
+    <a href="{{ action('HumanResources\ExtraHourController@create') }}" class="btn-floating btn-large purple darken-1">
     	<i class="large material-icons">add</i>
     </a>				    
 </div>

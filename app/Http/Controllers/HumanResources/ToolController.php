@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Tool;
 
+use App\Http\Requests\HumanResources\ToolFormRequest;
+
 class ToolController extends Controller
 {
     protected $tool;
@@ -20,7 +22,7 @@ class ToolController extends Controller
     }
 
     /**
-     *listar comisiones por empresa
+     *listar desg. Herramientas por empresa
 	 *
 	 *return Response
     */
@@ -32,7 +34,7 @@ class ToolController extends Controller
     }
 
     /**
-     *crear comision
+     *crear desg. Herramienta
 	 *
 	 *return Response
     */
@@ -45,11 +47,11 @@ class ToolController extends Controller
     }
 
     /**
-     *registrar comision
+     *registrar desg. Herramienta
      *
      *return Response
     */
-    public function store(Request $request){
+    public function store(ToolFormRequest $request){
         $data = $request->except('_token');
 
         $tool = $this->tool->create($data);
@@ -58,7 +60,7 @@ class ToolController extends Controller
     }
 
     /**
-     *editar comision
+     *editar desg. Herramienta
 	 *
 	 *return Response
     */

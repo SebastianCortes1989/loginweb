@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Bonus;
 
+use App\Http\Requests\HumanResources\BonuFormRequest;
+
 class BonuController extends Controller
 {
     protected $bonus;
@@ -48,7 +50,7 @@ class BonuController extends Controller
      *
      *return Response
     */
-    public function store(Request $request){
+    public function store(BonuFormRequest $request){
         $data = $request->except('_token');
 
         $bonus = $this->bonus->create($data);
