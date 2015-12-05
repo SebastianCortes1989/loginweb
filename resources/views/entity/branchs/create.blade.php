@@ -12,18 +12,16 @@
 
 {!! Form::open(['action' => 'Entity\BranchController@store']) !!}
 
+  {!! Form::hidden('client_id') !!}
+
  <div class="row">
-    <div class="col m3">
-        <div class="input-field">
-            {!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
-        </div>
-    </div>
     
     <div class="col m3">
   		
       <div class="input-field">
           {!! Form::text('name', '', ['class' => 'validate']) !!}
           {!! Form::label('name', 'Nombre') !!}
+          <span class="red-text">{{ $errors->first('name') }}</span>
       </div>      
   		
   	</div>
@@ -33,6 +31,7 @@
   		<div class="input-field">
           {!! Form::text('address', '', ['class' => 'validate']) !!}
           {!! Form::label('address', 'Dirección') !!}
+          <span class="red-text">{{ $errors->first('address') }}</span>
       </div> 
 
   	</div>   

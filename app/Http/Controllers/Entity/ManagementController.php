@@ -10,6 +10,8 @@ use App\Models\Admin\Client;
 use App\Models\Entity\Employee;
 use App\Models\Entity\Management;
 
+use App\Http\Requests\Entity\ManagementFormRequest;
+
 class ManagementController extends Controller
 {
     protected $management;
@@ -59,7 +61,7 @@ class ManagementController extends Controller
      *
      * return Response
     */
-    public function store(Request $request){
+    public function store(ManagementFormRequest $request){
         $data = $request->except('_token');
         $data['employee_id'] = $request->get('responsible_id');
 

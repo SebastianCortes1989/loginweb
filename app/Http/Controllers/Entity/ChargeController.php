@@ -11,6 +11,8 @@ use App\Models\Entity\Management;
 use App\Models\Entity\Unit;
 use App\Models\Entity\Charge;
 
+use App\Http\Requests\Entity\ChargeFormRequest;
+
 class ChargeController extends Controller
 {
     protected $charge;
@@ -61,7 +63,7 @@ class ChargeController extends Controller
      *
      * return Response
     */
-    public function store(Request $request){
+    public function store(ChargeFormRequest $request){
         $data = $request->except('_token');
 
         $charge = $this->charge->create($data);

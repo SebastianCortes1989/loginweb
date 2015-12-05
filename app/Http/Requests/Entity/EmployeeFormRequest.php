@@ -10,6 +10,7 @@ class EmployeeFormRequest extends FormRequest
     public function rules()
     {
         return [
+            'client_id' => 'required',
             'rut' => 'required',
             'name' => 'required',
             'birthday' => 'required',
@@ -18,17 +19,14 @@ class EmployeeFormRequest extends FormRequest
             'nationality_id' => 'required',
             'city_id' => 'required',
             'commune_id' => 'required',
-            'passport' => 'required',
             'type_id' => 'required',
             'afc_id' => 'required',
             'afp_id' => 'required',
             'apv_id' => 'required',
             'bank_id' => 'required',
             'account_type_id' => 'required',
-            'account_number' => 'required',
             'health_id' => 'required',
             'ges' => 'required',
-            'plan_value' => 'required',
             'family_charge' => 'required',
         ];
     }
@@ -44,11 +42,20 @@ class EmployeeFormRequest extends FormRequest
             'rut.required' => 'Favor ingresar el RUT',
             'name.required'  => 'Favor ingresar el Nombre',
             'birthday.required'  => 'Favor ingresar Fecha de Nacimiento',
-            'address.required'  => 'Favor ingresar la Dirección',
-            'region_id.required'  => 'Favor seleccionar la Región',
-            'city_id.required'  => 'Favor seleccionar la Ciudad',
-            'phone.required'  => 'Favor ingresar el Teléfono',
-            'email.required'  => 'Favor ingresar el E-mail',            
+            'address.required' => 'Favor ingresar Dirección',
+            'phone.required' => 'Favor ingresar Télefono',
+            'nationality_id.required' => 'Favor seleccionar Nacionalidad',
+            'city_id.required' => 'Favor seleccionar Ciudad',
+            'commune_id.required' => 'Favor seleccionar Comuna',
+            'type_id.required' => 'Favor seleccionar Tipo de Trabajador',
+            'afc_id.required' => 'Favor seleccionar AFC',
+            'afp_id.required' => 'Favor seleccionar AFP',
+            'apv_id.required' => 'Favor seleccionar APV',
+            'bank_id.required' => 'Favor seleccionar Banco',
+            'account_type_id.required' => 'Favor seleccionar Tipo de Cuenta',
+            'health_id.required' => 'Favor seleccionar Salud',
+            'ges.required' => 'Favor ingresar GES',
+            'family_charge.required' => 'Favor seleccionar Cargas',
         ];
     }
     

@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 use App\Models\Entity\Management;
 use App\Models\Entity\Unit;
 
+use App\Http\Requests\Entity\UnitFormRequest;
+
 class UnitController extends Controller
 {
     protected $unit;
@@ -61,7 +63,7 @@ class UnitController extends Controller
      *
      * return Response
     */
-    public function store(Request $request){
+    public function store(UnitFormRequest $request){
         $data = $request->except('_token');
 
         $unit = $this->unit->create($data);

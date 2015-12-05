@@ -9,6 +9,8 @@ use App\Models\Admin\Client;
 
 use App\Models\Entity\Branch;
 
+use App\Http\Requests\Entity\BranchFormRequest;
+
 class BranchController extends Controller
 {
     protected $branch;
@@ -57,7 +59,7 @@ class BranchController extends Controller
      *
      * return Response
     */
-    public function store(Request $request){
+    public function store(BranchFormRequest $request){
         $data = $request->except('_token');
 
         $branch = $this->branch->create($data);

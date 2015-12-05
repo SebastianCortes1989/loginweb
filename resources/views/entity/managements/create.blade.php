@@ -12,27 +12,25 @@
 
 {!! Form::open(['action' => 'Entity\ManagementController@store']) !!}
 
- <div class="row">
-    <div class="col m4">
-        <div class="input-field">
-            {!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
-        </div>
-    </div>
+  {!! Form::hidden('client_id') !!}
+
+  <div class="row">
 
     <div class="col m4">
   		
       <div class="input-field">
           {!! Form::text('name', '', ['class' => 'validate']) !!}
           {!! Form::label('name', 'Nombre') !!}
+          <span class="red-text">{{ $errors->first('name') }}</span>
       </div>      
   		
   	</div>
 
   	<div class="col m4">
   		
-  		<div class="input-field">
-          {!! Form::select('responsible_id', $employees, '', ['class' => 'browser-default']) !!}
-      </div> 
+      {!! Form::label('responsible_id', 'Responsable') !!}
+      {!! Form::select('responsible_id', $employees, '', ['class' => 'browser-default']) !!}
+      <span class="red-text">{{ $errors->first('responsible_id') }}</span>
 
   	</div>
 
