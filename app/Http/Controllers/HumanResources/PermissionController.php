@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Permission;
 
+use App\Http\Requests\HumanResources\PermissionFormRequest;
+
 class PermissionController extends Controller
 {
     protected $permission;
@@ -59,7 +61,7 @@ class PermissionController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(PermissionFormRequest $request)
     {
         $data = $request->except('_token');
 

@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Settlement;
 
+use App\Http\Requests\HumanResources\SettlementFormRequest;
+
 class SettlementController extends Controller
 {
     protected $settlement;
@@ -59,7 +61,7 @@ class SettlementController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(SettlementFormRequest $request)
     {
         $data = $request->except('_token');
 

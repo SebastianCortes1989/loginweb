@@ -9,51 +9,46 @@
 
 {!! Form::open(['action' => 'HumanResources\ApvController@store']) !!}
 
-	<div class="row">
-  		<div class="col m3">
-  			  
-          <div class="input-field">
-            	{!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
-        	</div> 
+  {!! Form::hidden('client_id') !!}
 
-  		</div>
-
+	<div class="row">  		
       <div class="col m3">
 
-          <div class="input-field">
-            {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
-          </div>
+        {!! Form::label('employee_id', 'Trabajador') !!}
+        {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
+        <span class="red-text">{{ $errors->first('employee_id') }}</span>
 
       </div>
 
       <div class="col m3">
 
-          <div class="input-field">
-            {!! Form::select('type_id', [], '', ['class' => 'browser-default']) !!}
-          </div>
+        {!! Form::label('type_id', 'Tipo') !!}
+        {!! Form::select('type_id', [], '', ['class' => 'browser-default']) !!}
+        <span class="red-text">{{ $errors->first('type_id') }}</span>
 
       </div>
   		
   		<div class="col m3">
 
-          <div class="input-field">
-            {!! Form::number('ammount', '', ['class' => 'validate']) !!}
-            {!! Form::label('ammount', 'Monto') !!}
-          </div> 
+        <div class="input-field">
+          {!! Form::number('ammount', '', ['class' => 'validate']) !!}
+          {!! Form::label('ammount', 'Monto') !!}
+          <span class="red-text">{{ $errors->first('ammount') }}</span>
+        </div> 
           
   		</div>
 
   	</div>
 
   	<div class="row">
-		<div class="col s12 m12">	    	
+		  <div class="col s12 m12">	    	
 	    	<div class="card-panel blue-grey lighten-5">
 	      		<button class="btn btn-large waves-effect waves-light purple darken-1" type="submit" name="action">
 	      			Guardar
 				</button>
 	    	</div>
 	    </div>
-	</div>
+	  </div>
 
 {!! Form::close() !!}
 

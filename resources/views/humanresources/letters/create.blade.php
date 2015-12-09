@@ -9,37 +9,38 @@
 
 {!! Form::open(['action' => 'HumanResources\LetterController@store']) !!}
 
+  {!! Form::hidden('client_id') !!}
+
 	<div class="row">
   		<div class="col m3">
-  			  <div class="input-field">
-            	{!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
-        	</div>
 
-          <div class="input-field">
-            {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
-          </div>          
+        {!! Form::label('employee_id', 'Trabajador') !!}
+        {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
+        <span class="red-text">{{ $errors->first('employee_id') }}</span>
           
   		</div>
 
       <div class="col m4">    
 
           <div class="input-field">
-            {!! Form::text('notice_date', '', ['class' => 'validate']) !!}
+            {!! Form::text('notice_date', '', ['class' => 'validate date']) !!}
             {!! Form::label('notice_date', 'Fecha de Aviso') !!}
+            <span class="red-text">{{ $errors->first('notice_date') }}</span>
           </div> 
 
           <div class="input-field">
-            {!! Form::text('settlement_date', '', ['class' => 'validate']) !!}
+            {!! Form::text('settlement_date', '', ['class' => 'validate date']) !!}
             {!! Form::label('settlement_date', 'Fecha de Finiquitación') !!}
+            <span class="red-text">{{ $errors->first('settlement_date') }}</span>
           </div> 
           
       </div>
   		
   		<div class="col m4">
 
-          <div class="input-field">
-            {!! Form::select('causal_id', $employees, '', ['class' => 'browser-default']) !!}
-          </div>
+          {!! Form::label('causal_id', 'Causal') !!}
+          {!! Form::select('causal_id', $employees, '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('causal_id') }}</span>
 
           <div class="input-field">
             {!! Form::textarea('fact', '', ['class' => 'validate']) !!}

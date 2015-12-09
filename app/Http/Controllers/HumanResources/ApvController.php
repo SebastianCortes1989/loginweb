@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Saving;
 
+use App\Http\Requests\HumanResources\ApvFormRequest;
+
 class ApvController extends Controller
 {
     protected $saving;
@@ -59,7 +61,7 @@ class ApvController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(ApvFormRequest $request)
     {
         $data = $request->except('_token');
 

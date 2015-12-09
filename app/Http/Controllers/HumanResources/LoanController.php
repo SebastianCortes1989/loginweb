@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Loan;
 
+use App\Http\Requests\HumanResources\LoanFormRequest;
+
 class LoanController extends Controller
 {
     protected $loan;
@@ -59,7 +61,7 @@ class LoanController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(LoanFormRequest $request)
     {
         $data = $request->except('_token');
 

@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Licensing;
 
+use App\Http\Requests\HumanResources\LicensingFormRequest;
+
 class LicensingController extends Controller
 {
     protected $licensing;
@@ -59,7 +61,7 @@ class LicensingController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(LicensingFormRequest $request)
     {
         $data = $request->except('_token');
 

@@ -17,6 +17,7 @@
           <div class="input-field">
             {!! Form::number('ammount', '', ['class' => 'validate']) !!}
             {!! Form::label('ammount', 'Monto') !!}
+            <span class="red-text">{{ $errors->first('ammount') }}</span>
           </div>
           
   		</div>

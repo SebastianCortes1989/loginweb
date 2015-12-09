@@ -9,24 +9,24 @@
 
 {!! Form::open(['action' => 'HumanResources\SettlementController@store']) !!}
 
+  {!! Form::hidden('client_id') !!}
+
 	<div class="row">
   		<div class="col m3">
-  			  <div class="input-field">
-            	{!! Form::select('client_id', $clients, '', ['class' => 'browser-default']) !!}
-        	</div>
 
-          <div class="input-field">
-            {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
-          </div>
+        {!! Form::label('employee_id', 'Trabajador') !!}
+        {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
+        <span class="red-text">{{ $errors->first('employee_id') }}</span>
 
-          <div class="input-field">
-            {!! Form::select('causal_id', $employees, '', ['class' => 'browser-default']) !!}
-          </div>
+        {!! Form::label('causal_id', 'Causal') !!}
+        {!! Form::select('causal_id', $employees, '', ['class' => 'browser-default']) !!}
+        <span class="red-text">{{ $errors->first('causal_id') }}</span>
 
-          <div class="input-field">
-            {!! Form::text('date', '', ['class' => 'validate']) !!}
-            {!! Form::label('date', 'Fecha de Emisión') !!}
-          </div>    
+        <div class="input-field">
+          {!! Form::text('date', '', ['class' => 'validate date']) !!}
+          {!! Form::label('date', 'Fecha de Emisión') !!}
+          <span class="red-text">{{ $errors->first('date') }}</span>
+        </div>    
           
   		</div>
 

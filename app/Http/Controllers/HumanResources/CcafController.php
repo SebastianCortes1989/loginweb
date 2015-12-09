@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Ccaf;
 
+use App\Http\Requests\HumanResources\CcafFormRequest;
+
 class CcafController extends Controller
 {
     protected $ccaf;
@@ -59,7 +61,7 @@ class CcafController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(CcafFormRequest $request)
     {
         $data = $request->except('_token');
 

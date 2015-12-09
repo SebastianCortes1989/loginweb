@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Discount;
 
+use App\Http\Requests\HumanResources\DiscountFormRequest;
+
 class DiscountController extends Controller
 {
     protected $discount;
@@ -59,7 +61,7 @@ class DiscountController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(DiscountFormRequest $request)
     {
         $data = $request->except('_token');
 

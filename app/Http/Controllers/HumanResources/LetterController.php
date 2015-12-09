@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Letter;
 
+use App\Http\Requests\HumanResources\LetterFormRequest;
+
 class LetterController extends Controller
 {
     protected $letter;
@@ -59,7 +61,7 @@ class LetterController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(LetterFormRequest $request)
     {
         $data = $request->except('_token');
 
