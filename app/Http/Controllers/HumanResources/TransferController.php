@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Transfer;
 
+use App\Http\Requests\HumanResources\TransferFormRequest;
+
 class TransferController extends Controller
 {
     protected $transfer;
@@ -59,7 +61,7 @@ class TransferController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(TransferFormRequest $request)
     {
         $data = $request->except('_token');
 

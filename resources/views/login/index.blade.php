@@ -13,15 +13,19 @@
 
   <body>
 
+    <br><br>
+
     <div class="row">
-      <div class="col s12 m6">
+      <div class="col offset-m3 m6">
         {!! Form::open(['action' => 'Auth\LoginController@authenticate']) !!}
           <div class="card">
             <div class="card-content">
               <span class="card-title blue-text darken4">Entrar al Sistema</span>
               <hr>
               {!! Form::text('email', '', ['class' => 'validate', 'placeholder' => 'Ingresar E-mail']) !!}
+              <span class="red-text">{{ $errors->first('email') }}</span>
               {!! Form::password('password', '', ['class' => 'validate', 'placeholder' => 'Ingresar Contraseña']) !!}
+              <span class="red-text">{{ $errors->first('password') }}</span>
             </div>
             <div class="card-action blue darken-4">
               <button class="btn btn-large waves-effect waves-light amber darken-2" type="submit" name="action">

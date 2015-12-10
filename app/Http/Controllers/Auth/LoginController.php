@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth, Hash;
 
+use App\Http\Requests\Login\LoginFormRequest;
+
 class LoginController extends Controller
 {
     /*
@@ -22,7 +24,7 @@ class LoginController extends Controller
      *
      * return Response
     */
-    public function authenticate(Request $request)
+    public function authenticate(LoginFormRequest $request)
     {
         $email = $request->get('email');
         $password = $request->get('password');

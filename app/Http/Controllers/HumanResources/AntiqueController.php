@@ -11,6 +11,8 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Antique;
 
+use App\Http\Requests\HumanResources\AntiqueFormRequest;
+
 class AntiqueController extends Controller
 {
     protected $antique;
@@ -59,7 +61,7 @@ class AntiqueController extends Controller
      *
      * @return Response
     */
-    public function store(Request $request)
+    public function store(AntiqueFormRequest $request)
     {
         $data = $request->except('_token');
 
