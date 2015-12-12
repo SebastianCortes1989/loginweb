@@ -9,6 +9,8 @@
 
 {!! Form::open(['action' => 'HumanResources\CcafController@store']) !!}
 
+  {!! Form::hidden('client_id', Auth::user()->client_id) !!}
+
 	<div class="row">
   		<div class="col m3">
 

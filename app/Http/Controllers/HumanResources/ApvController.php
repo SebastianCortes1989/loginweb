@@ -26,9 +26,9 @@ class ApvController extends Controller
 	 *
 	 * @return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $savings = $this->saving->all();
+        $savings = $this->saving->whereClientId(Auth::user()->clientId)->get();
 
         return view('humanresources.apv.index', compact('savings'));
     }
@@ -40,10 +40,9 @@ class ApvController extends Controller
     */
     public function create()
     {
-        $clients = Client::orderBy('name')->lists('name', 'id');
-        $employees = Employee::orderBy('name')->lists('name', 'id');
+        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
 
-        return view('humanresources.apv.create', compact('clients', 'employees'));
+        return view('humanresources.apv.create', compact('employees'));
     }
 
     /**

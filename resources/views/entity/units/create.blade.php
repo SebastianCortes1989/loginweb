@@ -12,7 +12,7 @@
 
 {!! Form::open(['action' => 'Entity\UnitController@store']) !!}
 
-  {!! Form::hidden('client_id') !!}
+  {!! Form::hidden('client_id', Auth::user()->client_id) !!}
 
  <div class="row">
 

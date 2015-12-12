@@ -4,6 +4,7 @@ namespace App\Http\Controllers\HumanResources;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\Client;
 
@@ -26,9 +27,9 @@ class PermissionController extends Controller
 	 *
 	 * @return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $permissions = $this->permission->all();
+        $permissions = $this->permission->whereClientId(Auth::user()->clientId)->get();
 
         return view('humanresources.permissions.index', compact('permissions'));
     }
@@ -40,10 +41,9 @@ class PermissionController extends Controller
     */
     public function create()
     {
-        $clients = Client::orderBy('name')->lists('name', 'id');
-        $employees = Employee::orderBy('name')->lists('name', 'id');
+        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
 
-        return view('humanresources.permissions.create', compact('clients', 'employees'));
+        return view('humanresources.permissions.create', compact('employees'));
     }
 
     /**

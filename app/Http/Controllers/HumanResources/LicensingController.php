@@ -4,6 +4,7 @@ namespace App\Http\Controllers\HumanResources;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\Client;
 
@@ -26,9 +27,9 @@ class LicensingController extends Controller
 	 *
 	 * @return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $licensings = $this->licensing->all();
+        $licensings = $this->licensing->whereClientId(Auth::user()->clientId)->get();
 
         return view('humanresources.licensings.index', compact('licensings'));
     }
@@ -40,10 +41,9 @@ class LicensingController extends Controller
     */
     public function create()
     {
-        $clients = Client::orderBy('name')->lists('name', 'id');
-        $employees = Employee::orderBy('name')->lists('name', 'id');
+        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
 
-        return view('humanresources.licensings.create', compact('clients', 'employees'));
+        return view('humanresources.licensings.create', compact('employees'));
     }
 
     /**

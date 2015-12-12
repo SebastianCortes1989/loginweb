@@ -20,7 +20,7 @@
         {!! Form::open(['action' => 'Auth\LoginController@authenticate']) !!}
           <div class="card">
             <div class="card-content">
-              <span class="card-title blue-text darken4">Entrar al Sistema</span>
+              <span class="card-title blue-text accent-4">Entrar al Sistema</span>
               <hr>
               {!! Form::text('email', '', ['class' => 'validate', 'placeholder' => 'Ingresar E-mail']) !!}
               <span class="red-text">{{ $errors->first('email') }}</span>
@@ -29,7 +29,7 @@
             </div>
             <div class="card-action blue darken-4">
               <button class="btn btn-large waves-effect waves-light amber darken-2" type="submit" name="action">
-                Guardar
+                Ingresar
               </button>
             </div>
           </div>

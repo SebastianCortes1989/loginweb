@@ -4,6 +4,7 @@ namespace App\Http\Controllers\HumanResources;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\Client;
 
@@ -26,9 +27,9 @@ class BondController extends Controller
 	 *
 	 *return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $bonds = $this->bond->orderBy('date')->get();
+        $bonds = $this->bond->whereClientId(Auth::user()->clientId)->orderBy('date')->get();
 
         return view('humanresources.bonds.index', compact('bonds'));
     }
@@ -40,10 +41,9 @@ class BondController extends Controller
     */
     public function create()
     {
-        $clients = Client::orderBy('name')->lists('name', 'id');
-        $employees = Employee::orderBy('name')->lists('name', 'id');
+        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
 
-        return view('humanresources.bonds.create', compact('clients', 'employees'));
+        return view('humanresources.bonds.create', compact('employees'));
     }
 
     /**

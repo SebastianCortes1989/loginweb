@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\Client;
 
@@ -25,9 +26,9 @@ class BranchController extends Controller
 	 *
 	 *return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $branchs = $this->branch->orderBy('name')->get();
+        $branchs = $this->branch->whereClientId(Auth::user()->client_id)->orderBy('name')->get();
 
         return view('entity.branchs.index', compact('branchs'));
     }
@@ -39,9 +40,7 @@ class BranchController extends Controller
     */
     public function create()
     {
-        $clients = Client::orderBy('name')->lists('name', 'id');
-
-        return view('entity.branchs.create', compact('clients'));
+        return view('entity.branchs.create');
     }
 
     /**

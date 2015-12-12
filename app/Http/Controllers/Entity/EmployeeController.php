@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\City;
 use App\Models\Admin\Commune;
@@ -37,9 +38,9 @@ class EmployeeController extends Controller
      *
      *return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $employees = $this->employee->orderBy('name')->get();
+        $employees = $this->employee->whereClientId(Auth::user()->client_id)->orderBy('name')->get();
 
         return view('entity.employees.index', compact('employees'));
     }
@@ -63,9 +64,7 @@ class EmployeeController extends Controller
         $accountTypes = AccountType::lists('name', 'id');
         $healths = Health::lists('name', 'id');
 
-        $clients = Client::orderBy('name')->lists('name', 'id');
-
-        return view('entity.employees.create', compact('nacionalities', 'cities', 'communes', 'afc', 'afp', 'apv', 'banks', 'familyCharges', 'employeeTypes', 'accountTypes', 'healths', 'clients'));
+        return view('entity.employees.create', compact('nacionalities', 'cities', 'communes', 'afc', 'afp', 'apv', 'banks', 'familyCharges', 'employeeTypes', 'accountTypes', 'healths'));
     }
 
     /*

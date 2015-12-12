@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\Client;
 
@@ -27,9 +28,9 @@ class ChargeController extends Controller
 	 *
 	 *return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $charges = $this->charge->orderBy('name')->get();
+        $charges = $this->charge->whereClientId(Auth::user()->client_id)->orderBy('name')->get();
 
         return view('entity.charges.index', compact('charges'));
     }
@@ -41,11 +42,10 @@ class ChargeController extends Controller
     */
     public function create()
     {
-        $clients = Client::orderBy('name')->lists('name', 'id');
-        $managements = Management::orderBy('name')->lists('name', 'id');
-        $units = Unit::orderBy('name')->lists('name', 'id');
+        $managements = Management::whereClientId(Auth::user()->clientId)->orderBy('name')->lists('name', 'id');
+        $units = Unit::whereClientId(Auth::user()->clientId)->orderBy('name')->lists('name', 'id');
 
-        return view('entity.charges.create', compact('clients', 'managements', 'units'));
+        return view('entity.charges.create', compact('managements', 'units'));
     }
 
     /**

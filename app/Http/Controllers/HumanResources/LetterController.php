@@ -4,6 +4,7 @@ namespace App\Http\Controllers\HumanResources;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\Client;
 
@@ -26,9 +27,9 @@ class LetterController extends Controller
 	 *
 	 * @return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $letters = $this->letter->all();
+        $letters = $this->letter->whereClientId(Auth::user()->clientId)->get();
 
         return view('humanresources.letters.index', compact('letters'));
     }
@@ -40,10 +41,9 @@ class LetterController extends Controller
     */
     public function create()
     {
-        $clients = Client::orderBy('name')->lists('name', 'id');
-        $employees = Employee::orderBy('name')->lists('name', 'id');
+        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
 
-        return view('humanresources.letters.create', compact('clients', 'employees'));
+        return view('humanresources.letters.create', compact('employees'));
     }
 
     /**

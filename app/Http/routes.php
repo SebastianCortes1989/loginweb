@@ -14,17 +14,20 @@
 
 Route::get('/', 'Auth\LoginController@index');
 Route::post('auth', 'Auth\LoginController@authenticate');
+Route::get('logout', 'Auth\LoginController@logout');
 
 
 //administrador
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function () {
 
+    Route::get('seleccionar-cliente', 'ClientController@getSelect');
+    Route::post('seleccionar-cliente', 'ClientController@postSelect');
     Route::resource('clientes', 'ClientController');
 
 });
 
 //entidades de clientes
-Route::group(['namespace' => 'Entity', 'prefix' => 'entidades'], function () {
+Route::group(['namespace' => 'Entity', 'prefix' => 'entidades', 'middleware' => 'auth'], function () {
 
     Route::resource('trabajadores', 'EmployeeController');
     Route::resource('cargos', 'ChargeController');
@@ -35,13 +38,15 @@ Route::group(['namespace' => 'Entity', 'prefix' => 'entidades'], function () {
 });
 
 //recursos humanos
-Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh'], function () {
+Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh', 'middleware' => 'auth'], function () {
 
     Route::get('contratos/jornada', 'ContractController@workingType');
     Route::post('contratos/jornada', 'ContractController@workingTypeStore');
     Route::get('contratos/remuneraciones', 'ContractController@remunerations');
     Route::post('contratos/remuneraciones', 'ContractController@remunerationsStore');
     Route::resource('contratos', 'ContractController');
+
+    Route::resource('remuneraciones', 'RemunerationController');
 
     Route::resource('bonos', 'BondController');
     Route::resource('aguinaldos', 'BonuController');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\Client;
 
@@ -26,9 +27,9 @@ class ManagementController extends Controller
 	 *
 	 *return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $managements = $this->management->orderBy('name')->get();
+        $managements = $this->management->whereClientId(Auth::user()->client_id)->orderBy('name')->get();
 
         return view('entity.managements.index', compact('managements'));
     }
@@ -40,10 +41,9 @@ class ManagementController extends Controller
     */
     public function create()
     {
-        $clients = Client::orderBy('name')->lists('name', 'id');
         $employees = Employee::orderBy('name')->lists('name', 'id');
 
-        return view('entity.managements.create', compact('clients', 'employees'));
+        return view('entity.managements.create', compact('employees'));
     }
 
     /**

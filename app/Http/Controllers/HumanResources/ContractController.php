@@ -4,6 +4,7 @@ namespace App\Http\Controllers\HumanResources;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\Client;
 use App\Models\Admin\ContractType;
@@ -34,9 +35,9 @@ class ContractController extends Controller
 	 *
 	 * return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $contracts = $this->contract->orderBy('start_date')->get();
+        $contracts = $this->contract->whereClientId(Auth::user()->clientId)->orderBy('start_date')->get();
 
         return view('humanresources.contracts.index', compact('contracts'));
     }
@@ -48,14 +49,13 @@ class ContractController extends Controller
     */
     public function create()
     {
-        $clients = Client::orderBy('name')->lists('name', 'id');
-        $charges = Charge::orderBy('name')->lists('name', 'id');
-        $employees = Employee::orderBy('name')->lists('name', 'id');
+        $charges = Charge::whereClientId(Auth::user()->clientId)->orderBy('name')->lists('name', 'id');
+        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
         $contractTypes = ContractType::orderBy('name')->lists('name', 'id');
-        $branchs = Branch::orderBy('name')->lists('name', 'id');
+        $branchs = Branch::whereClientId(Auth::user()->clientId)->orderBy('name')->lists('name', 'id');
         $workingTypes = $this->workingTypes;
 
-        return view('humanresources.contracts.create', compact('clients', 'charges', 'employees', 'contractTypes', 'branchs', 'workingTypes'));
+        return view('humanresources.contracts.create', compact('charges', 'employees', 'contractTypes', 'branchs', 'workingTypes'));
     }
 
     /*

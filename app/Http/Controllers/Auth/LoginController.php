@@ -31,9 +31,19 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // Authentication passed...
+            if(Auth::user()->type_id == 1)
+                return redirect()->to('admin/seleccionar-cliente');
+
             return redirect()->intended('admin/clientes');
         }
 
         return redirect()->back();
     } 
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->to('/');
+    }
 }

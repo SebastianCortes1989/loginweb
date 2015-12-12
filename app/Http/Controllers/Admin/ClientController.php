@@ -17,7 +17,7 @@ use App\Models\Admin\File;
 
 use App\Http\Requests\Admin\ClientFormRequest;
 
-use \Hash;
+use \Hash, \Cache, Carbon\Carbon, \Auth;
 
 class ClientController extends Controller
 {
@@ -107,5 +107,31 @@ class ClientController extends Controller
         }
 
         return redirect()->action('Admin\ClientController@index');
+    }
+
+    /*
+     * seleccionar cliente a utilizar
+     *
+     * return Response
+    */
+    public function getSelect()
+    {
+        $clients = Client::orderBy('name')->lists('name', 'id');
+
+        return view('admin/clients/select', compact('clients'));
+    }
+
+    /*
+     * selecciona el cliente a utilizar por admin
+     *
+     * return Response
+    */
+    public function postSelect(Request $request)
+    {
+        $user = Auth::user();
+        $user->client_id = $request->get('client_id');
+        $user->save();
+
+        return redirect()->to('rrhh/remuneraciones');
     }
 }

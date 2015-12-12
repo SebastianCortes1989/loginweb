@@ -4,6 +4,7 @@ namespace App\Http\Controllers\HumanResources;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\Client;
 
@@ -26,9 +27,9 @@ class ToolController extends Controller
 	 *
 	 *return Response
     */
-    public function index($clientId = null)
+    public function index()
     {
-        $tools = $this->tool->orderBy('date')->get();
+        $tools = $this->tool->whereClientId(Auth::user()->clientId)->orderBy('date')->get();
 
         return view('humanresources.tools.index', compact('tools'));
     }
@@ -40,10 +41,9 @@ class ToolController extends Controller
     */
     public function create()
     {
-        $clients = Client::orderBy('name')->lists('name', 'id');
-        $employees = Employee::orderBy('name')->lists('name', 'id');
+        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
 
-        return view('humanresources.tools.create', compact('clients', 'employees'));
+        return view('humanresources.tools.create', compact('employees'));
     }
 
     /**

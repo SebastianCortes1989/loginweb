@@ -9,9 +9,9 @@
 
 {!! Form::open(['action' => 'HumanResources\ApvController@store']) !!}
 
-  {!! Form::hidden('client_id') !!}
-
-	<div class="row">  		
+  {!! Form::hidden('client_id', Auth::user()->client_id) !!}
+	
+  <div class="row">  		
       <div class="col m3">
 
         {!! Form::label('employee_id', 'Trabajador') !!}
