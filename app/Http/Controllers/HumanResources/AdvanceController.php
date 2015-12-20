@@ -9,6 +9,7 @@ use \Auth;
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+use App\Models\HumanResources\Contract;
 
 use App\Models\HumanResources\Advance;
 
@@ -29,7 +30,7 @@ class AdvanceController extends Controller
     */
     public function index()
     {
-        $advances = $this->advance->whereClientId(Auth::user()->clientId)->get();
+        $advances = $this->advance->whereClientId(Auth::user()->client_id)->get();
         
         return view('humanresources.advances.index', compact('advances'));
     }
@@ -41,7 +42,9 @@ class AdvanceController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.advances.create', compact('employees'));
     }

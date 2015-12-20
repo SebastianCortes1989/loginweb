@@ -4,6 +4,7 @@ namespace App\Http\Controllers\HumanResources;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Auth;
 
 use App\Models\Admin\Client;
 
@@ -28,7 +29,7 @@ class ApvController extends Controller
     */
     public function index()
     {
-        $savings = $this->saving->whereClientId(Auth::user()->clientId)->get();
+        $savings = $this->saving->whereClientId(Auth::user()->client_id)->get();
 
         return view('humanresources.apv.index', compact('savings'));
     }
@@ -40,7 +41,9 @@ class ApvController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.apv.create', compact('employees'));
     }

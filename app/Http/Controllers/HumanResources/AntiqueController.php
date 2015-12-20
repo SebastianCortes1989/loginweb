@@ -29,7 +29,7 @@ class AntiqueController extends Controller
     */
     public function index()
     {
-        $antiques = $this->antique->whereClientId(Auth::user()->clientId)->get();
+        $antiques = $this->antique->whereClientId(Auth::user()->client_id)->get();
 
         return view('humanresources.antiques.index', compact('antiques'));
     }
@@ -41,7 +41,9 @@ class AntiqueController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.antiques.create', compact('employees'));
     }

@@ -23,6 +23,7 @@
 	              	<th>Tipo</th>
 	              	<th>Fecha</th>
 	              	<th>Monto</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -34,6 +35,9 @@
 	        			<td></td>
 	        			<td>{{ $commission->date }}</td>
 	        			<td>{{ $commission->ammount }}</td>
+	        			<td>
+		              		<a href="{{ action('HumanResources\Pdf\CommissionController@view', [$commission->id]) }}">Ver PDF</a>
+		              	</td>
 	        		</tr>
 	        	@endforeach       
 	        </tbody>

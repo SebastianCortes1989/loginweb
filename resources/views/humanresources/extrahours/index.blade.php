@@ -25,6 +25,7 @@
 	              	<th>Fecha de Término</th>
 	              	<th>Horas</th>
 	              	<th>Minutos</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -38,6 +39,9 @@
 	        			<td>{{ $extraHour->end_date }}</td>
 	        			<td></td>
 	        			<td></td>
+	        			<td>
+		              		<a href="{{ action('HumanResources\Pdf\ExtraHourController@view', [$extraHour->id]) }}">Ver PDF</a>
+		              	</td>
 	        		</tr>
 	        	@endforeach  	       
 	        </tbody>

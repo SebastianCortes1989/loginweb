@@ -13,8 +13,7 @@
 <div class="row">
 	<div class="col s12 m12">
     	<h5 class="deep-purple-text center-align">Bonos</h5>
-    	<hr>
-    	
+
     	<table>
 	        <thead>
 	          	<tr>
@@ -23,6 +22,7 @@
 	              	<th>Tipo</th>
 	              	<th>Fecha</th>
 	              	<th>Monto</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -34,6 +34,9 @@
 	        			<td></td>
 	        			<td>{{ $bond->date }}</td>
 	        			<td>{{ $bond->ammount }}</td>
+	        			<td>
+		              		<a href="{{ action('HumanResources\Pdf\BondController@view', [$bond->id]) }}">Ver PDF</a>
+		              	</td>
 	        		</tr>
 	        	@endforeach	       
 	        </tbody>

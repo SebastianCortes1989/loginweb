@@ -13,7 +13,6 @@
 <div class="row">
 	<div class="col s12 m12">	    	
     	<h5 class="deep-purple-text center-align">Ahorro APV</h5>
-    	<hr>
     	
     	<table>
 	        <thead>
@@ -22,16 +21,20 @@
 	              	<th>Trabajador</th>
 	              	<th>Periodo</th>
 	              	<th>Monto</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
 	        <tbody>
 	          	@foreach($savings as $saving)
 	          		<tr>
-		          		<th></th>
-		              	<th>{{ $saving->employee->name }}</th>
-		              	<th></th>
-		              	<th>{{ $saving->ammount }}</th>
+		          		<td></td>
+		              	<td>{{ $saving->employee->name }}</td>
+		              	<td></td>
+		              	<td>{{ $saving->ammount }}</td>
+		              	<td>
+		              		<a href="{{ action('HumanResources\Pdf\ApvController@view', [$saving->id]) }}">Ver PDF</a>
+		              	</td>
 		          	</tr>
 	          	@endforeach
 	        </tbody>

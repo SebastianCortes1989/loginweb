@@ -28,6 +28,7 @@
 	              	<th>Horas de Permiso</th>
 	              	<th>Tipo de Permiso</th>
 	              	<th>Monto</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -44,6 +45,9 @@
 		              	<td></td>
 		              	<td></td>
 		              	<td></td>
+		              	<td>
+		              		<a href="{{ action('HumanResources\Pdf\PermissionController@view', [$permission->id]) }}">Ver PDF</a>
+		              	</td>
 		          	</tr>
 	        	@endforeach
 	        </tbody>

@@ -29,7 +29,7 @@ class TransferController extends Controller
     */
     public function index()
     {
-        $transfers = $this->transfer->whereClientId(Auth::user()->clientId)->get();
+        $transfers = $this->transfer->whereClientId(Auth::user()->client_id)->get();
 
         return view('humanresources.transfers.index', compact('transfers'));
     }
@@ -41,7 +41,9 @@ class TransferController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.transfers.create', compact('employees'));
     }

@@ -13,14 +13,14 @@
 <div class="row">
 	<div class="col s12 m12">
     	<h5 class="deep-purple-text center-align">Certificados de Antiguedad</h5>
-    	<hr>
     	
     	<table>
 	        <thead>
 	          	<tr>
 	          		<th>Código</th>
 	              	<th>Trabajador</th>
-	              	<th>Fecha</th>	              	
+	              	<th>Fecha</th>	
+	              	<th></th>              	
 	          	</tr>
 	        </thead>
 
@@ -29,7 +29,10 @@
 	        		<tr>
 		          		<td></td>
 		              	<td>{{ $antique->employee->name }}</td>
-		              	<td>{{ $antique->date }}</td>
+		              	<td>{{ $antique->date->format('d/m/Y') }}</td>
+		              	<td>
+		              		<a href="{{ action('HumanResources\Pdf\AntiqueController@view', [$antique->id]) }}">Ver PDF</a>
+		              	</td>
 		          	</tr>
 	        	@endforeach
 	        </tbody>

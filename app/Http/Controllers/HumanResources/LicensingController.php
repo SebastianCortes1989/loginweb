@@ -29,7 +29,7 @@ class LicensingController extends Controller
     */
     public function index()
     {
-        $licensings = $this->licensing->whereClientId(Auth::user()->clientId)->get();
+        $licensings = $this->licensing->whereClientId(Auth::user()->client_id)->get();
 
         return view('humanresources.licensings.index', compact('licensings'));
     }
@@ -41,7 +41,9 @@ class LicensingController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.licensings.create', compact('employees'));
     }

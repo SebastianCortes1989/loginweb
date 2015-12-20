@@ -70,4 +70,27 @@ Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh', 'middleware' 
     Route::resource('cartas', 'LetterController');
     Route::resource('finiquitos', 'SettlementController');
 
+    //PDF
+    Route::group(['namespace' => 'Pdf', 'prefix' => 'pdf', 'middleware' => 'auth'], function () {
+        Route::get('antiguedad/{id}', 'AntiqueController@view');
+        Route::get('anticipos/{id}', 'AdvanceController@view');
+        Route::get('apv/{id}', 'ApvController@view');
+        Route::get('bonos/{id}', 'BondController@view');
+        Route::get('aguinaldos/{id}', 'BonuController@view');
+        Route::get('ccaf/{id}', 'CcafController@view');
+        Route::get('comisiones/{id}', 'CommissionController@view');
+        Route::get('contratos/{id}', 'ContractController@view');
+        Route::get('descuentos/{id}', 'DiscountController@view');
+        Route::get('horas-extras/{id}', 'ExtraHourController@view');
+        Route::get('cartas/{id}', 'LetterController@view');
+        Route::get('licencias/{id}', 'LicensingController@view');
+        Route::get('prestamos/{id}', 'LoanController@view');
+        Route::get('permisos/{id}', 'PermissionController@view');
+        Route::get('finiquitos/{id}', 'SettlementController@view');
+        Route::get('herramientas/{id}', 'ToolController@view');
+        Route::get('traslados/{id}', 'TransferController@view');
+        Route::get('viaticos/{id}', 'ViaticalController@view');
+    });
 });
+
+

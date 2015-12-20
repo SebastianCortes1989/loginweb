@@ -29,7 +29,7 @@ class ViaticalController extends Controller
     */
     public function index()
     {
-        $viaticals = $this->viatical->whereClientId(Auth::user()->clientId)->orderBy('date')->get();
+        $viaticals = $this->viatical->whereClientId(Auth::user()->client_id)->orderBy('date')->get();
         
         return view('humanresources.viaticals.index', compact('viaticals'));
     }
@@ -41,7 +41,9 @@ class ViaticalController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.viaticals.create', compact('employees'));
     }

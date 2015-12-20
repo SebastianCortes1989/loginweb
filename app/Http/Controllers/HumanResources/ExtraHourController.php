@@ -29,7 +29,7 @@ class ExtraHourController extends Controller
     */
     public function index()
     {
-        $extraHours = $this->extraHour->whereClientId(Auth::user()->clientId)->orderBy('start_date')->get();
+        $extraHours = $this->extraHour->whereClientId(Auth::user()->client_id)->orderBy('start_date')->get();
 
         return view('humanresources.extrahours.index', compact('extraHours'));
     }
@@ -41,7 +41,9 @@ class ExtraHourController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.extrahours.create', compact('employees'));
     }

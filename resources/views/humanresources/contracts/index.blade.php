@@ -26,6 +26,7 @@
 	              	<th>Cargo</th>
 	              	<th>Sueldo Base</th>
 	              	<th>Sueldo Liquido</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -40,6 +41,9 @@
 						<td>{{ $contract->charge ? $contract->charge->name : '' }}</td>
 						<td></td>
 						<td></td>
+						<td>
+		              		<a href="{{ action('HumanResources\Pdf\ContractController@view', [$contract->id]) }}">Ver PDF</a>
+		              	</td>
 					</tr>
 				@endforeach
 	        </tbody>

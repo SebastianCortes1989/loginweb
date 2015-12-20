@@ -23,6 +23,7 @@
 	              	<th>Tipo</th>
 	              	<th>Fecha</th>
 	              	<th>Monto</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -34,6 +35,9 @@
 	        			<td></td>
 	        			<td>{{ $viatical->date }}</td>
 	        			<td>{{ $viatical->ammount }}</td>
+	        			<td>
+		              		<a href="{{ action('HumanResources\Pdf\ViaticalController@view', [$viatical->id]) }}">Ver PDF</a>
+		              	</td>
 	        		</tr>
 	        	@endforeach  	       
 	        </tbody>

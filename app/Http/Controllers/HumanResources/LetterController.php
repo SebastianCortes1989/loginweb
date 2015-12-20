@@ -29,7 +29,7 @@ class LetterController extends Controller
     */
     public function index()
     {
-        $letters = $this->letter->whereClientId(Auth::user()->clientId)->get();
+        $letters = $this->letter->whereClientId(Auth::user()->client_id)->get();
 
         return view('humanresources.letters.index', compact('letters'));
     }
@@ -41,7 +41,9 @@ class LetterController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.letters.create', compact('employees'));
     }

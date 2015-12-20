@@ -149,7 +149,7 @@ return [
          * Proveedores agregados
         */
         'Collective\Html\HtmlServiceProvider',
-
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -204,7 +204,7 @@ return [
         */
         'Form'      => 'Collective\Html\FormFacade',
         'Html'      => 'Collective\Html\HtmlFacade',
-
+        'PDF'       => Barryvdh\DomPDF\Facade::class,
 
     ],
 

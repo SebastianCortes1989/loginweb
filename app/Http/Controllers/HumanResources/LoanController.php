@@ -29,7 +29,7 @@ class LoanController extends Controller
     */
     public function index()
     {
-        $loans = $this->loan->whereClientId(Auth::user()->clientId)->get();
+        $loans = $this->loan->whereClientId(Auth::user()->client_id)->get();
 
         return view('humanresources.loans.index', compact('loans'));
     }
@@ -41,7 +41,9 @@ class LoanController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.loans.create', compact('employees'));
     }

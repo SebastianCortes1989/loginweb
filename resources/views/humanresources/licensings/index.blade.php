@@ -25,20 +25,24 @@
 	              	<th>Días</th>
 	              	<th>N° Licencia</th>
 					<th>Accidente de Trabajo</th>
+					<th></th>
 	          	</tr>
 	        </thead>
 
 	        <tbody>
 	        	@foreach($licensings as $licensing)
 					<tr>
-		          		<th></th>
-		              	<th>{{ $licensing->employee->name }}</th>
-		              	<th>{{ $licensing->start_date }}</th>
-		              	<th>{{ $licensing->end_date }}</th>
-		              	<th></th>
-		              	<th>{{ $licensing->number }}</th>
-						<th></th>
-		          	</tr>	        		
+		          		<td></td>
+		              	<td>{{ $licensing->employee->name }}</td>
+		              	<td>{{ $licensing->start_date }}</td>
+		              	<td>{{ $licensing->end_date }}</td>
+		              	<td></td>
+		              	<td>{{ $licensing->number }}</td>
+						<td></td>
+						<td>
+		              		<a href="{{ action('HumanResources\Pdf\LicensingController@view', [$licensing->id]) }}">Ver PDF</a>
+		              	</td>
+		          	</tr>
 	        	@endforeach
 	        </tbody>
 	    </table>

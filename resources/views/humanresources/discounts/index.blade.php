@@ -23,7 +23,8 @@
 	              	<th>Tipo</th>
 	              	<th>Coutas</th>
 	              	<th>Valor Total</th>
-					<th>Estado</th>	              	
+					<th>Estado</th>
+					<th></th>	              	
 	          	</tr>
 	        </thead>
 
@@ -36,6 +37,9 @@
 		              	<th>{{ $discount->quotas }}</th>
 		              	<th>{{ $discount->ammount }}</th>
 						<th></th>
+						<td>
+		              		<a href="{{ action('HumanResources\Pdf\DiscountController@view', [$discount->id]) }}">Ver PDF</a>
+		              	</td>
 	          		</tr>
 	          	@endforeach
 	        </tbody>

@@ -24,6 +24,7 @@
 	              	<th>Fecha de Término</th>
 	              	<th>Sucursal de Origen</th>
 	              	<th>Sucursal de Traslado</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -36,6 +37,9 @@
 		              	<td>{{ $transfer->end_date }}</td>
 		          		<td></td>
 		          		<td></td>
+		          		<td>
+		              		<a href="{{ action('HumanResources\Pdf\TransferController@view', [$transfer->id]) }}">Ver PDF</a>
+		              	</td>
 		          	</tr>
 	        	@endforeach
 	        </tbody>

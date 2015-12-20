@@ -37,7 +37,7 @@ class ContractController extends Controller
     */
     public function index()
     {
-        $contracts = $this->contract->whereClientId(Auth::user()->clientId)->orderBy('start_date')->get();
+        $contracts = $this->contract->whereClientId(Auth::user()->client_id)->orderBy('start_date')->get();
 
         return view('humanresources.contracts.index', compact('contracts'));
     }

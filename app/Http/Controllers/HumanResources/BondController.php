@@ -29,7 +29,7 @@ class BondController extends Controller
     */
     public function index()
     {
-        $bonds = $this->bond->whereClientId(Auth::user()->clientId)->orderBy('date')->get();
+        $bonds = $this->bond->whereClientId(Auth::user()->client_id)->orderBy('date')->get();
 
         return view('humanresources.bonds.index', compact('bonds'));
     }
@@ -41,7 +41,9 @@ class BondController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.bonds.create', compact('employees'));
     }

@@ -29,7 +29,7 @@ class BonuController extends Controller
     */
     public function index()
     {
-        $bonus = $this->bonus->whereClientId(Auth::user()->clientId)->orderBy('date')->get();
+        $bonus = $this->bonus->whereClientId(Auth::user()->client_id)->orderBy('date')->get();
 
         return view('humanresources.bonus.index', compact('bonus'));
     }
@@ -40,7 +40,9 @@ class BonuController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.bonus.create', compact('employees'));
     }

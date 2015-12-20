@@ -29,7 +29,7 @@ class CommissionController extends Controller
     */
     public function index()
     {
-        $commissions = $this->commission->whereClientId(Auth::user()->clientId)->orderBy('date')->get();
+        $commissions = $this->commission->whereClientId(Auth::user()->client_id)->orderBy('date')->get();
 
         return view('humanresources.commissions.index', compact('commissions'));
     }
@@ -41,7 +41,9 @@ class CommissionController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.commissions.create', compact('employees'));
     }

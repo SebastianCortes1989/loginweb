@@ -27,6 +27,7 @@
 	              	<th>Scan AFC</th>
 	              	<th>Scan Previred</th>
 	              	<th>Scan Finiquito</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -41,6 +42,9 @@
 	        			<td></td>
 	        			<td></td>
 	        			<td></td>
+	        			<td>
+		              		<a href="{{ action('HumanResources\Pdf\SettlementController@view', [$settlement->id]) }}">Ver PDF</a>
+		              	</td>
 	        		</tr>
 	        	@endforeach  	       
 	        </tbody>

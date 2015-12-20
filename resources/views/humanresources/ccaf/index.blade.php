@@ -23,6 +23,7 @@
 	              	<th>Cuotas</th>
 	              	<th>Monto</th>
 	              	<th>Caja de Compensación</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -34,6 +35,9 @@
 	        			<td>{{ $loan->quotas }}</td>
 	        			<td>{{ $loan->ammount }}</td>
 	        			<td></td>
+	        			<td>
+		              		<a href="{{ action('HumanResources\Pdf\CcafController@view', [$loan->id]) }}">Ver PDF</a>
+		              	</td>
 	        		</tr>
 	        	@endforeach		       
 	        </tbody>

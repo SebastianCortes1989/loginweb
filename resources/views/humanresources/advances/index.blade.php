@@ -13,7 +13,6 @@
 <div class="row">
 	<div class="col s12 m12">	    	
     	<h5 class="deep-purple-text center-align">Anticipos</h5>
-    	<hr>
     	
     	<table>
 	        <thead>
@@ -23,6 +22,7 @@
 	              	<th>Tipo</th>
 	              	<th>Fecha</th>
 	              	<th>Monto</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -32,8 +32,11 @@
 	        			<td></td>
 	        			<td>{{ $advance->employee->name }}</td>
 	        			<td></td>
-	        			<td>{{ $advance->date }}</td>
+	        			<td>{{ $advance->date->format('d/m/Y') }}</td>
 	        			<td>{{ $advance->ammount }}</td>
+	        			<td>
+			              <a href="{{ action('HumanResources\Pdf\AdvanceController@view', [$advance->id]) }}">Ver PDF</a>
+	        			</td>
 	        		</tr>
 	        	@endforeach		       
 	        </tbody>

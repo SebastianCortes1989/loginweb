@@ -24,6 +24,7 @@
 	              	<th>Fecha de Aviso</th>
 	              	<th>Fecha de Finiquitacion</th>
 	              	<th>Scan Inspeccion</th>
+	              	<th></th>
 	          	</tr>
 	        </thead>
 
@@ -36,6 +37,9 @@
 	        			<td>{{ $letter->notice_date }}</td>
 	        			<td>{{ $letter->settlement_date }}</td>
 	        			<td></td>
+	        			<td>
+		              		<a href="{{ action('HumanResources\Pdf\LetterController@view', [$letter->id]) }}">Ver PDF</a>
+		              	</td>
 	        		</tr>
 	        	@endforeach  	       
 	        </tbody>

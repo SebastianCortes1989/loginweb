@@ -29,7 +29,7 @@ class CcafController extends Controller
     */
     public function index()
     {
-        $ccaf = $this->ccaf->whereClientId(Auth::user()->clientId)->all();
+        $ccaf = $this->ccaf->whereClientId(Auth::user()->client_id)->get();
 
         return view('humanresources.ccaf.index', compact('ccaf'));
     }
@@ -41,7 +41,9 @@ class CcafController extends Controller
     */
     public function create()
     {
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
 
         return view('humanresources.ccaf.create', compact('employees'));
     }
