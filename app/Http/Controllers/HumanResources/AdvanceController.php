@@ -68,6 +68,9 @@ class AdvanceController extends Controller
     {
         $data = $request->except('_token');
 
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $data['contract_id'] = $contract->id;
+
         $advance = $this->advance->create($data);
 
         return redirect()->action('HumanResources\AdvanceController@index');

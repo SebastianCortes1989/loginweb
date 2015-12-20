@@ -32,7 +32,7 @@
 	        			<td></td>
 	        			<td>{{ $bond->employee->name }}</td>
 	        			<td></td>
-	        			<td>{{ $bond->date }}</td>
+	        			<td>{{ $bond->date->format('d/m/Y') }}</td>
 	        			<td>{{ $bond->ammount }}</td>
 	        			<td>
 		              		<a href="{{ action('HumanResources\Pdf\BondController@view', [$bond->id]) }}">Ver PDF</a>

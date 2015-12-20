@@ -9,6 +9,7 @@ use \Auth;
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+use App\Models\HumanResources\Contract;
 
 use App\Models\HumanResources\Tool;
 
@@ -56,6 +57,9 @@ class ToolController extends Controller
     public function store(ToolFormRequest $request){
         $data = $request->except('_token');
 
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $data['contract_id'] = $contract->id;
+        
         $tool = $this->tool->create($data);
 
         return redirect()->action('HumanResources\ToolController@index');

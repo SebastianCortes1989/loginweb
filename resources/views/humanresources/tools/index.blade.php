@@ -13,14 +13,12 @@
 <div class="row">
 	<div class="col s12 m12">	    	
     	<h5 class="deep-purple-text center-align">Desgaste de Herramientas</h5>
-    	<hr>
     	
     	<table>
 	        <thead>
 	          	<tr>
 	          		<th>Código</th>
 	              	<th>Trabajador</th>
-	              	<th>Tipo</th>
 	              	<th>Fecha</th>
 	              	<th>Monto</th>
 	              	<th></th>
@@ -32,8 +30,7 @@
 	        		<tr>
 	        			<td></td>
 	        			<td>{{ $tool->employee->name }}</td>
-	        			<td></td>
-	        			<td>{{ $tool->date }}</td>
+	        			<td>{{ $tool->date->format('d/m/Y') }}</td>
 	        			<td>{{ $tool->ammount }}</td>
 	        			<td>
 		              		<a href="{{ action('HumanResources\Pdf\ToolController@view', [$tool->id]) }}">Ver PDF</a>

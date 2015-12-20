@@ -9,6 +9,8 @@ use \Auth;
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\BonuType;
 
 use App\Models\HumanResources\Bonus;
 
@@ -44,7 +46,9 @@ class BonuController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.bonus.create', compact('employees'));
+        $bonusTypes = BonuType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.bonus.create', compact('employees', 'bonusTypes'));
     }
 
     /**
@@ -54,6 +58,9 @@ class BonuController extends Controller
     */
     public function store(BonuFormRequest $request){
         $data = $request->except('_token');
+
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $data['contract_id'] = $contract->id;
 
         $bonus = $this->bonus->create($data);
 

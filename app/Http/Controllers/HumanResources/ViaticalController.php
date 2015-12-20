@@ -9,6 +9,8 @@ use \Auth;
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\ViaticalType;
 
 use App\Models\HumanResources\Viatical;
 
@@ -45,7 +47,9 @@ class ViaticalController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.viaticals.create', compact('employees'));
+        $viaticalsTypes = ViaticalType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.viaticals.create', compact('employees', 'viaticalsTypes'));
     }
 
     /**
@@ -56,6 +60,9 @@ class ViaticalController extends Controller
     public function store(ViaticalFormRequest $request){
         $data = $request->except('_token');
 
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $data['contract_id'] = $contract->id;
+        
         $viaticals = $this->viatical->create($data);
 
         return redirect()->action('HumanResources\ViaticalController@index');

@@ -14,7 +14,7 @@ class ViaticalFormRequest extends FormRequest
             'employee_id' => 'required',
             'ammount' => 'required',
             'date' => 'required',
-            'type' => 'required',
+            'type_id' => 'required',
             'description' => 'required',
         ];
     }
@@ -30,7 +30,7 @@ class ViaticalFormRequest extends FormRequest
             'employee_id.required'  => 'Favor Seleccionar el Trabajador',
             'ammount.required'  => 'Favor ingresar Monto',
             'date.required'  => 'Favor ingresar Fecha',
-            'type.required'  => 'Favor ingresar Tipo de Viático',
+            'type_id.required'  => 'Favor ingresar Tipo de Viático',
             'description.required'  => 'Favor ingresar Descripción',
         ];
     }

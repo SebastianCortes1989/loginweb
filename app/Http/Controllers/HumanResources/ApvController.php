@@ -9,6 +9,7 @@ use \Auth;
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+use App\Models\HumanResources\Contract;
 
 use App\Models\HumanResources\Saving;
 
@@ -66,6 +67,9 @@ class ApvController extends Controller
     public function store(ApvFormRequest $request)
     {
         $data = $request->except('_token');
+
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $data['contract_id'] = $contract->id;
 
         $saving = $this->saving->create($data);
 

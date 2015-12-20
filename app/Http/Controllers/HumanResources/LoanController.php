@@ -9,6 +9,7 @@ use \Auth;
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+use App\Models\HumanResources\Contract;
 
 use App\Models\HumanResources\Loan;
 
@@ -67,6 +68,9 @@ class LoanController extends Controller
     {
         $data = $request->except('_token');
 
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $data['contract_id'] = $contract->id;
+        
         $loan = $this->loan->create($data);
 
         return redirect()->action('HumanResources\LoanController@index');

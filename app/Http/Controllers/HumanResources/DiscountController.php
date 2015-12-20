@@ -9,6 +9,7 @@ use \Auth;
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+use App\Models\HumanResources\Contract;
 
 use App\Models\HumanResources\Discount;
 
@@ -67,6 +68,9 @@ class DiscountController extends Controller
     {
         $data = $request->except('_token');
 
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $data['contract_id'] = $contract->id;
+        
         $discount = $this->discount->create($data);
 
         return redirect()->action('HumanResources\DiscountController@index');

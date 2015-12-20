@@ -17,6 +17,7 @@ class CreateRrhhPermissionsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('client_id', false);
+            $table->integer('contract_id', false);
             $table->integer('employee_id', false);
             $table->dateTime('start_date');
             $table->dateTime('end_date');

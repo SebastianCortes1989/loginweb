@@ -13,7 +13,6 @@
 <div class="row">
 	<div class="col s12 m12">	    	
     	<h5 class="deep-purple-text center-align">Comisiones</h5>
-    	<hr>
     	
     	<table>
 	        <thead>
@@ -33,7 +32,7 @@
 	        			<td></td>
 	        			<td>{{ $commission->employee->name }}</td>
 	        			<td></td>
-	        			<td>{{ $commission->date }}</td>
+	        			<td>{{ $commission->date->format('d/m/Y') }}</td>
 	        			<td>{{ $commission->ammount }}</td>
 	        			<td>
 		              		<a href="{{ action('HumanResources\Pdf\CommissionController@view', [$commission->id]) }}">Ver PDF</a>

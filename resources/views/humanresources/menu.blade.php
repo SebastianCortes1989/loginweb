@@ -68,7 +68,7 @@
 			            	<li><a href="{{ action('HumanResources\TransferController@index') }}">Traslados</a></li>			              	
 			            </ul>
 		        	</li>
-		        	<li><a href="#">Remuneraciones</a></li>
+	            	<li><a href="{{ action('HumanResources\RemunerationController@index') }}">Remuneraciones</a></li>
 	    	  	</ul>
 	    	</div>
 		</nav>

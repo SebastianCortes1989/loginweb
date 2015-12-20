@@ -31,4 +31,65 @@ class Contract extends Model
     {
         return $this->belongsTo('App\Models\Entity\Charge', 'charge_id');
     }
+
+    public function bonds()
+    {
+        return $this->hasMany('App\Models\HumanResources\Bond', 'contract_id');
+    }
+
+    public function commissions()
+    {
+        return $this->hasMany('App\Models\HumanResources\Commission', 'contract_id');
+    }
+
+    public function tools()
+    {
+        return $this->hasMany('App\Models\HumanResources\Tool', 'contract_id');
+    }
+
+    public function viaticals()
+    {
+        return $this->hasMany('App\Models\HumanResources\Viatical', 'contract_id');
+    }
+
+    public function bonus()
+    {
+        return $this->hasMany('App\Models\HumanResources\Bonus', 'contract_id');
+    }
+
+    public function advances()
+    {
+        return $this->hasMany('App\Models\HumanResources\Advance', 'contract_id');
+    }
+
+    //funciones
+    public function totalBonds()
+    {
+        return $this->bonds()->sum('ammount');
+    }
+
+    public function totalCommissions()
+    {
+        return $this->commissions()->sum('ammount');
+    }
+
+    public function totalTools()
+    {
+        return $this->tools()->sum('ammount');
+    }
+
+    public function totalViaticals()
+    {
+        return $this->viaticals()->sum('ammount');
+    }
+
+    public function totalBonus()
+    {
+        return $this->bonus()->sum('ammount');
+    }
+
+    public function totalAdvances()
+    {
+        return $this->advances()->sum('ammount');
+    }
 }

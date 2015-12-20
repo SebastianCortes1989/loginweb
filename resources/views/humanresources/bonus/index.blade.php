@@ -13,7 +13,6 @@
 <div class="row">
 	<div class="col s12 m12">
     	<h5 class="deep-purple-text center-align">Aguinaldos</h5>
-    	<hr>
     	
     	<table>
 	        <thead>
@@ -33,7 +32,7 @@
 	        			<td></td>
 	        			<td>{{ $bonu->employee->name }}</td>
 	        			<td></td>
-	        			<td>{{ $bonu->date }}</td>
+	        			<td>{{ $bonu->date->format('d/m/Y') }}</td>
 	        			<td>{{ $bonu->ammount }}</td>
 	        			<td>
 		              		<a href="{{ action('HumanResources\Pdf\BonuController@view', [$bonu->id]) }}">Ver PDF</a>

@@ -17,6 +17,7 @@ class CreateRrhhCommissionsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('client_id', false);
+            $table->integer('contract_id', false);
             $table->integer('employee_id', false);
             $table->date('date');
             $table->integer('ammount', false);

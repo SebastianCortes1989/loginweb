@@ -12,7 +12,7 @@ use App\Models\Entity\Employee;
 
 use App\Models\HumanResources\Bonus;
 
-class BondController extends Controller
+class BonuController extends Controller
 {
     public function view($apvId)
     {

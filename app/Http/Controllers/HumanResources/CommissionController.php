@@ -9,6 +9,8 @@ use \Auth;
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\CommissionType;
 
 use App\Models\HumanResources\Commission;
 
@@ -45,7 +47,9 @@ class CommissionController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.commissions.create', compact('employees'));
+        $commissionsTypes = CommissionType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.commissions.create', compact('employees', 'commissionsTypes'));
     }
 
     /**
@@ -56,6 +60,9 @@ class CommissionController extends Controller
     public function store(CommissionFormRequest $request){
         $data = $request->except('_token');
 
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $data['contract_id'] = $contract->id;
+        
         $commission = $this->commission->create($data);
 
         return redirect()->action('HumanResources\CommissionController@index');

@@ -9,6 +9,8 @@ use \Auth;
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\BondType;
 
 use App\Models\HumanResources\Bond;
 
@@ -45,7 +47,9 @@ class BondController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.bonds.create', compact('employees'));
+        $bondsTypes = BondType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.bonds.create', compact('employees', 'bondsTypes'));
     }
 
     /**
@@ -55,6 +59,9 @@ class BondController extends Controller
     */
     public function store(BondFormRequest $request){
         $data = $request->except('_token');
+
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $data['contract_id'] = $contract->id;
 
         $bond = $this->bond->create($data);
 

@@ -17,6 +17,7 @@ class CreateRrhhLettersTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('client_id', false);
+            $table->integer('contract_id', false);
             $table->integer('employee_id', false);
             $table->integer('causal_id', false);
             $table->tinyInteger('certification', false);
