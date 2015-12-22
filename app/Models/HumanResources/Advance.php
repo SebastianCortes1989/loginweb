@@ -2,6 +2,7 @@
 
 namespace App\Models\HumanResources;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Advance extends Model
@@ -12,7 +13,7 @@ class Advance extends Model
      * @var string
      */
     protected $table = 'rrhh_advances';
-    protected $fillable = ['client_id', 'employee_id', 'ammount', 'date', 'type_id', 'description'];
+    protected $fillable = ['client_id', 'employee_id', 'ammount', 'date', 'type_id', 'description', 'contract_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'date'];
 
     /*

@@ -12,7 +12,7 @@ class Licensing extends Model
      * @var string
      */
     protected $table = 'rrhh_licensings';
-    protected $fillable = ['client_id', 'employee_id', 'start_date', 'end_date', 'ammount', 'work_accident'];
+    protected $fillable = ['client_id', 'employee_id', 'start_date', 'end_date', 'ammount', 'work_accident', 'contract_id'];
 
     /*
      * relaciones

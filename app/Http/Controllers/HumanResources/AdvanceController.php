@@ -10,6 +10,7 @@ use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
 use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\AdvanceType;
 
 use App\Models\HumanResources\Advance;
 
@@ -46,7 +47,9 @@ class AdvanceController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.advances.create', compact('employees'));
+        $advancesTypes = AdvanceType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.advances.create', compact('employees', 'advancesTypes'));
     }
 
     /**

@@ -29,7 +29,7 @@
           <span class="red-text">{{ $errors->first('employee_id') }}</span>
 
           {!! Form::label('type_id', 'Tipo') !!}
-          {!! Form::select('type_id', [], '', ['class' => 'browser-default']) !!}
+          {!! Form::select('type_id', $advancesTypes, '', ['class' => 'browser-default']) !!}
           <span class="red-text">{{ $errors->first('type_id') }}</span>
 
       </div>

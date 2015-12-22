@@ -14,8 +14,7 @@ class PermissionFormRequest extends FormRequest
             'employee_id' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'type' => 'required',
-            'year' => 'required',
+            'type_id' => 'required',
         ];
     }
 
@@ -30,8 +29,7 @@ class PermissionFormRequest extends FormRequest
             'employee_id.required'  => 'Favor Seleccionar el Trabajador',
             'start_date.required'   => 'Favor ingresar Fecha de Inicio',
             'end_date.required'     => 'Favor ingresar Fecha de Término',
-            'type.required'         => 'Favor ingresar Tipo',
-            'year.required'         => 'Favor ingresar Año',
+            'type_id.required'         => 'Favor ingresar Tipo',
         ];
     }
     

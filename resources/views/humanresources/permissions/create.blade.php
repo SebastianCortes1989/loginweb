@@ -12,7 +12,7 @@
   {!! Form::hidden('client_id', Auth::user()->client_id) !!}
 
 	<div class="row">
-  		<div class="col m3">
+  		<div class="col m4">
 
         {!! Form::label('employee_id', 'Trabajador') !!}
         {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
@@ -20,7 +20,7 @@
         
   		</div>
 
-      <div class="col m3">
+      <div class="col m4">
 
           <div class="input-field">
             {!! Form::text('start_date', '', ['class' => 'validate date']) !!}
@@ -33,33 +33,21 @@
             {!! Form::label('end_date', 'Fecha de Término') !!}
             <span class="red-text">{{ $errors->first('end_date') }}</span>
           </div>
-
           
-
       </div>
   		
-  		<div class="col m3">
+  		<div class="col m4">
 
           {!! Form::label('type_id', 'Tipo') !!}
-          {!! Form::select('type_id', [], '', ['class' => 'browser-default']) !!}
+          {!! Form::select('type_id', $permissionsTypes, '', ['class' => 'browser-default']) !!}
           <span class="red-text">{{ $errors->first('type_id') }}</span>
-
-          <div class="input-field">
-            {!! Form::number('year', '', ['class' => 'validate']) !!}
-            {!! Form::label('year', 'Año de Vacaciones') !!}
-            <span class="red-text">{{ $errors->first('year') }}</span>
-          </div>        
-  		</div>
-
-      <div class="col m3">          
 
           <div class="input-field">
             {!! Form::textarea('description', '', ['class' => 'validate', 'rows' => 30]) !!}
             {!! Form::label('description', 'Descripción') !!}
             <span class="red-text">{{ $errors->first('description') }}</span>
-          </div>
-          
-      </div>
+          </div>       
+  		</div>
 
   	</div>
 

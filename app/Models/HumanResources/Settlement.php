@@ -12,7 +12,7 @@ class Settlement extends Model
      * @var string
      */
     protected $table = 'rrhh_settlements';
-    protected $fillable = ['client_id', 'employee_id', 'date', 'causal_id', 'proportional_holidays', 'substitute_compensation', 'service_years', 'substitute_voluntary', 'substitute_agreed', 'legal_holidays', 'afc', 'compensacion_loans', 'petty_cash', 'discounts_others', 'severals'];
+    protected $fillable = ['client_id', 'employee_id', 'date', 'causal_id', 'proportional_holidays', 'substitute_compensation', 'service_years', 'substitute_voluntary', 'substitute_agreed', 'legal_holidays', 'afc', 'compensacion_loans', 'petty_cash', 'discounts_others', 'severals', 'contract_id'];
 
     /*
      * relaciones

@@ -62,6 +62,16 @@ class Contract extends Model
         return $this->hasMany('App\Models\HumanResources\Advance', 'contract_id');
     }
 
+    public function discounts()
+    {
+        return $this->hasMany('App\Models\HumanResources\Discount', 'contract_id');
+    }
+
+    public function savings()
+    {
+        return $this->hasMany('App\Models\HumanResources\Saving', 'contract_id');
+    }
+
     //funciones
     public function totalBonds()
     {
@@ -91,5 +101,15 @@ class Contract extends Model
     public function totalAdvances()
     {
         return $this->advances()->sum('ammount');
+    }
+
+    public function totalDiscounts()
+    {
+        return $this->discounts()->sum('ammount');
+    }
+
+    public function totalSavings()
+    {
+        return $this->savings()->sum('ammount');
     }
 }

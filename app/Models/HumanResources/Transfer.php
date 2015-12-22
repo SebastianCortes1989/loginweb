@@ -12,7 +12,7 @@ class Transfer extends Model
      * @var string
      */
     protected $table = 'rrhh_transfers';
-    protected $fillable = ['client_id', 'employee_id', 'start_date', 'end_date', 'cause_id', 'from_branch_id', 'to_branch_id'];
+    protected $fillable = ['client_id', 'employee_id', 'start_date', 'end_date', 'cause_id', 'from_branch_id', 'to_branch_id', 'contract_id'];
 
     /*
      * relaciones

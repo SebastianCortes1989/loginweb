@@ -12,7 +12,7 @@ class Loan extends Model
      * @var string
      */
     protected $table = 'rrhh_loans';
-    protected $fillable = ['client_id', 'employee_id', 'day', 'month', 'year', 'type_id', 'quotas', 'ammount'];
+    protected $fillable = ['client_id', 'employee_id', 'day', 'month', 'year', 'type_id', 'quotas', 'ammount', 'contract_id'];
     /*
      * relaciones
     */

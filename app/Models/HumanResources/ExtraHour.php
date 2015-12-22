@@ -12,7 +12,7 @@ class ExtraHour extends Model
      * @var string
      */
     protected $table = 'rrhh_extra_hours';
-    protected $fillable = ['client_id', 'employee_id', 'start_date', 'end_date', 'percentaje_id', 'description'];
+    protected $fillable = ['client_id', 'employee_id', 'start_date', 'end_date', 'percentaje_id', 'description', 'contract_id'];
 
     /*
      * relaciones

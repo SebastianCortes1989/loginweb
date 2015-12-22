@@ -54,11 +54,11 @@
 				<td>{{ $contract->totalTools() }}</td>
 				<td>{{ $contract->totalViaticals() }}</td>
 				<td></td>
-				<td></td>
+				<td>{{ $contract->totalDiscounts() }}</td>
 				<td>{{ $contract->totalBonus() }}</td>
 				<td></td>
 				<td></td>
-				<td></td>
+				<td>{{ $contract->totalSavings() }}</td>
 				<td>{{ $contract->totalAdvances() }}</td>
 				<td></td>
 			</tr>

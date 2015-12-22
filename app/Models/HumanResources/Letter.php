@@ -12,7 +12,7 @@ class Letter extends Model
      * @var string
      */
     protected $table = 'rrhh_letters';
-    protected $fillable = ['client_id', 'employee_id', 'causal_id', 'certification', 'notice_date', 'settlement_date', 'fact'];
+    protected $fillable = ['client_id', 'employee_id', 'causal_id', 'certification', 'notice_date', 'settlement_date', 'fact', 'contract_id'];
 
     /*
      * relaciones

@@ -12,7 +12,7 @@ class Discount extends Model
      * @var string
      */
     protected $table = 'rrhh_discounts';
-    protected $fillable = ['client_id', 'employee_id', 'ammount', 'date', 'quotas', 'description'];
+    protected $fillable = ['client_id', 'employee_id', 'ammount', 'date', 'quotas', 'description', 'contract_id'];
 
     /*
      * relaciones

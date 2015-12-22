@@ -23,7 +23,7 @@
       <div class="col m3">
 
         {!! Form::label('type_id', 'Tipo') !!}
-        {!! Form::select('type_id', [], '', ['class' => 'browser-default']) !!}
+        {!! Form::select('type_id', $savingTypes, '', ['class' => 'browser-default']) !!}
         <span class="red-text">{{ $errors->first('type_id') }}</span>
 
       </div>

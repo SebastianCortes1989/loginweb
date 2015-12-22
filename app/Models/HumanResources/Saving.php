@@ -12,7 +12,7 @@ class Saving extends Model
      * @var string
      */
     protected $table = 'rrhh_savings';
-    protected $fillable = ['client_id', 'employee_id', 'ammount', 'date', 'type_id', 'description'];
+    protected $fillable = ['client_id', 'employee_id', 'ammount', 'date', 'type_id', 'description', 'contract_id'];
 
     /*
      * relaciones

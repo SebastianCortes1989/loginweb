@@ -12,7 +12,7 @@ class AdvanceFormRequest extends FormRequest
         return [
             'client_id' => 'required',
             'employee_id' => 'required',
-            'type' => 'required',
+            'type_id' => 'required',
             'ammount' => 'required',
             'date' => 'required',
             'description' => 'required',
@@ -28,7 +28,7 @@ class AdvanceFormRequest extends FormRequest
     {
         return [
             'employee_id.required'  => 'Favor Seleccionar el Trabajador',
-            'type.required'  => 'Favor Seleccionar el Tipo de Anticipo',
+            'type_id.required'  => 'Favor Seleccionar el Tipo de Anticipo',
             'ammount.required'  => 'Favor ingresar Monto',
             'date.required'  => 'Favor ingresar Fecha',
             'description.required'  => 'Favor ingresar Descripción',

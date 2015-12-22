@@ -13,7 +13,6 @@
 <div class="row">
 	<div class="col s12 m12">	    	
     	<h5 class="deep-purple-text center-align">Descuentos</h5>
-    	<hr>
     	
     	<table>
 	        <thead>

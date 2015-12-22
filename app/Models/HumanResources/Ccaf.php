@@ -12,7 +12,7 @@ class Ccaf extends Model
      * @var string
      */
     protected $table = 'rrhh_ccaf';
-    protected $fillable = ['client_id', 'employee_id', 'compensacion_id', 'month', 'year', 'type_id', 'quotas', 'ammount'];
+    protected $fillable = ['client_id', 'employee_id', 'compensacion_id', 'month', 'year', 'type_id', 'quotas', 'ammount', 'contract_id'];
 
     /*
      * relaciones

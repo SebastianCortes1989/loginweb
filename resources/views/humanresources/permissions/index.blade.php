@@ -13,7 +13,6 @@
 <div class="row">
 	<div class="col s12 m12">
     	<h5 class="deep-purple-text center-align">Permisos</h5>
-    	<hr>
     	
     	<table>
 	        <thead>
@@ -38,8 +37,8 @@
 		          		<td></td>
 		              	<td>{{ $permission->employee->name }}</td>
 		              	<td></td>
-		              	<td>{{ $permission->start_date }}</td>
-		              	<td>{{ $permission->end_date }}</td>
+		              	<td>{{ $permission->start_date->format('d/m/Y') }}</td>
+		              	<td>{{ $permission->end_date->format('d/m/Y') }}</td>
 		              	<td></td>
 		              	<td></td>
 		              	<td></td>

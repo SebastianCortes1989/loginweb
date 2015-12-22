@@ -10,6 +10,7 @@ use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
 use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\PermissionType;
 
 use App\Models\HumanResources\Permission;
 
@@ -46,7 +47,9 @@ class PermissionController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.permissions.create', compact('employees'));
+        $permissionsTypes = PermissionType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.permissions.create', compact('employees', 'permissionsTypes'));
     }
 
     /**

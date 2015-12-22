@@ -10,6 +10,7 @@ use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
 use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\SavingType;
 
 use App\Models\HumanResources\Saving;
 
@@ -46,7 +47,9 @@ class ApvController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.apv.create', compact('employees'));
+        $savingTypes = SavingType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.apv.create', compact('employees', 'savingTypes'));
     }
 
     /**

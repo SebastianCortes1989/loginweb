@@ -13,7 +13,7 @@ class Antique extends Model
      * @var string
      */
     protected $table = 'rrhh_antiques';
-    protected $fillable = ['client_id', 'employee_id', 'date'];
+    protected $fillable = ['client_id', 'employee_id', 'date', 'contract_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'date'];
 
     /*
