@@ -6,17 +6,31 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \Auth, \PDF;
 
-use App\Models\Admin\Client;
-
-use App\Models\Entity\Employee;
-
 use App\Models\HumanResources\Contract;
+
+use App\Models\Admin\PdfFormat;
 
 class ContractController extends Controller
 {
-    public function view($apvId)
+	protected $contract;
+	protected $formatId = 1;
+
+    public function __construct(Contract $contract)
     {
-        $pdf = PDF::loadView('humanresources.pdf.contracts', []);
+        $this->contract = $contract;
+        $this->pdfFormat = PdfFormat::findOrFail($this->formatId);
+    }
+
+    public function view($contractId)
+    {
+    	$contract = $this->contract->findOrFail($contractId);
+
+        $pdf = PDF::loadView('humanresources.pdf.contracts', 
+        	[
+        		'contract' => $contract, 
+        		'format' => $this->pdfFormat,
+        	]
+        );
 
         return $pdf->stream();
     }    

@@ -23,6 +23,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
     Route::get('seleccionar-cliente', 'ClientController@getSelect');
     Route::post('seleccionar-cliente', 'ClientController@postSelect');
     Route::resource('clientes', 'ClientController');
+    Route::resource('formatos', 'PdfController');
 
 });
 
