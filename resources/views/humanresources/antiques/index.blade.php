@@ -27,7 +27,7 @@
 	        <tbody>
 	        	@foreach($antiques as $antique)
 	        		<tr>
-		          		<td></td>
+		          		<td>{{ $antique->code() }}</td>
 		              	<td>{{ $antique->employee->name }}</td>
 		              	<td>{{ $antique->date->format('d/m/Y') }}</td>
 		              	<td>

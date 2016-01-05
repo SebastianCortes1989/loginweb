@@ -29,9 +29,9 @@
 	        <tbody>
 	        	@foreach($bonus as $bonu)
 	        		<tr>
-	        			<td></td>
+	        			<td>{{ $bonu->code() }}</td>
 	        			<td>{{ $bonu->employee->name }}</td>
-	        			<td></td>
+	        			<td>{{ $bonu->type ? $bonu->type->name : '' }}</td>
 	        			<td>{{ $bonu->date->format('d/m/Y') }}</td>
 	        			<td>{{ $bonu->ammount }}</td>
 	        			<td>

@@ -28,7 +28,7 @@
 	        <tbody>
 	          	@foreach($savings as $saving)
 	          		<tr>
-		          		<td></td>
+		          		<td>{{ $saving->code() }}</td>
 		              	<td>{{ $saving->employee->name }}</td>
 		              	<td></td>
 		              	<td>{{ $saving->ammount }}</td>

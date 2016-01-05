@@ -30,7 +30,7 @@
 	        <tbody>
 	          	@foreach($discounts as $discount)
 	          		<tr>
-	          			<th></th>
+	          			<th>{{ $discount->code() }}</th>
 		              	<th>{{ $discount->employee->name }}</th>
 		              	<th></th>
 		              	<th>{{ $discount->quotas }}</th>

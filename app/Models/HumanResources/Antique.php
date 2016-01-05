@@ -30,4 +30,10 @@ class Antique extends Model
         $date = Carbon::createFromFormat('d/m/Y', $value);
         $this->attributes['date'] = $date->format('Y-m-d');
     }
+
+    //functions
+    public function code()
+    {
+        return 'ANT-'.$this->client_id.'-'.$this->id;
+    }
 }

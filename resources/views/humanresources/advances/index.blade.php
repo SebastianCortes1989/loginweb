@@ -29,9 +29,9 @@
 	        <tbody>
 	        	@foreach($advances as $advance)
 	        		<tr>
-	        			<td></td>
+	        			<td>{{ $advance->code() }}</td>
 	        			<td>{{ $advance->employee->name }}</td>
-	        			<td></td>
+	        			<td>{{ $advance->type ? $advance->type->name : '' }}</td>
 	        			<td>{{ $advance->date->format('d/m/Y') }}</td>
 	        			<td>{{ $advance->ammount }}</td>
 	        			<td>

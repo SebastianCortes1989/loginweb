@@ -29,9 +29,9 @@
 	        <tbody>
 	          	@foreach($commissions as $commission)
 	        		<tr>
-	        			<td></td>
+	        			<td>{{ $commission->code() }}</td>
 	        			<td>{{ $commission->employee->name }}</td>
-	        			<td></td>
+	        			<td>{{ $commission->type ? $commission->type->name : '' }}</td>
 	        			<td>{{ $commission->date->format('d/m/Y') }}</td>
 	        			<td>{{ $commission->ammount }}</td>
 	        			<td>

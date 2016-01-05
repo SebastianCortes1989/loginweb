@@ -24,10 +24,21 @@ class Commission extends Model
         return $this->belongsTo('App\Models\Entity\Employee', 'employee_id');
     }
 
+    public function type()
+    {
+        return $this->belongsTo('App\Models\HumanResources\CommissionType', 'type_id');
+    }
+
     //mutators
     public function setDateAttribute($value)
     {
         $date = Carbon::createFromFormat('d/m/Y', $value);
         $this->attributes['date'] = $date->format('Y-m-d');
+    }
+
+    //functions
+    public function code()
+    {
+        return 'COM-'.$this->client_id.'-'.$this->id;
     }
 }

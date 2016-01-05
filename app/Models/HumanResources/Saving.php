@@ -20,5 +20,11 @@ class Saving extends Model
     public function employee()
     {
         return $this->belongsTo('App\Models\Entity\Employee', 'employee_id');
-    } 
+    }
+
+    //functions
+    public function code()
+    {
+        return 'HE-'.$this->client_id.'-'.$this->id;
+    }
 }

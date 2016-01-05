@@ -29,9 +29,9 @@
 	        <tbody>
 	          	@foreach($viaticals as $viatical)
 	        		<tr>
-	        			<td></td>
+	        			<td>{{ $viatical->code() }}</td>
 	        			<td>{{ $viatical->employee->name }}</td>
-	        			<td></td>
+	        			<td>{{ $viatical->type ? $viatical->type->name : '' }}</td>
 	        			<td>{{ $viatical->date->format('d/m/Y') }}</td>
 	        			<td>{{ $viatical->ammount }}</td>
 	        			<td>

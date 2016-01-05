@@ -25,7 +25,6 @@
 	              	<th>Días de Permiso</th>
 	              	<th>Días Habiles</th>
 	              	<th>Horas de Permiso</th>
-	              	<th>Tipo de Permiso</th>
 	              	<th>Monto</th>
 	              	<th></th>
 	          	</tr>
@@ -34,12 +33,11 @@
 	        <tbody>
 	        	@foreach($permissions as $permission)
 	        		<tr>
-		          		<td></td>
+		          		<td>{{ $permission->code() }}</td>
 		              	<td>{{ $permission->employee->name }}</td>
-		              	<td></td>
+		              	<td>{{ $permission->type ? $permission->type->name : '' }}</td>
 		              	<td>{{ $permission->start_date->format('d/m/Y') }}</td>
 		              	<td>{{ $permission->end_date->format('d/m/Y') }}</td>
-		              	<td></td>
 		              	<td></td>
 		              	<td></td>
 		              	<td></td>

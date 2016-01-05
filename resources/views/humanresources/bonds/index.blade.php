@@ -29,9 +29,9 @@
 	        <tbody>
 	          	@foreach($bonds as $bond)
 	        		<tr>
-	        			<td></td>
+	        			<td>{{ $bond->code() }}</td>
 	        			<td>{{ $bond->employee->name }}</td>
-	        			<td></td>
+	        			<td>{{ $bond->type ? $bond->employee->name : '' }}</td>
 	        			<td>{{ $bond->date->format('d/m/Y') }}</td>
 	        			<td>{{ $bond->ammount }}</td>
 	        			<td>

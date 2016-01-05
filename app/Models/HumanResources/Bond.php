@@ -22,6 +22,11 @@ class Bond extends Model
     public function employee()
     {
         return $this->belongsTo('App\Models\Entity\Employee', 'employee_id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Models\HumanResources\BondType', 'type_id');
     }    
 
     //mutators
@@ -29,5 +34,11 @@ class Bond extends Model
     {
         $date = Carbon::createFromFormat('d/m/Y', $value);
         $this->attributes['date'] = $date->format('Y-m-d');
+    }
+
+    //functions
+    public function code()
+    {
+        return 'BON-'.$this->client_id.'-'.$this->id;
     }
 }

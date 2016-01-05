@@ -24,6 +24,11 @@ class Permission extends Model
         return $this->belongsTo('App\Models\Entity\Employee', 'employee_id');
     }
 
+    public function type()
+    {
+        return $this->belongsTo('App\Models\HumanResources\PermissionType', 'type_id');
+    }
+
     //mutators
     public function setStartDateAttribute($value)
     {
@@ -35,5 +40,11 @@ class Permission extends Model
     {
         $date = Carbon::createFromFormat('d/m/Y', $value);
         $this->attributes['end_date'] = $date->format('Y-m-d');
+    }
+
+    //functions
+    public function code()
+    {
+        return 'PERM-'.$this->client_id.'-'.$this->id;
     }
 }

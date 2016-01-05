@@ -20,5 +20,11 @@ class Discount extends Model
     public function employee()
     {
         return $this->belongsTo('App\Models\Entity\Employee', 'employee_id');
-    } 
+    }
+
+    //functions
+    public function code()
+    {
+        return 'DES-'.$this->client_id.'-'.$this->id;
+    }
 }

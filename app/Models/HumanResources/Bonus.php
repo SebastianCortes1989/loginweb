@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bonus extends Model
 {
     /**
-     * The database table used by the model.
+     * aguinaldos
      *
      * @var string
      */
@@ -23,12 +23,23 @@ class Bonus extends Model
     public function employee()
     {
         return $this->belongsTo('App\Models\Entity\Employee', 'employee_id');
-    }    
+    }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Models\HumanResources\BonuType', 'type_id');
+    }
 
     //mutators
     public function setDateAttribute($value)
     {
         $date = Carbon::createFromFormat('d/m/Y', $value);
         $this->attributes['date'] = $date->format('Y-m-d');
+    }
+
+    //functions
+    public function code()
+    {
+        return 'AG-'.$this->client_id.'-'.$this->id;
     }
 }

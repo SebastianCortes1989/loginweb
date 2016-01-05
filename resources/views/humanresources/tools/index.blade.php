@@ -28,7 +28,7 @@
 	        <tbody>
 	          	@foreach($tools as $tool)
 	        		<tr>
-	        			<td></td>
+	        			<td>{{ $tool->code() }}</td>
 	        			<td>{{ $tool->employee->name }}</td>
 	        			<td>{{ $tool->date->format('d/m/Y') }}</td>
 	        			<td>{{ $tool->ammount }}</td>
