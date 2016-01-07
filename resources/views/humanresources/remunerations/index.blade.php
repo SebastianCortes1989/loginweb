@@ -42,15 +42,15 @@
 			<tr>
 				<td>{{ $contract->employee ? $contract->employee->name : '' }}</td>
 				<td></td>
-				<td></td>
+				<td>{{ $contract->base }}</td>
 				<td></td>
 				<td></td>
 				<td>{{ $contract->totalCommissions() }}</td>
 				<td>{{ $contract->totalBonds() }}</td>
 				<td></td>
 				<td></td>
-				<td></td>
-				<td></td>
+				<td>{{ $contract->collation }}</td>
+				<td>{{ $contract->mobilization }}</td>
 				<td>{{ $contract->totalTools() }}</td>
 				<td>{{ $contract->totalViaticals() }}</td>
 				<td></td>

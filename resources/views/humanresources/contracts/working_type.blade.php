@@ -9,6 +9,8 @@
 
 {!! Form::open(['action' => 'HumanResources\ContractController@workingTypeStore']) !!}
 
+  {!! Form::hidden('contract_id', $contract->id) !!}
+
 	<table>
     <thead>
       <tr>

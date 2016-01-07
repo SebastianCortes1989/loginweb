@@ -9,27 +9,29 @@
 
 {!! Form::open(['action' => 'HumanResources\ContractController@remunerationsStore']) !!}
 
+  {!! Form::hidden('contract_id', $contract->id) !!}
+
 	<div class="row">
       <div class="col m4">
         <div class="input-field">
-              {!! Form::text('base', '', ['class' => 'validate']) !!}
+              {!! Form::number('base', '', ['class' => 'validate']) !!}
               {!! Form::label('base', 'Sueldo Base') !!}
           </div>
 
           <div class="input-field">
-              {!! Form::text('collation', '', ['class' => 'validate']) !!}
+              {!! Form::number('collation', '', ['class' => 'validate']) !!}
               {!! Form::label('collation', 'Colación') !!}
           </div>
       </div>
 
       <div class="col m4">
         <div class="input-field">
-              {!! Form::text('liquid', '', ['class' => 'validate']) !!}
+              {!! Form::number('liquid', '', ['class' => 'validate']) !!}
               {!! Form::label('liquid', 'Sueldo Líquido') !!}
           </div>
 
           <div class="input-field">
-              {!! Form::text('mobilization', '', ['class' => 'validate']) !!}
+              {!! Form::number('mobilization', '', ['class' => 'validate']) !!}
               {!! Form::label('mobilization', 'Movilización') !!}
           </div>
       </div>
@@ -39,7 +41,7 @@
           </div>
 
           <div class="input-field">
-              {!! Form::text('tools', '', ['class' => 'validate']) !!}
+              {!! Form::number('tools', '', ['class' => 'validate']) !!}
               {!! Form::label('tools', 'Desgaste de Herramientas') !!}
           </div>
       </div>

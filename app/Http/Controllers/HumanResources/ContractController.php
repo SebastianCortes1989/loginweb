@@ -49,10 +49,10 @@ class ContractController extends Controller
     */
     public function create()
     {
-        $charges = Charge::whereClientId(Auth::user()->clientId)->orderBy('name')->lists('name', 'id');
+        $charges = Charge::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
         $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
         $contractTypes = ContractType::orderBy('name')->lists('name', 'id');
-        $branchs = Branch::whereClientId(Auth::user()->clientId)->orderBy('name')->lists('name', 'id');
+        $branchs = Branch::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
         $workingTypes = $this->workingTypes;
 
         return view('humanresources.contracts.create', compact('charges', 'employees', 'contractTypes', 'branchs', 'workingTypes'));
@@ -73,14 +73,14 @@ class ContractController extends Controller
      *
      * return Response
     */
-    public function store(ContractFormRequest $request){
+    public function store(ContractFormRequest $request)
+    {
         $data = $request->except('_token');
-        $data['employee_id'] = $request->get('responsible_id');
-        $data['working_typ_id'] = $request->get('working_type');
+        $data['contract_type_id'] = $request->get('contract_type');
         
         $contract = $this->contract->create($data);
 
-        return redirect()->action('HumanResources\ContractController@workingType');
+        return redirect()->action('HumanResources\ContractController@workingType', [$contract->id]);
     }
 
     /*
@@ -88,10 +88,13 @@ class ContractController extends Controller
      *
      * return Response
     */
-    public function workingType(){
+    public function workingType($contractId)
+    {
         $days = $this->days;
 
-        return view('humanresources.contracts.working_type', compact('days'));
+        $contract = $this->contract->findOrFail($contractId);
+
+        return view('humanresources.contracts.working_type', compact('days', 'contract'));
     }
 
     /*
@@ -99,12 +102,13 @@ class ContractController extends Controller
      *
      * return Response
     */
-    public function workingTypeStore(Request $request){
+    public function workingTypeStore(Request $request)
+    {
         $data = $request->except('_token');
 
         $journal = $this->journal->create($data);
 
-        return redirect()->action('HumanResources\ContractController@remunerations');
+        return redirect()->action('HumanResources\ContractController@remunerations', [$journal->contract_id]);
     }
 
     /*
@@ -112,8 +116,11 @@ class ContractController extends Controller
      *
      * return Response
     */
-    public function remunerations(){
-        return view('humanresources.contracts.remunerations');
+    public function remunerations($contractId)
+    {
+        $contract = $this->contract->findOrFail($contractId);
+
+        return view('humanresources.contracts.remunerations', compact('contract'));
     }
 
     /*
@@ -121,7 +128,13 @@ class ContractController extends Controller
      *
      * return Response
     */
-    public function remunerationsStore(){
+    public function remunerationsStore(Request $request)
+    {
+        $data = $request->except('_token');
+        
+        $contract = $this->contract->findOrFail($data['contract_id'])->addRemuneration($data);
+
+        return redirect()->action('HumanResources\ContractController@index');
     }
 }
 

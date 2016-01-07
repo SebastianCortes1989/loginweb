@@ -33,14 +33,14 @@
 	        <tbody>
 				@foreach($contracts as $contract)
 					<tr>
-						<td></td>
+						<td>{{ $contract->code() }}</td>
 						<td>{{ $contract->employee ? $contract->employee->name : '' }}</td>
 						<td>{{ $contract->contractType ? $contract->contractType->name : '' }}</td>
-						<td></td>
-						<td></td>
+						<td>{{ $contract->start_date->format('d/m/Y') }}</td>
+						<td>{{ $contract->end_date->format('d/m/Y') }}</td>
 						<td>{{ $contract->charge ? $contract->charge->name : '' }}</td>
-						<td></td>
-						<td></td>
+						<td>{{ $contract->base }}</td>
+						<td>{{ $contract->liquid }}</td>
 						<td>
 		              		<a href="{{ action('HumanResources\Pdf\ContractController@view', [$contract->id]) }}">Ver PDF</a>
 		              	</td>

@@ -2,6 +2,7 @@
 
 namespace App\Models\HumanResources;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
@@ -12,7 +13,9 @@ class Contract extends Model
      * @var string
      */
     protected $table = 'rrhh_contracts';
-    protected $fillable = ['client_id', 'employee_id', 'branch_id', 'charge_id', 'contract_type_id', 'working_type', 'start_date', 'end_date'];
+    protected $fillable = ['client_id', 'employee_id', 'branch_id', 'charge_id', 
+    'contract_type_id', 'working_type', 'start_date', 'end_date'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at', 'start_date', 'end_date'];
 
     /*
      * relaciones
@@ -72,7 +75,25 @@ class Contract extends Model
         return $this->hasMany('App\Models\HumanResources\Saving', 'contract_id');
     }
 
+    //mutators
+    public function setStartDateAttribute($value)
+    {
+        $date = Carbon::createFromFormat('d/m/Y', $value);
+        $this->attributes['start_date'] = $date->format('Y-m-d');
+    }
+
+    public function setEndDateAttribute($value)
+    {
+        $date = Carbon::createFromFormat('d/m/Y', $value);
+        $this->attributes['end_date'] = $date->format('Y-m-d');
+    }
+
     //funciones
+    public function code()
+    {
+        return 'CONT-'.$this->client_id.'-'.$this->id;
+    }
+
     public function totalBonds()
     {
         return $this->bonds()->sum('ammount');
@@ -111,5 +132,17 @@ class Contract extends Model
     public function totalSavings()
     {
         return $this->savings()->sum('ammount');
+    }
+
+    public function addRemuneration($data)
+    {
+        $this->base         = $data['base'];
+        $this->liquid       = $data['liquid'];
+        $this->collation    = $data['collation'];
+        $this->mobilization = $data['mobilization'];
+        $this->tools        = $data['tools'];
+        $this->save();
+
+        return $this;
     }
 }

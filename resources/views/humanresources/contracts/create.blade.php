@@ -13,9 +13,9 @@
 
 	<div class="row">
   		<div class="col m3">
-          {!! Form::label('responsible_id', 'Responsable') !!}
-          {!! Form::select('responsible_id', $employees, '', ['class' => 'browser-default']) !!}
-          <span class="red-text">{{ $errors->first('responsible_id') }}</span>
+          {!! Form::label('employee_id', 'Trabajador') !!}
+          {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('employee_id') }}</span>
   		</div>
 
   		<div class="col m3">

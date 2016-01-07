@@ -41,9 +41,9 @@ Route::group(['namespace' => 'Entity', 'prefix' => 'entidades', 'middleware' => 
 //recursos humanos
 Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh', 'middleware' => 'auth'], function () {
 
-    Route::get('contratos/jornada', 'ContractController@workingType');
+    Route::get('contratos/jornada/{id}', 'ContractController@workingType');
     Route::post('contratos/jornada', 'ContractController@workingTypeStore');
-    Route::get('contratos/remuneraciones', 'ContractController@remunerations');
+    Route::get('contratos/remuneraciones/{id}', 'ContractController@remunerations');
     Route::post('contratos/remuneraciones', 'ContractController@remunerationsStore');
     Route::resource('contratos', 'ContractController');
 
