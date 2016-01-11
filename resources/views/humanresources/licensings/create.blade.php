@@ -39,9 +39,9 @@
   		<div class="col m4">
 
           <div class="input-field">
-            {!! Form::number('ammount', '', ['class' => 'validate']) !!}
-            {!! Form::label('ammount', 'Monto') !!}
-            <span class="red-text">{{ $errors->first('ammount') }}</span>
+            {!! Form::number('number', '', ['class' => 'validate']) !!}
+            {!! Form::label('number', 'Número') !!}
+            <span class="red-text">{{ $errors->first('number') }}</span>
           </div>
 
 

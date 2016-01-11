@@ -70,7 +70,10 @@ class LicensingController extends Controller
 
         $contract = Contract::whereEmployeeId($data['employee_id'])->first();
         $data['contract_id'] = $contract->id;
-        
+
+        $days = $this->licensing->days($data['start_date'], $data['end_date']);
+        $data['days'] = $days;
+
         $licensing = $this->licensing->create($data);
 
         return redirect()->action('HumanResources\LicensingController@index');

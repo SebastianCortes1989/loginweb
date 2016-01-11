@@ -32,13 +32,13 @@
 	        <tbody>
 	          	@foreach($extraHours as $extraHour)
 	        		<tr>
-	        			<td></td>
+	        			<td>{{ $extraHour->code() }}</td>
 	        			<td>{{ $extraHour->employee->name }}</td>
-	        			<td></td>
-	        			<td>{{ $extraHour->start_date }}</td>
-	        			<td>{{ $extraHour->end_date }}</td>
-	        			<td></td>
-	        			<td></td>
+	        			<td>{{ $extraHour->percentaje }}</td>
+	        			<td>{{ $extraHour->start_date->format('d/m/Y H:i') }}</td>
+	        			<td>{{ $extraHour->end_date->format('d/m/Y H:i') }}</td>
+	        			<td>{{ $extraHour->hours }}</td>
+	        			<td>{{ $extraHour->minutes }}</td>
 	        			<td>
 		              		<a href="{{ action('HumanResources\Pdf\ExtraHourController@view', [$extraHour->id]) }}">Ver PDF</a>
 		              	</td>

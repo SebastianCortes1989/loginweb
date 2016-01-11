@@ -32,11 +32,11 @@
 	        <tbody>
 	        	@foreach($licensings as $licensing)
 					<tr>
-		          		<td></td>
+		          		<td>{{ $licensing->code() }}</td>
 		              	<td>{{ $licensing->employee->name }}</td>
-		              	<td>{{ $licensing->start_date }}</td>
-		              	<td>{{ $licensing->end_date }}</td>
-		              	<td></td>
+		              	<td>{{ $licensing->start_date->format('d/m/Y') }}</td>
+		              	<td>{{ $licensing->end_date->format('d/m/Y') }}</td>
+		              	<td>{{ $licensing->days }}</td>
 		              	<td>{{ $licensing->number }}</td>
 						<td></td>
 						<td>

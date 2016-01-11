@@ -47,7 +47,7 @@
 				<td></td>
 				<td>{{ $contract->totalCommissions() }}</td>
 				<td>{{ $contract->totalBonds() }}</td>
-				<td></td>
+				<td>{{ $contract->totalExtraHours() }}</td>
 				<td></td>
 				<td>{{ $contract->collation }}</td>
 				<td>{{ $contract->mobilization }}</td>

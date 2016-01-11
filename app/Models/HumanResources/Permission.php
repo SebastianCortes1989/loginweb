@@ -13,7 +13,8 @@ class Permission extends Model
      * @var string
      */
     protected $table = 'rrhh_permissions';
-    protected $fillable = ['client_id', 'employee_id', 'start_date', 'end_date', 'type_id', 'contract_id'];
+    protected $fillable = ['client_id', 'employee_id', 'start_date', 'end_date', 'type_id', 
+    'contract_id', 'days'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'start_date', 'end_date'];
 
     /*
@@ -46,5 +47,15 @@ class Permission extends Model
     public function code()
     {
         return 'PERM-'.$this->client_id.'-'.$this->id;
+    }
+
+    public function days($startDate, $endDate)
+    {
+        $startDate = Carbon::createFromFormat('d/m/Y', $startDate);
+        $endDate = Carbon::createFromFormat('d/m/Y', $endDate);
+
+        $days = $startDate->diffInDays($endDate);
+
+        return $days;
     }
 }

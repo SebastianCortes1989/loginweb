@@ -12,7 +12,7 @@ class ExtraHourFormRequest extends FormRequest
         return [
             'client_id' => 'required',
             'employee_id' => 'required',
-            'type' => 'required',
+            'percentaje' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
             'description' => 'required',
@@ -28,9 +28,9 @@ class ExtraHourFormRequest extends FormRequest
     {
         return [
             'employee_id.required'  => 'Favor Seleccionar el Trabajador',
-            'type.required'  => 'Favor ingresar Tipo de Hora Extra',
-            'start_date.required'  => 'Favor ingresar Fecha de Inicio',
-            'end_date.required'  => 'Favor ingresar Fechade Término',
+            'type.required'         => 'Favor ingresar Porcentaje',
+            'start_date.required'   => 'Favor ingresar Fecha de Inicio',
+            'end_date.required'     => 'Favor ingresar Fechade Término',
             'description.required'  => 'Favor ingresar Descripción',
         ];
     }

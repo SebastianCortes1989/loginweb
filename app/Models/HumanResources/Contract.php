@@ -75,6 +75,11 @@ class Contract extends Model
         return $this->hasMany('App\Models\HumanResources\Saving', 'contract_id');
     }
 
+    public function extraHours()
+    {
+        return $this->hasMany('App\Models\HumanResources\ExtraHour', 'contract_id');
+    }
+
     //mutators
     public function setStartDateAttribute($value)
     {
@@ -133,6 +138,14 @@ class Contract extends Model
     {
         return $this->savings()->sum('ammount');
     }
+
+    public function totalExtraHours()
+    {
+        $hours = $this->extraHours()->sum('hours');
+
+        return $hours;
+    }
+
 
     public function addRemuneration($data)
     {

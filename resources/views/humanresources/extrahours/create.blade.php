@@ -13,23 +13,22 @@
 
 	<div class="row">
   		<div class="col m3">
-
-          <div class="input-field">
-            {!! Form::text('start_date', '', ['class' => 'validate']) !!}
-            {!! Form::label('start_date', 'Fecha de Inicio') !!}
-            <span class="red-text">{{ $errors->first('start_date') }}</span>
-          </div>    
+          
+          {!! Form::label('employee_id', 'Trabajador') !!}
+          {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
+          <span class="red-text">{{ $errors->first('employee_id') }}</span>  
           
   		</div>
 
       <div class="col m4">
-
-          {!! Form::label('employee_id', 'Trabajador') !!}
-          {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
-          <span class="red-text">{{ $errors->first('employee_id') }}</span>
-
           <div class="input-field">
-            {!! Form::text('end_date', '', ['class' => 'validate']) !!}
+            {!! Form::text('start_date', '', ['class' => 'validate datetime']) !!}
+            {!! Form::label('start_date', 'Fecha de Inicio') !!}
+            <span class="red-text">{{ $errors->first('start_date') }}</span>
+          </div>  
+          
+          <div class="input-field">
+            {!! Form::text('end_date', '', ['class' => 'validate datetime']) !!}
             {!! Form::label('end_date', 'Fecha de Término') !!}
             <span class="red-text">{{ $errors->first('end_date') }}</span>
           </div>
@@ -38,8 +37,8 @@
   		
   		<div class="col m4">
 
-          {!! Form::label('percentaje_id', 'Porcentaje') !!}
-          {!! Form::select('percentaje_id', [], '', ['class' => 'browser-default']) !!}
+          {!! Form::label('percentaje', 'Porcentaje') !!}
+          {!! Form::select('percentaje', $percentajes, '', ['class' => 'browser-default']) !!}
           <span class="red-text">{{ $errors->first('percentaje_id') }}</span>
 
         	<div class="input-field">

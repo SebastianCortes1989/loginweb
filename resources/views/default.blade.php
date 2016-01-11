@@ -6,6 +6,7 @@
     <!--Import materialize.css-->
     {!! Html::style('bower_components/materialize/css/materialize.min.css', ['media' => 'screen,projection']) !!}
     {!! Html::style('plugins/jquery-ui/jquery-ui.min.css', ['media' => 'screen,projection']) !!}
+    {!! Html::style('plugins/datetimepicker/jquery.datetimepicker.css') !!}
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -40,7 +41,7 @@
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     {!! Html::script('bower_components/materialize/js/materialize.min.js') !!}
-    {!! Html::script('plugins/jquery-ui/jquery-ui.min.js') !!}
+    {!! Html::script('plugins/datetimepicker/build/jquery.datetimepicker.full.min.js') !!}
     
     @yield('scripts')
 

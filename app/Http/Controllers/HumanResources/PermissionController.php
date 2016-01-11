@@ -74,6 +74,9 @@ class PermissionController extends Controller
         $contract = Contract::whereEmployeeId($data['employee_id'])->first();
         $data['contract_id'] = $contract->id;
         
+        $days = $this->permission->days($data['start_date'], $data['end_date']);
+        $data['days'] = $days;
+
         $permission = $this->permission->create($data);
 
         return redirect()->action('HumanResources\PermissionController@index');

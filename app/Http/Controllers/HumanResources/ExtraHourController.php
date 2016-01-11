@@ -46,7 +46,12 @@ class ExtraHourController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.extrahours.create', compact('employees'));
+        $percentajes = [
+            50  => '50%',
+            100 => '100%',
+        ];
+
+        return view('humanresources.extrahours.create', compact('employees', 'percentajes'));
     }
 
     /**
@@ -54,12 +59,19 @@ class ExtraHourController extends Controller
      *
      *return Response
     */
-    public function store(ExtraHourFormRequest $request){
+    public function store(ExtraHourFormRequest $request)
+    {
         $data = $request->except('_token');
 
         $contract = Contract::whereEmployeeId($data['employee_id'])->first();
         $data['contract_id'] = $contract->id;
-        
+
+        $hours = $this->extraHour->hours($data['start_date'], $data['end_date']);
+        $minutes = $this->extraHour->minutes($data['start_date'], $data['end_date']);
+
+        $data['hours'] = $hours;
+        $data['minutes'] = $minutes;
+
         $extraHour = $this->extraHour->create($data);
 
         return redirect()->action('HumanResources\ExtraHourController@index');
