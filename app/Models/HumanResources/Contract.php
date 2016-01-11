@@ -80,6 +80,16 @@ class Contract extends Model
         return $this->hasMany('App\Models\HumanResources\ExtraHour', 'contract_id');
     }
 
+    public function permissions()
+    {
+        return $this->hasMany('App\Models\HumanResources\Permission', 'contract_id');
+    }
+
+    public function licensings()
+    {
+        return $this->hasMany('App\Models\HumanResources\Licensing', 'contract_id');
+    }
+
     //mutators
     public function setStartDateAttribute($value)
     {
@@ -142,8 +152,17 @@ class Contract extends Model
     public function totalExtraHours()
     {
         $hours = $this->extraHours()->sum('hours');
+        $minutes = $this->extraHours()->sum('minutes');
 
-        return $hours;
+        return $hours. '.' .$minutes;
+    }
+
+    public function totalNotWorkedDays()
+    {
+        $licensings = $this->licensings()->sum('days');
+        $permissions = $this->permissions()->sum('days');
+
+        return $licensings+$permissions;
     }
 
 
