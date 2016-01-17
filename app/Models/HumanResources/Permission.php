@@ -44,6 +44,17 @@ class Permission extends Model
         return 'PERM-'.$this->client_id.'-'.$this->id;
     }
 
+    //scopes
+    public function scopeMonth($query, $month)
+    {
+        return $query->where('start_date', 'like', '%-'.$month.'-%');
+    }
+
+    public function scopeYear($query, $year)
+    {
+        return $query->where('start_date', 'like', '%-%-'.$year);
+    }
+
     public function days($startDate, $endDate)
     {
         $startDate = Carbon::createFromFormat('d/m/Y', $startDate);

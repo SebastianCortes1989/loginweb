@@ -66,4 +66,15 @@ class ExtraHour extends Model
     
         return 0;
     }
+
+    //scopes
+    public function scopeMonth($query, $month)
+    {
+        return $query->where('start_date', 'like', '%-'.$month.'-%');
+    }
+
+    public function scopeYear($query, $year)
+    {
+        return $query->where('start_date', 'like', '%-%-'.$year);
+    }
 }

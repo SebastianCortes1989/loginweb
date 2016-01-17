@@ -32,4 +32,15 @@ class LoanQuota extends Model
 
         return $date;
     }
+
+    //scopes
+    public function scopeMonth($query, $month)
+    {
+        return $query->where('date', 'like', '%-'.$month.'-%');
+    }
+
+    public function scopeYear($query, $year)
+    {
+        return $query->where('date', 'like', '%-%-'.$year);
+    }
 }

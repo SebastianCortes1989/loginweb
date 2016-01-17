@@ -31,4 +31,15 @@ class Tool extends Model
     {
         return 'HE-'.$this->client_id.'-'.$this->id;
     }
+
+    //scopes
+    public function scopeMonth($query, $month)
+    {
+        return $query->where('date', 'like', '%-'.$month.'-%');
+    }
+
+    public function scopeYear($query, $year)
+    {
+        return $query->where('date', 'like', '%-%-'.$year);
+    }
 }

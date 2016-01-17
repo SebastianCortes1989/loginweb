@@ -45,24 +45,24 @@
 					<td>{{ $contract->employee ? $contract->employee->name : '' }}</td>
 					<td></td>
 					<td>{{ $contract->base }}</td>
-					<td>{{ $contract->totalNotWorkedDays() }}</td>
+					<td>{{ $contract->totalNotWorkedDays($month, $year) }}</td>
 					<td></td>
-					<td>{{ $contract->totalCommissions() }}</td>
-					<td>{{ $contract->totalBonds() }}</td>
-					<td>{{ $contract->totalExtraHours() }}</td>
+					<td>{{ $contract->totalCommissions($month, $year) }}</td>
+					<td>{{ $contract->totalBonds($month, $year) }}</td>
+					<td>{{ $contract->totalExtraHours($month, $year) }}</td>
 					<td></td>
 					<td>{{ $contract->collation }}</td>
 					<td>{{ $contract->mobilization }}</td>
-					<td>{{ $contract->totalTools() }}</td>
-					<td>{{ $contract->totalViaticals() }}</td>
-					<td></td>
-					<td>{{ $contract->totalDiscounts() }}</td>
-					<td>{{ $contract->totalBonus() }}</td>
-					<td></td>
-					<td></td>
-					<td>{{ $contract->totalSavings() }}</td>
-					<td>{{ $contract->totalAdvances() }}</td>
-					<td></td>
+					<td>{{ $contract->totalTools($month, $year) }}</td>
+					<td>{{ $contract->totalViaticals($month, $year) }}</td>
+					<td>{{ $contract->totalAssets($month, $year) }}</td>
+					<td>{{ $contract->totalDiscounts($month, $year) }}</td>
+					<td>{{ $contract->totalBonus($month, $year) }}</td>
+					<td>{{ $contract->totalLoanQuotas($month, $year) }}</td>
+					<td>{{ $contract->totalCcafQuotas($month, $year) }}</td>
+					<td>{{ $contract->totalSavings($month, $year) }}</td>
+					<td>{{ $contract->totalAdvances($month, $year) }}</td>
+					<td>{{ $contract->totalLiquid($month, $year) }}</td>
 				</tr>
 			@endforeach
 		</tbody>

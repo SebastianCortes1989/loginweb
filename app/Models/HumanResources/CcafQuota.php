@@ -25,4 +25,15 @@ class CcafQuota extends Model
         
         return $ammount;
     }
+
+    //scopes
+    public function scopeMonth($query, $month)
+    {
+        return $query->where('month', $month);
+    }
+
+    public function scopeYear($query, $year)
+    {
+        return $query->where('year', $year);
+    }
 }

@@ -29,12 +29,15 @@ class RemunerationController extends Controller
 	 *
 	 * @return Response
     */
-    public function index()
+    public function index(Request $request)
     {    
+        $year = $request->get('year', date('Y'));
+        $month = $request->get('month', date('m'));
+
         $contracts = Contract::whereClientId(Auth::user()->client_id)
                     ->with('employee')
                     ->get();
 
-        return view('humanresources.remunerations.index', compact('contracts'));
+        return view('humanresources.remunerations.index', compact('contracts', 'year', 'month'));
     }
 }

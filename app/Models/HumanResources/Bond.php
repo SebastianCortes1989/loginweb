@@ -36,4 +36,15 @@ class Bond extends Model
     {
         return 'BON-'.$this->client_id.'-'.$this->id;
     }
+
+    //scopes
+    public function scopeMonth($query, $month)
+    {
+        return $query->where('date', 'like', '%-'.$month.'-%');
+    }
+
+    public function scopeYear($query, $year)
+    {
+        return $query->where('date', 'like', '%-%-'.$year);
+    }
 }

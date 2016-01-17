@@ -14,9 +14,29 @@ use App\Models\HumanResources\ExtraHour;
 
 class ExtraHourController extends Controller
 {
-    public function view($apvId)
+	protected $extraHour;
+    protected $employee;
+    protected $client;
+
+    public function __construct(ExtraHour $extraHour, Employee $employee, Client $client)
     {
-        $pdf = PDF::loadView('humanresources.pdf.extrahours', []);
+        $this->extraHour = $extraHour;
+        $this->employee = $employee;
+        $this->client = $client;
+    }
+
+    public function view($extraHourId)
+    {
+    	$extraHour = $this->extraHour->findOrFail($extraHourId);
+        $employee = $this->employee->findOrFail($extraHour->employee_id);
+        $client = $this->client->findOrFail($employee->client_id);
+
+        $pdf = PDF::loadView('humanresources.pdf.extrahours',
+            [
+                'client'   => $client,
+                'employee' => $employee
+            ]
+        );
 
         return $pdf->stream();
     }    

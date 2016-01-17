@@ -22,4 +22,15 @@ class Saving extends Model
     {
         return 'APV-'.$this->client_id.'-'.$this->id;
     }
+
+    //scopes
+    public function scopeMonth($query, $month)
+    {
+        return $query->where('created_at', 'like', '%-'.$month.'-%');
+    }
+
+    public function scopeYear($query, $year)
+    {
+        return $query->where('created_at', 'like', '%-%-'.$year);
+    }
 }

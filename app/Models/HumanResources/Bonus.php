@@ -11,7 +11,6 @@ class Bonus extends Model
     protected $fillable = ['client_id', 'employee_id', 'ammount', 'date', 'type_id', 'description', 'contract_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'date'];
 
-
     /*
      * relaciones
     */
@@ -36,5 +35,16 @@ class Bonus extends Model
     public function code()
     {
         return 'AG-'.$this->client_id.'-'.$this->id;
+    }
+
+    //scopes
+    public function scopeMonth($query, $month)
+    {
+        return $query->where('date', 'like', '%-'.$month.'-%');
+    }
+
+    public function scopeYear($query, $year)
+    {
+        return $query->where('date', 'like', '%-%-'.$year);
     }
 }

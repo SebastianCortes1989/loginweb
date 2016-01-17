@@ -85,6 +85,16 @@ class Contract extends Model
         return $this->hasMany('App\Models\HumanResources\Licensing', 'contract_id');
     }
 
+    public function loanQuotas()
+    {
+        return $this->hasMany('App\Models\HumanResources\LoanQuota', 'contract_id');
+    }
+
+    public function ccafQuotas()
+    {
+        return $this->hasMany('App\Models\HumanResources\CcafQuota', 'contract_id');
+    }
+
     //mutators
     public function setStartDateAttribute($value)
     {
@@ -104,62 +114,111 @@ class Contract extends Model
         return 'CONT-'.$this->client_id.'-'.$this->id;
     }
 
-    public function totalBonds()
+    public function totalBonds($month, $year)
     {
-        return $this->bonds()->sum('ammount');
+        return $this->bonds()->month($month)->year($year)->sum('ammount');
     }
 
-    public function totalCommissions()
+    public function totalCommissions($month, $year)
     {
-        return $this->commissions()->sum('ammount');
+        return $this->commissions()->month($month)->year($year)->sum('ammount');
     }
 
-    public function totalTools()
+    public function totalTools($month, $year)
     {
-        return $this->tools()->sum('ammount');
+        return $this->tools()->month($month)->year($year)->sum('ammount');
     }
 
-    public function totalViaticals()
+    public function totalViaticals($month, $year)
     {
-        return $this->viaticals()->sum('ammount');
+        return $this->viaticals()->month($month)->year($year)->sum('ammount');
     }
 
-    public function totalBonus()
+    public function totalBonus($month, $year)
     {
-        return $this->bonus()->sum('ammount');
+        return $this->bonus()->month($month)->year($year)->sum('ammount');
     }
 
-    public function totalAdvances()
+    public function totalAdvances($month, $year)
     {
-        return $this->advances()->sum('ammount');
+        return $this->advances()->month($month)->year($year)->sum('ammount');
     }
 
-    public function totalDiscounts()
+    public function totalDiscounts($month, $year)
     {
-        return $this->discounts()->sum('ammount');
+        return $this->discounts()->month($month)->year($year)->sum('ammount');
     }
 
-    public function totalSavings()
+    public function totalSavings($month, $year)
     {
-        return $this->savings()->sum('ammount');
+        return $this->savings()->month($month)->year($year)->sum('ammount');
     }
 
-    public function totalExtraHours()
+    public function totalExtraHours($month, $year)
     {
-        $hours = $this->extraHours()->sum('hours');
-        $minutes = $this->extraHours()->sum('minutes');
+        $hours = $this->extraHours()->month($month)->year($year)->sum('hours');
+        $minutes = $this->extraHours()->month($month)->year($year)->sum('minutes');
 
         return $hours. '.' .$minutes;
     }
 
-    public function totalNotWorkedDays()
+    public function totalNotWorkedDays($month, $year)
     {
-        $licensings = $this->licensings()->sum('days');
-        $permissions = $this->permissions()->sum('days');
+        $licensings = $this->licensings()->month($month)->year($year)->sum('days');
+        $permissions = $this->permissions()->month($month)->year($year)->sum('days');
 
         return $licensings+$permissions;
     }
 
+    public function totalLoanQuotas($month, $year)
+    {
+        return $this->loanQuotas()->month($month)->year($year)->sum('ammount');
+    }
+
+    public function totalCcafQuotas($month, $year)
+    {
+        return $this->ccafQuotas()->month($month)->year($year)->sum('ammount');
+    }
+
+
+    public function totalAssets($month, $year)
+    {
+        $commissions = $this->totalCommissions($month, $year);
+        $bonds = $this->totalBonds($month, $year);
+        $extraHours = $this->totalExtraHours($month, $year);
+        $collation = $this->collation;
+        $mobilization = $this->mobilization;
+        $tools = $this->totalTools($month, $year);
+        $viaticals = $this->totalViaticals($month, $year);
+
+        $total = $commissions+$bonds+$extraHours+$collation+$mobilization+$tools+$viaticals;
+
+        return $total;
+    }
+
+    public function totalRemunerationDiscounts($month, $year)
+    {
+        $discounts = $this->totalDiscounts($month, $year);
+        $bonus = $this->totalBonus($month, $year);
+        $loanQuotas = $this->totalLoanQuotas($month, $year);
+        $ccafQuotas = $this->totalCcafQuotas($month, $year);
+        $savings = $this->totalSavings($month, $year);
+        $advances = $this->totalAdvances($month, $year);
+                    
+        $total = $discounts+$bonus+$loanQuotas+$ccafQuotas+$savings+$advances;
+
+        return $total;
+    }
+
+    public function totalLiquid($month, $year)
+    {
+        $assets = $this->totalAssets($month, $year);
+        $discounts = $this->totalRemunerationDiscounts($month, $year);
+
+        $total = $assets-$discounts;
+
+        return $total;
+    }
 
     public function addRemuneration($data)
     {
