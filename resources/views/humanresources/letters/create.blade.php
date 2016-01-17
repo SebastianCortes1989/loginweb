@@ -39,7 +39,7 @@
   		<div class="col m4">
 
           {!! Form::label('causal_id', 'Causal') !!}
-          {!! Form::select('causal_id', $causal, '', ['class' => 'browser-default']) !!}
+          {!! Form::select('causal_id', $causals, '', ['class' => 'browser-default']) !!}
           <span class="red-text">{{ $errors->first('causal_id') }}</span>
 
           <div class="input-field">

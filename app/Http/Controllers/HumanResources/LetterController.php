@@ -10,7 +10,8 @@ use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
 use App\Models\HumanResources\Contract;
-use App\Models\Admin\Letter;
+use App\Models\HumanResources\Letter;
+use App\Models\Admin\Causal;
 
 use App\Http\Requests\HumanResources\LetterFormRequest;
 
