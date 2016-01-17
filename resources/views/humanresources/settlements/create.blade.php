@@ -19,7 +19,7 @@
         <span class="red-text">{{ $errors->first('employee_id') }}</span>
 
         {!! Form::label('causal_id', 'Causal') !!}
-        {!! Form::select('causal_id', $employees, '', ['class' => 'browser-default']) !!}
+        {!! Form::select('causal_id', $causals, '', ['class' => 'browser-default']) !!}
         <span class="red-text">{{ $errors->first('causal_id') }}</span>
 
         <div class="input-field">
@@ -58,8 +58,8 @@
           </div>
 
           <div class="input-field">
-            {!! Form::number('proportional_holidays', '', ['class' => 'validate']) !!}
-            {!! Form::label('proportional_holidays', 'Fecha de Término') !!}
+            {!! Form::number('legal_holidays', '', ['class' => 'validate']) !!}
+            {!! Form::label('legal_holidays', 'Días Vacaciones Legales Pendientes') !!}
           </div>
 
       </div>

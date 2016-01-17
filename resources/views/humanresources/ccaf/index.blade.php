@@ -30,11 +30,11 @@
 	        <tbody>
 	        	@foreach($ccaf as $loan)
 	        		<tr>
-	        			<td></td>
+	        			<td>{{ $loan->code() }}</td>
 	        			<td>{{ $loan->employee->name }}</td>
 	        			<td>{{ $loan->quotas }}</td>
 	        			<td>{{ $loan->ammount }}</td>
-	        			<td></td>
+	        			<td>{{ $loan->compensacion->name }}</td>
 	        			<td>
 		              		<a href="{{ action('HumanResources\Pdf\CcafController@view', [$loan->id]) }}">Ver PDF</a>
 		              	</td>

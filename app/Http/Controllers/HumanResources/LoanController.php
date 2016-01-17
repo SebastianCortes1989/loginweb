@@ -4,12 +4,14 @@ namespace App\Http\Controllers\HumanResources;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use \Auth;
+use \Auth, \App;
 
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+
 use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\LoanType;
 
 use App\Models\HumanResources\Loan;
 
@@ -46,7 +48,9 @@ class LoanController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.loans.create', compact('employees'));
+        $loanTypes = LoanType::orderBy('name')->lists('name', 'id');
+        
+        return view('humanresources.loans.create', compact('employees', 'loanTypes'));
     }
 
     /**
@@ -72,6 +76,7 @@ class LoanController extends Controller
         $data['contract_id'] = $contract->id;
         
         $loan = $this->loan->create($data);
+        $loan->createQuotas();
 
         return redirect()->action('HumanResources\LoanController@index');
     }

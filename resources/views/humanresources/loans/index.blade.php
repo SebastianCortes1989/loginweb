@@ -30,11 +30,11 @@
 	        <tbody>
 	        	@foreach($loans as $loan)
 	        		<tr>
-	        			<td></td>
+	        			<td>{{ $loan->code() }}</td>
 	        			<td>{{ $loan->employee->name }}</td>
 	        			<td>{{ $loan->quotas }}</td>
 	        			<td>{{ $loan->ammount }}</td>
-	        			<td>{{ $loan->grant_date }}</td>
+	        			<td>{{ $loan->grant_date->format('d/m/Y') }}</td>
 	        			<td>
 		              		<a href="{{ action('HumanResources\Pdf\LoanController@view', [$loan->id]) }}">Ver PDF</a>
 		              	</td>

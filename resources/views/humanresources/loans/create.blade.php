@@ -15,7 +15,7 @@
  		  <div class="col m3">
 
         {!! Form::label('type_id', 'Tipo') !!}
-        {!! Form::select('type_id', [], '', ['class' => 'browser-default']) !!}
+        {!! Form::select('type_id', $loanTypes, '', ['class' => 'browser-default']) !!}
         <span class="red-text">{{ $errors->first('type_id') }}</span>
           
   		</div>
@@ -53,15 +53,15 @@
   		<div class="col m3">
 
           {!! Form::label('day', 'Día') !!}
-          {!! Form::select('day', [], '', ['class' => 'browser-default']) !!}
+          {!! Form::selectRange('day', 1, 31, date('d'), ['class' => 'browser-default']) !!}
           <span class="red-text">{{ $errors->first('day') }}</span>
 
           {!! Form::label('month', 'Mes') !!}
-          {!! Form::select('month', [], '', ['class' => 'browser-default']) !!}
+          {!! Form::select('month', config('options.month'), date('m'), ['class' => 'browser-default']) !!}
           <span class="red-text">{{ $errors->first('month') }}</span>
 
           {!! Form::label('year', 'Año') !!}
-          {!! Form::select('year', [], '', ['class' => 'browser-default']) !!}
+          {!! Form::selectYear('year', 2014, 2025, date('Y'), ['class' => 'browser-default']) !!}
           <span class="red-text">{{ $errors->first('year') }}</span>
           
   		</div>

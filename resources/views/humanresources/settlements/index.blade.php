@@ -34,12 +34,12 @@
 	        <tbody>
 	          	@foreach($settlements as $settlement)
 	        		<tr>
-	        			<td></td>
+	        			<td>{{ $settlement->code() }}</td>
 	        			<td>{{ $settlement->employee->name }}</td>
-	        			<td></td>
-	        			<td>{{ $settlement->date }}</td>
+	        			<td>{{ $settlement->causal->name }}</td>
+	        			<td>{{ $settlement->date->format('d/m/Y') }}</td>
 	        			<td>{{ $settlement->ammount }}</td>
-	        			<td></td>
+	        			<td>{{ $settlement->letter->code() }}</td>
 	        			<td></td>
 	        			<td></td>
 	        			<td>

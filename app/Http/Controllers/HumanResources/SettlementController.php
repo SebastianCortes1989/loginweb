@@ -10,6 +10,8 @@ use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
 use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\Letter;
+use App\Models\Admin\Causal;
 
 use App\Models\HumanResources\Settlement;
 
@@ -42,11 +44,15 @@ class SettlementController extends Controller
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
+        //$letters = Letter::whereClientId(Auth::user()->client_id)->lists('employee_id');
+
+        $employees = Letter::whereClientId(Auth::user()->client_id)
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.settlements.create', compact('employees'));
+        $causals = Causal::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.settlements.create', compact('employees', 'causals'));
     }
 
     /**
@@ -70,6 +76,9 @@ class SettlementController extends Controller
 
         $contract = Contract::whereEmployeeId($data['employee_id'])->first();
         $data['contract_id'] = $contract->id;
+
+        $letter = Letter::whereEmployeeId($data['employee_id'])->first();
+        $data['letter_id'] = $letter->id;
         
         $settlement = $this->settlement->create($data);
 

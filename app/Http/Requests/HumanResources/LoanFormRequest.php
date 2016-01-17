@@ -12,7 +12,7 @@ class LoanFormRequest extends FormRequest
         return [
             'client_id' => 'required',
             'employee_id' => 'required',
-            'type' => 'required',
+            'type_id' => 'required',
             'ammount' => 'required',
             'quotas' => 'required',
             'grant_date' => 'required',

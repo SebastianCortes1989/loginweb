@@ -6,12 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
-{
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+{    
     protected $table = 'rrhh_contracts';
     protected $fillable = ['client_id', 'employee_id', 'branch_id', 'charge_id', 
     'contract_type_id', 'working_type', 'start_date', 'end_date'];
@@ -103,7 +98,7 @@ class Contract extends Model
         $this->attributes['end_date'] = $date->format('Y-m-d');
     }
 
-    //funciones
+    // functions
     public function code()
     {
         return 'CONT-'.$this->client_id.'-'.$this->id;

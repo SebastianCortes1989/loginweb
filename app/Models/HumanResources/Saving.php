@@ -6,11 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Saving extends Model
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'rrhh_savings';
     protected $fillable = ['client_id', 'employee_id', 'ammount', 'date', 'type_id', 'description', 'contract_id'];
 

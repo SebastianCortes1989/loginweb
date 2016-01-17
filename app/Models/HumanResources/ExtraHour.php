@@ -6,12 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ExtraHour extends Model
-{
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+{    
     protected $table = 'rrhh_extra_hours';
     protected $fillable = ['client_id', 'employee_id', 'start_date', 'end_date', 'percentaje', 
     'description', 'contract_id', 'hours', 'minutes'];

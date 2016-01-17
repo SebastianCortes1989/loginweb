@@ -46,7 +46,9 @@ class LetterController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.letters.create', compact('employees'));
+        $causals = Causal::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.letters.create', compact('employees', 'causals'));
     }
 
     /**

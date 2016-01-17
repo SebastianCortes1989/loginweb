@@ -10,6 +10,8 @@ use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
 use App\Models\HumanResources\Contract;
+use App\Models\HumanResources\CcafType;
+use App\Models\Admin\Compensacion;
 
 use App\Models\HumanResources\Ccaf;
 
@@ -46,7 +48,10 @@ class CcafController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.ccaf.create', compact('employees'));
+        $types = CcafType::orderBy('name')->lists('name', 'id');
+        $compensacions = Compensacion::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.ccaf.create', compact('employees', 'types', 'compensacions'));
     }
 
     /**
@@ -72,6 +77,7 @@ class CcafController extends Controller
         $data['contract_id'] = $contract->id;
 
         $ccaf = $this->ccaf->create($data);
+        $quotas = $ccaf->createQuotas();
 
         return redirect()->action('HumanResources\CcafController@index');
     }

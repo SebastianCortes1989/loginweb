@@ -7,11 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Licensing extends Model
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'rrhh_licensings';
     protected $fillable = ['client_id', 'employee_id', 'start_date', 'end_date', 'number', 
     'work_accident', 'contract_id', 'days'];

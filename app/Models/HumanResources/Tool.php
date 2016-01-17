@@ -7,11 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tool extends Model
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'rrhh_tools';
     protected $fillable = ['client_id', 'employee_id', 'ammount', 'date', 'description', 'contract_id'];
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'date'];
