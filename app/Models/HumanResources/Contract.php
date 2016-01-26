@@ -180,18 +180,54 @@ class Contract extends Model
         return $this->ccafQuotas()->month($month)->year($year)->sum('ammount');
     }
 
-
-    public function totalAssets($month, $year)
+    public function taxable($month, $year)
     {
-        $commissions = $this->totalCommissions($month, $year);
+        $base = $this->base;
         $bonds = $this->totalBonds($month, $year);
-        $extraHours = $this->totalExtraHours($month, $year);
+        $commissions = $this->totalCommissions($month, $year);
+        $hours = $this->totalExtraHours($month, $year);
+
+        $notWorkedDays = $this->totalNotWorkedDays($month, $year);
+
+        $total = ($base+$bonds+$commissions+$hours)-$notWorkedDays;
+
+        return $total;
+    }
+
+    public function notTaxable($month, $year)
+    {
         $collation = $this->collation;
         $mobilization = $this->mobilization;
         $tools = $this->totalTools($month, $year);
-        $viaticals = $this->totalViaticals($month, $year);
 
-        $total = $commissions+$bonds+$extraHours+$collation+$mobilization+$tools+$viaticals;
+        $total = $collation+$mobilization+$tools;
+
+        return $total;
+    }
+
+    public function gratification($month, $year)
+    {
+        $taxable = $this->taxable($month, $year);
+        $gratification1 = ($taxable*25)/100;
+
+        $gratification2 = config('parameters.minimun_salary')*config('parameters.tops.gratification');
+
+        if($gratification2 > $gratification1)
+        {
+            return $gratification1;
+        }
+
+        return $gratification2;
+    }
+
+
+    public function totalAssets($month, $year)
+    {
+        $taxable = $this->taxable($month, $year);
+        $notTaxable = $this->notTaxable($month, $year);
+        $gratification = $this->gratification($month, $year);
+
+        $total = $taxable+$notTaxable+$gratification;
 
         return $total;
     }

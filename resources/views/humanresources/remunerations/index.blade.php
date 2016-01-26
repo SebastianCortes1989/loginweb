@@ -23,6 +23,7 @@
 				<th>Comisiones</th>
 				<th>Bonos</th>
 				<th>Horas Extras</th>
+				<th>Gratificación</th>
 				<th>Asignación Familiar</th>
 				<th>Colación</th>
 				<th>Movilización</th>
@@ -50,6 +51,7 @@
 					<td>{{ $contract->totalCommissions($month, $year) }}</td>
 					<td>{{ $contract->totalBonds($month, $year) }}</td>
 					<td>{{ $contract->totalExtraHours($month, $year) }}</td>
+					<td>{{ $contract->gratification($month, $year) }}</td>
 					<td></td>
 					<td>{{ $contract->collation }}</td>
 					<td>{{ $contract->mobilization }}</td>
