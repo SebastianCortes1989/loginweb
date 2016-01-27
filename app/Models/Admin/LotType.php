@@ -4,7 +4,7 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bank extends Model
+class LotType extends Model
 {
-    protected $table = 'general_banks';
+    protected $table = 'general_lots_types';
 }

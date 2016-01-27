@@ -52,7 +52,7 @@
 					<td>{{ $contract->totalBonds($month, $year) }}</td>
 					<td>{{ $contract->totalExtraHours($month, $year) }}</td>
 					<td>{{ $contract->gratification($month, $year) }}</td>
-					<td></td>
+					<td>{{ $contract->family() }}</td>
 					<td>{{ $contract->collation }}</td>
 					<td>{{ $contract->mobilization }}</td>
 					<td>{{ $contract->totalTools($month, $year) }}</td>

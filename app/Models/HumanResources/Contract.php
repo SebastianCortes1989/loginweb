@@ -5,6 +5,10 @@ namespace App\Models\HumanResources;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Admin\MinimunSalary;
+use App\Models\Admin\Top;
+use App\Models\Admin\Lot;
+
 class Contract extends Model
 {    
     protected $table = 'rrhh_contracts';
@@ -205,12 +209,41 @@ class Contract extends Model
         return $total;
     }
 
+    public function family()
+    {
+        $base = $this->base;
+        $family   = Lot::familiar()->min($base)->max($base)->first();
+        $maternal = Lot::maternal()->min($base)->max($base)->first();
+        $invalid  = Lot::invalid()->min($base)->max($base)->first();
+
+        $familiars = 0; $maternals = 0; $invalids = 0;
+
+        if($family)
+        {
+            $familiars = $this->employee->familiars*$family->value;
+        }
+
+        if($maternals)
+        {
+            $maternals = $this->employee->maternals*$maternal->value;
+        }
+
+        if($invalids)
+        {
+            $invalids  = $this->employee->invalids*$invalid->value;
+        }    
+
+        $total = $familiars+$maternals+$invalids;
+
+        return $total;
+    }
+
     public function gratification($month, $year)
     {
         $taxable = $this->taxable($month, $year);
         $gratification1 = ($taxable*25)/100;
 
-        $gratification2 = config('parameters.minimun_salary')*config('parameters.tops.gratification');
+        $gratification2 = MinimunSalary::actual($month, $year)*Top::actual($month, $year);
 
         if($gratification2 > $gratification1)
         {
