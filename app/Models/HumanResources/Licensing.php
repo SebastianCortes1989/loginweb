@@ -57,6 +57,6 @@ class Licensing extends Model
 
     public function scopeYear($query, $year)
     {
-        return $query->where('start_date', 'like', '%-%-'.$year);
+        return $query->where('start_date', 'like', $year.'-%-%');
     }
 }

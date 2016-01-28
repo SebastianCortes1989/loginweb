@@ -31,6 +31,6 @@ class Discount extends Model
 
     public function scopeYear($query, $year)
     {
-        return $query->where('date', 'like', '%-%-'.$year);
+        return $query->where('date', 'like', $year.'-%-%');
     }
 }

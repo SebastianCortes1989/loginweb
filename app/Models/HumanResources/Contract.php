@@ -230,7 +230,7 @@ class Contract extends Model
 
         if($invalids)
         {
-            $invalids  = $this->employee->invalids*$invalid->value;
+            $invalids  = ($this->employee->invalids*$invalid->value)*2;
         }    
 
         $total = $familiars+$maternals+$invalids;

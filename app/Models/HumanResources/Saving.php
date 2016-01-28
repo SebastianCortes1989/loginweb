@@ -31,6 +31,6 @@ class Saving extends Model
 
     public function scopeYear($query, $year)
     {
-        return $query->where('created_at', 'like', '%-%-'.$year);
+        return $query->where('created_at', 'like', $year.'-%-%');
     }
 }

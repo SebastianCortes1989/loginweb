@@ -12,6 +12,8 @@ class MinimunSalary extends Model
     public static function actual($month, $year)
     {
     	$salary = MinimunSalary::start($month, $year)->orderBy('id', 'desc')->first();
+
+        return $salary ? $salary->value : '0';
     }
 
     //scopes

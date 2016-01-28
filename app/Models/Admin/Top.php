@@ -11,7 +11,9 @@ class Top extends Model
     //funciones
     public static function actual($month, $year)
     {
-    	$salary = MinimunSalary::start($month, $year)->orderBy('id', 'desc')->first();
+    	$top = MinimunSalary::start($month, $year)->orderBy('id', 'desc')->first();
+
+        return $top ? $top->value : '0';
     }
 
     //scopes
