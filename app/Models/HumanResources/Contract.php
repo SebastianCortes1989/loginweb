@@ -185,14 +185,16 @@ class Contract extends Model
         $minutes = $this->extraHours()->month($month)->year($year)->sum('minutes');
         $minutes = $minutes*$this->minutes();
 
-        return $hours+$minutes;
+        $total = $hours+$minutes;
+
+        return round($total);
     }
 
     public function totalNotWorkedDays($month, $year)
     {
         $licensings = $this->licensings()->month($month)->year($year)->sum('days');
         $licensings = $licensings*$this->daily();
-        
+
         $permissions = $this->permissions()->month($month)->year($year)->sum('days');
         $permissions = $permissions*$this->daily();
 
