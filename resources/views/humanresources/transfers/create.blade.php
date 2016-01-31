@@ -39,7 +39,7 @@
   		<div class="col m3">
 
         {!! Form::label('cause_id', 'Causa') !!}
-        {!! Form::select('cause_id', [], '', ['class' => 'browser-default']) !!}
+        {!! Form::select('cause_id', $causes, '', ['class' => 'browser-default']) !!}
         <span class="red-text">{{ $errors->first('cause_id') }}</span>
           
   		</div>
@@ -47,11 +47,11 @@
       <div class="col m3">          
 
         {!! Form::label('from_branch_id', 'Sucursal de Origen') !!}
-        {!! Form::select('from_branch_id', [], '', ['class' => 'browser-default']) !!}
+        {!! Form::select('from_branch_id', $branchs, '', ['class' => 'browser-default']) !!}
         <span class="red-text">{{ $errors->first('from_branch_id') }}</span>
 
         {!! Form::label('to_branch_id', 'Sucursal Transferida') !!}
-        {!! Form::select('to_branch_id', [], '', ['class' => 'browser-default']) !!}
+        {!! Form::select('to_branch_id', $branchs, '', ['class' => 'browser-default']) !!}
         <span class="red-text">{{ $errors->first('to_branch_id') }}</span>
           
       </div>

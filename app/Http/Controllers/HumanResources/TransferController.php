@@ -9,9 +9,11 @@ use \Auth;
 use App\Models\Admin\Client;
 
 use App\Models\Entity\Employee;
+use App\Models\Entity\Branch;
 use App\Models\HumanResources\Contract;
 
 use App\Models\HumanResources\Transfer;
+use App\Models\HumanResources\TransferCause;
 
 use App\Http\Requests\HumanResources\TransferFormRequest;
 
@@ -19,7 +21,8 @@ class TransferController extends Controller
 {
     protected $transfer;
 
-    public function __construct(Transfer $transfer){
+    public function __construct(Transfer $transfer)
+    {
         $this->transfer = $transfer;
     }
 
@@ -46,7 +49,11 @@ class TransferController extends Controller
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 
-        return view('humanresources.transfers.create', compact('employees'));
+        $branchs = Branch::whereClientId(Auth::user()->client_id)->lists('name', 'id');
+        
+        $causes = TransferCause::lists('name', 'id');
+
+        return view('humanresources.transfers.create', compact('employees', 'branchs', 'causes'));
     }
 
     /**

@@ -20,7 +20,8 @@ class AdvanceController extends Controller
 {
     protected $advance;
 
-    public function __construct(Advance $advance){
+    public function __construct(Advance $advance)
+    {
         $this->advance = $advance;
     }
 

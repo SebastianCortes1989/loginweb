@@ -20,7 +20,8 @@ class ApvController extends Controller
 {
     protected $saving;
 
-    public function __construct(Saving $saving){
+    public function __construct(Saving $saving)
+    {
         $this->saving = $saving;
     }
 

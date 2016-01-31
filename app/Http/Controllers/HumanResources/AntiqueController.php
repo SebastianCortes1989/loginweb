@@ -19,7 +19,8 @@ class AntiqueController extends Controller
 {
     protected $antique;
 
-    public function __construct(Antique $antique){
+    public function __construct(Antique $antique)
+    {
         $this->antique = $antique;
     }
 
