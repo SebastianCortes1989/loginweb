@@ -118,6 +118,25 @@ class Contract extends Model
         return 'CONT-'.$this->client_id.'-'.$this->id;
     }
 
+    public function daily()
+    {
+        return $this->liquid/30;
+    }
+
+    public function hours()
+    {
+        $daily = $this->daily();
+
+        return $daily/9;
+    }
+
+    public function minutes()
+    {
+        $hours = $this->hours();
+
+        return $hours/60;
+    }
+
     public function totalBonds($month, $year)
     {
         return $this->bonds()->month($month)->year($year)->sum('ammount');
@@ -161,15 +180,21 @@ class Contract extends Model
     public function totalExtraHours($month, $year)
     {
         $hours = $this->extraHours()->month($month)->year($year)->sum('hours');
-        $minutes = $this->extraHours()->month($month)->year($year)->sum('minutes');
+        $hours = $hours*$this->hours();
 
-        return $hours. '.' .$minutes;
+        $minutes = $this->extraHours()->month($month)->year($year)->sum('minutes');
+        $minutes = $minutes*$this->minutes();
+
+        return $hours+$minutes;
     }
 
     public function totalNotWorkedDays($month, $year)
     {
         $licensings = $this->licensings()->month($month)->year($year)->sum('days');
+        $licensings = $licensings*$this->daily();
+        
         $permissions = $this->permissions()->month($month)->year($year)->sum('days');
+        $permissions = $permissions*$this->daily();
 
         return $licensings+$permissions;
     }

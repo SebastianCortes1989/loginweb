@@ -25,7 +25,8 @@ class ContractController extends Controller
     protected $workingTypes = ['Continua' => 'Jornada Continua', 'Turnos' => 'Turnos'];
     protected $days = [1 => 'Lunes', 2 => 'Martes', 3 => 'Miércoles', 4 => 'Jueves', 5 => 'Viernes', 6 => 'Sabado', 7 => 'Domingo'];
 
-    public function __construct(Contract $contract, Journal $journal){
+    public function __construct(Contract $contract, Journal $journal)
+    {
         $this->contract = $contract;
         $this->journal = $journal;
     }
@@ -49,8 +50,15 @@ class ContractController extends Controller
     */
     public function create()
     {
+        $contracts = $this->contract->whereClientId(Auth::user()->client_id)->lists('employee_id');
+        $employees = Employee::whereClientId(Auth::user()->client_id)->whereNotIn('id', $contracts)->orderBy('name')->lists('name', 'id');
+
+        if(count($employees) == 0)
+        {
+            abort(403, 'No existen trabajadores sin contrato.');
+        }
+
         $charges = Charge::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
-        $employees = Employee::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
         $contractTypes = ContractType::orderBy('name')->lists('name', 'id');
         $branchs = Branch::whereClientId(Auth::user()->client_id)->orderBy('name')->lists('name', 'id');
         $workingTypes = $this->workingTypes;

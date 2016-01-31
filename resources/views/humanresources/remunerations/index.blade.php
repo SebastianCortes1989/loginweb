@@ -19,7 +19,6 @@
 				<th>Estado</th>
 				<th>Sueldo Base</th>
 				<th>Días No Trabajados</th>
-				<th>Minutos No Trabajados</th>
 				<th>Comisiones</th>
 				<th>Aguinaldos</th>
 				<th>Bonos</th>
@@ -47,7 +46,6 @@
 					<td></td>
 					<td>{{ $contract->base }}</td>
 					<td>{{ $contract->totalNotWorkedDays($month, $year) }}</td>
-					<td></td>
 					<td>{{ $contract->totalCommissions($month, $year) }}</td>
 					<td>{{ $contract->totalBonus($month, $year) }}</td>
 					<td>{{ $contract->totalBonds($month, $year) }}</td>
