@@ -189,11 +189,12 @@ class Contract extends Model
         $base = $this->base;
         $bonds = $this->totalBonds($month, $year);
         $commissions = $this->totalCommissions($month, $year);
+        $bonus = $this->totalBonus($month, $year);
         $hours = $this->totalExtraHours($month, $year);
 
         $notWorkedDays = $this->totalNotWorkedDays($month, $year);
 
-        $total = ($base+$bonds+$commissions+$hours)-$notWorkedDays;
+        $total = ($base+$bonds+$commissions+$hours+$bonus)-$notWorkedDays;
 
         return $total;
     }

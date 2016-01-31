@@ -21,6 +21,7 @@
 				<th>Días No Trabajados</th>
 				<th>Minutos No Trabajados</th>
 				<th>Comisiones</th>
+				<th>Aguinaldos</th>
 				<th>Bonos</th>
 				<th>Horas Extras</th>
 				<th>Gratificación</th>
@@ -31,7 +32,6 @@
 				<th>Viáticos</th>
 				<th>Total Haberes</th>
 				<th>Otros Descuentos</th>
-				<th>Aguinaldos</th>
 				<th>P. Personales</th>
 				<th>P. CCAF</th>
 				<th>APV</th>
@@ -49,6 +49,7 @@
 					<td>{{ $contract->totalNotWorkedDays($month, $year) }}</td>
 					<td></td>
 					<td>{{ $contract->totalCommissions($month, $year) }}</td>
+					<td>{{ $contract->totalBonus($month, $year) }}</td>
 					<td>{{ $contract->totalBonds($month, $year) }}</td>
 					<td>{{ $contract->totalExtraHours($month, $year) }}</td>
 					<td>{{ $contract->gratification($month, $year) }}</td>
@@ -59,7 +60,6 @@
 					<td>{{ $contract->totalViaticals($month, $year) }}</td>
 					<td>{{ $contract->totalAssets($month, $year) }}</td>
 					<td>{{ $contract->totalDiscounts($month, $year) }}</td>
-					<td>{{ $contract->totalBonus($month, $year) }}</td>
 					<td>{{ $contract->totalLoanQuotas($month, $year) }}</td>
 					<td>{{ $contract->totalCcafQuotas($month, $year) }}</td>
 					<td>{{ $contract->totalSavings($month, $year) }}</td>
