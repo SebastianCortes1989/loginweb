@@ -123,7 +123,7 @@ class Contract extends Model
         return $this->liquid/30;
     }
 
-    public function hours()
+    public function hourly()
     {
         $daily = $this->daily();
 
@@ -132,7 +132,7 @@ class Contract extends Model
 
     public function minutes()
     {
-        $hours = $this->hours();
+        $hours = $this->hourly();
 
         return $hours/60;
     }
@@ -180,7 +180,7 @@ class Contract extends Model
     public function totalExtraHours($month, $year)
     {
         $hours = $this->extraHours()->month($month)->year($year)->sum('hours');
-        $hours = $hours*$this->hours();
+        $hours = $hours*$this->hourly();
 
         $minutes = $this->extraHours()->month($month)->year($year)->sum('minutes');
         $minutes = $minutes*$this->minutes();
