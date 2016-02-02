@@ -35,7 +35,8 @@
 	        			<td>{{ $bonu->date->format('d/m/Y') }}</td>
 	        			<td>{{ $bonu->ammount }}</td>
 	        			<td>
-		              		<a href="{{ action('HumanResources\Pdf\BonuController@view', [$bonu->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\BonuController@edit', [$bonu->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\BonuController@view', [$bonu->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach

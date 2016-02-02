@@ -19,15 +19,18 @@ use App\Http\Requests\HumanResources\BonuFormRequest;
 class BonuController extends Controller
 {
     protected $bonus;
+    protected $employee;
 
-    public function __construct(Bonus $bonus){
+    public function __construct(Bonus $bonus, Employee $employee)
+    {
         $this->bonus = $bonus;
+        $this->employee = $employee;
     }
 
     /**
-     *listar aguinaldos por empresa
+     * listar aguinaldos por empresa
 	 *
-	 *return Response
+	 * @return Response
     */
     public function index()
     {
@@ -36,27 +39,25 @@ class BonuController extends Controller
         return view('humanresources.bonus.index', compact('bonus'));
     }
     /**
-     *crear aguinaldo
+     * crear aguinaldo
 	 *
-	 *return Response
+	 * @return Response
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();;
         $bonusTypes = BonuType::orderBy('name')->lists('name', 'id');
 
         return view('humanresources.bonus.create', compact('employees', 'bonusTypes'));
     }
 
     /**
-     *registrar aguinaldo
+     * registrar aguinaldo
      *
-     *return Response
+     * @return Response
     */
-    public function store(BonuFormRequest $request){
+    public function store(BonuFormRequest $request)
+    {
         $data = $request->except('_token');
 
         $contract = Contract::whereEmployeeId($data['employee_id'])->first();
@@ -68,12 +69,32 @@ class BonuController extends Controller
     }
 
     /**
-     *editar aguinaldo
+     * editar aguinaldo
 	 *
-	 *return Response
+	 * @return Response
     */
     public function edit($bonuId)
     {
-        return view('humanresources.bonus.edit');
+        $employees = $this->employee->getCmb();
+        $bonusTypes = BonuType::orderBy('name')->lists('name', 'id');
+
+        $bonus = $this->bonus->findOrFail($bonuId);
+
+        return view('humanresources.bonus.edit', compact('employees', 'bonusTypes', 'bonus'));
+    }
+
+    /**
+     * modificar aguinaldo
+     *
+     * @return Response
+    */
+    public function update(BonuFormRequest $request)
+    {
+        $data = $request->except('_token');
+
+        $bonus = $this->bonus->findOrFail($bonuId);
+        $bonus = $bonus->update($data);
+
+        return redirect()->action('HumanResources\BonuController@index');
     }
 }

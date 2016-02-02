@@ -2,7 +2,10 @@
 
 namespace App\Models\Entity;
 
+use App\Models\HumanResources\Contract;
+
 use Illuminate\Database\Eloquent\Model;
+use \Auth;
 
 class Employee extends Model
 {
@@ -18,7 +21,7 @@ class Employee extends Model
     'plan_value', 'family_charge_id', 'maternals', 'invalids', 'familiars'];
 
     /*
-     * relaciones
+    * relaciones
    	*/
     public function afp()
     {
@@ -33,5 +36,17 @@ class Employee extends Model
     public function health()
     {
         return $this->belongsTo('App\Models\Admin\Health', 'health_id');
+    }
+
+    /*
+    * funciones
+    */
+    public function getCmb()
+    {
+        $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->with('employee')->get()
+                    ->lists('employee.name', 'employee.id');
+
+        return $employees;
     }
 }
