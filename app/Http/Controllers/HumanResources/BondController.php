@@ -15,19 +15,23 @@ use App\Models\HumanResources\BondType;
 use App\Models\HumanResources\Bond;
 
 use App\Http\Requests\HumanResources\BondFormRequest;
+use App\Http\Requests\HumanResources\BondEditFormRequest;
 
 class BondController extends Controller
 {
     protected $bond;
+    protected $employee;
 
-    public function __construct(Bond $bond){
+    public function __construct(Bond $bond, Employee $employee)
+    {
         $this->bond = $bond;
+        $this->employee = $employee;
     }
 
     /**
-     *listar bonos por empresa
+     * listar bonos por empresa
 	 *
-	 *return Response
+	 * @return Response
     */
     public function index()
     {
@@ -37,25 +41,22 @@ class BondController extends Controller
     }
 
     /**
-     *crear bono
+     * crear bono
 	 *
-	 *return Response
+	 * @return Response
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();
         $bondsTypes = BondType::orderBy('name')->lists('name', 'id');
 
         return view('humanresources.bonds.create', compact('employees', 'bondsTypes'));
     }
 
     /**
-     *registrar bono
+     * registrar bono
      *
-     *return Response
+     * @return Response
     */
     public function store(BondFormRequest $request){
         $data = $request->except('_token');
@@ -69,12 +70,31 @@ class BondController extends Controller
     }
 
     /**
-     *editar bono
+     * editar bono
 	 *
-	 *return Response
+	 * @return Response
     */
     public function edit($bondId)
     {
-        return view('humanresources.bonds.edit');
+        $bond = $this->bond->findOrFail($bondId);
+
+        $employees = $this->employee->getCmb();
+        $bondsTypes = BondType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.bonds.edit', compact('bond', 'employees', 'bondsTypes'));
+    }
+
+    /**
+     * actualiza bono
+     *
+     * @return Response
+    */
+    public function update(BondEditFormRequest $request){
+        $data = $request->except('_token');
+
+        $bond = $this->bond->findOrFail($data['bond_id']);
+        $bond = $bond->update($data);
+
+        return redirect()->action('HumanResources\BondController@index');
     }
 }

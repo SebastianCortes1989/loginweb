@@ -15,19 +15,23 @@ use App\Models\HumanResources\CommissionType;
 use App\Models\HumanResources\Commission;
 
 use App\Http\Requests\HumanResources\CommissionFormRequest;
+use App\Http\Requests\HumanResources\CommissionEditFormRequest;
 
 class CommissionController extends Controller
 {
     protected $commission;
+    protected $employee;
 
-    public function __construct(Commission $commission){
+    public function __construct(Commission $commission, Employee $employee)
+    {
         $this->commission = $commission;
+        $this->employee = $employee;
     }
 
     /**
-     *listar comisiones por empresa
+     * listar comisiones por empresa
 	 *
-	 *return Response
+	 * @return Response
     */
     public function index()
     {
@@ -37,25 +41,22 @@ class CommissionController extends Controller
     }
 
     /**
-     *crear comision
+     * crear comision
 	 *
-	 *return Response
+	 * @return Response
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();
         $commissionsTypes = CommissionType::orderBy('name')->lists('name', 'id');
 
         return view('humanresources.commissions.create', compact('employees', 'commissionsTypes'));
     }
 
     /**
-     *registrar comision
+     * registrar comision
      *
-     *return Response
+     * @return Response
     */
     public function store(CommissionFormRequest $request){
         $data = $request->except('_token');
@@ -69,12 +70,31 @@ class CommissionController extends Controller
     }
 
     /**
-     *editar comision
+     * editar comision
 	 *
-	 *return Response
+	 * @return Response
     */
     public function edit($commissionId)
     {
-        return view('humanresources.commissions.edit');
+        $commission = $this->commission->findOrFail($commissionId);
+        
+        $employees = $this->employee->getCmb();
+        $commissionsTypes = CommissionType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.commissions.edit', compact('commission', 'employees', 'commissionsTypes'));
+    }
+
+    /**
+     * registrar comision
+     *
+     * @return Response
+    */
+    public function update(CommissionEditFormRequest $request){
+        $data = $request->except('_token');
+        
+        $commission = $this->commission->findOrFail($data['commission_id']);
+        $commission = $commission->update($data);
+
+        return redirect()->action('HumanResources\CommissionController@index');
     }
 }

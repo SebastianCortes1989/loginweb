@@ -35,7 +35,8 @@
 	        			<td>{{ $commission->date->format('d/m/Y') }}</td>
 	        			<td>{{ $commission->ammount }}</td>
 	        			<td>
-		              		<a href="{{ action('HumanResources\Pdf\CommissionController@view', [$commission->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\CommissionController@edit', [$commission->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\CommissionController@view', [$commission->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach       

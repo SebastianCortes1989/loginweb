@@ -15,6 +15,7 @@ use App\Models\HumanResources\BonuType;
 use App\Models\HumanResources\Bonus;
 
 use App\Http\Requests\HumanResources\BonuFormRequest;
+use App\Http\Requests\HumanResources\BonuEditFormRequest;
 
 class BonuController extends Controller
 {
@@ -45,7 +46,7 @@ class BonuController extends Controller
     */
     public function create()
     {
-        $employees = $this->employee->getCmb();;
+        $employees = $this->employee->getCmb();
         $bonusTypes = BonuType::orderBy('name')->lists('name', 'id');
 
         return view('humanresources.bonus.create', compact('employees', 'bonusTypes'));
@@ -88,11 +89,11 @@ class BonuController extends Controller
      *
      * @return Response
     */
-    public function update(BonuFormRequest $request)
+    public function update(BonuEditFormRequest $request)
     {
         $data = $request->except('_token');
 
-        $bonus = $this->bonus->findOrFail($bonuId);
+        $bonus = $this->bonus->findOrFail($data['bonus_id']);
         $bonus = $bonus->update($data);
 
         return redirect()->action('HumanResources\BonuController@index');

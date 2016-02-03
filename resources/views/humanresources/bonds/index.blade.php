@@ -35,7 +35,8 @@
 	        			<td>{{ $bond->date->format('d/m/Y') }}</td>
 	        			<td>{{ $bond->ammount }}</td>
 	        			<td>
-		              		<a href="{{ action('HumanResources\Pdf\BondController@view', [$bond->id]) }}">Ver PDF</a>
+	        				<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\BondController@edit', [$bond->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\BondController@view', [$bond->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach	       

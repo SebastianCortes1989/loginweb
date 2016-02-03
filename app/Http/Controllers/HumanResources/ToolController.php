@@ -14,19 +14,23 @@ use App\Models\HumanResources\Contract;
 use App\Models\HumanResources\Tool;
 
 use App\Http\Requests\HumanResources\ToolFormRequest;
+use App\Http\Requests\HumanResources\ToolEditFormRequest;
 
 class ToolController extends Controller
 {
     protected $tool;
+    protected $employee;
 
-    public function __construct(Tool $tool){
+    public function __construct(Tool $tool, Employee $employee)
+    {
         $this->tool = $tool;
+        $this->employee = $employee;
     }
 
     /**
-     *listar desg. Herramientas por empresa
+     * listar desg. Herramientas por empresa
 	 *
-	 *return Response
+	 * @return Response
     */
     public function index()
     {
@@ -36,23 +40,21 @@ class ToolController extends Controller
     }
 
     /**
-     *crear desg. Herramienta
+     * crear desg. Herramienta
 	 *
-	 *return Response
+	 * @return Response
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
+        $employees = $this->employee->getCmb();
 
         return view('humanresources.tools.create', compact('employees'));
     }
 
     /**
-     *registrar desg. Herramienta
+     * registrar desg. Herramienta
      *
-     *return Response
+     * @return Response
     */
     public function store(ToolFormRequest $request){
         $data = $request->except('_token');
@@ -66,12 +68,30 @@ class ToolController extends Controller
     }
 
     /**
-     *editar desg. Herramienta
+     * editar desg. Herramienta
 	 *
-	 *return Response
+	 * @return Response
     */
     public function edit($toolId)
     {
-        return view('humanresources.tools.edit');
+        $tool = $this->tool->findOrFail($toolId);
+
+        $employees = $this->employee->getCmb();
+
+        return view('humanresources.tools.edit', compact('tool', 'employees'));
+    }
+
+    /**
+     * registrar desg. Herramienta
+     *
+     * @return Response
+    */
+    public function update(ToolEditFormRequest $request){
+        $data = $request->except('_token');
+        
+        $tool = $this->tool->findOrFail($data['tool_id']);
+        $tool = $tool->update($data);
+
+        return redirect()->action('HumanResources\ToolController@index');
     }
 }

@@ -33,7 +33,8 @@
 	        			<td>{{ $tool->date->format('d/m/Y') }}</td>
 	        			<td>{{ $tool->ammount }}</td>
 	        			<td>
-		              		<a href="{{ action('HumanResources\Pdf\ToolController@view', [$tool->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\ToolController@edit', [$tool->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\ToolController@view', [$tool->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach       
