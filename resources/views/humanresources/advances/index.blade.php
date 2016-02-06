@@ -35,7 +35,8 @@
 	        			<td>{{ $advance->date->format('d/m/Y') }}</td>
 	        			<td>{{ $advance->ammount }}</td>
 	        			<td>
-			              <a href="{{ action('HumanResources\Pdf\AdvanceController@view', [$advance->id]) }}">Ver PDF</a>
+			              <a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\AdvanceController@edit', [$advance->id]) }}">Editar</a>
+			              <a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\AdvanceController@view', [$advance->id]) }}">Ver PDF</a>
 	        			</td>
 	        		</tr>
 	        	@endforeach		       

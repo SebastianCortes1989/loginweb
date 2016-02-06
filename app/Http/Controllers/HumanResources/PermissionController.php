@@ -15,13 +15,17 @@ use App\Models\HumanResources\PermissionType;
 use App\Models\HumanResources\Permission;
 
 use App\Http\Requests\HumanResources\PermissionFormRequest;
+use App\Http\Requests\HumanResources\PermissionEditFormRequest;
 
 class PermissionController extends Controller
 {
     protected $permission;
+    protected $employee;
 
-    public function __construct(Permission $permission){
+    public function __construct(Permission $permission, Employee $employee)
+    {
         $this->permission = $permission;
+        $this->employee = $employee;
     }
 
     /**
@@ -43,10 +47,7 @@ class PermissionController extends Controller
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();
         $permissionsTypes = PermissionType::orderBy('name')->lists('name', 'id');
 
         return view('humanresources.permissions.create', compact('employees', 'permissionsTypes'));
@@ -57,9 +58,14 @@ class PermissionController extends Controller
 	 *
 	 * @return Response
     */
-    public function edit($licensingId)
+    public function edit($permissionId)
     {
-        return view('humanresources.permissions.edit');
+        $permission = $this->permission->findOrFail($permissionId);
+
+        $employees = $this->employee->getCmb();
+        $permissionsTypes = PermissionType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.permissions.edit', compact('permission', 'employees', 'permissionsTypes'));
     }
 
     /**
@@ -78,6 +84,24 @@ class PermissionController extends Controller
         $data['days'] = $days;
 
         $permission = $this->permission->create($data);
+
+        return redirect()->action('HumanResources\PermissionController@index');
+    }
+
+    /**
+     * modificar permiso
+     *
+     * @return Response
+    */
+    public function update(PermissionEditFormRequest $request)
+    {
+        $data = $request->except('_token');
+
+        $days = $this->permission->days($data['start_date'], $data['end_date']);
+        $data['days'] = $days;
+
+        $permission = $this->permission->findOrFail($data['permission_id']);
+        $permission = $permission->update($data);
 
         return redirect()->action('HumanResources\PermissionController@index');
     }

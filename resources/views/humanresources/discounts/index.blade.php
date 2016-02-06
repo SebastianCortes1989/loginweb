@@ -37,7 +37,8 @@
 		              	<th>{{ $discount->ammount }}</th>
 						<th></th>
 						<td>
-		              		<a href="{{ action('HumanResources\Pdf\DiscountController@view', [$discount->id]) }}">Ver PDF</a>
+							<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\DiscountController@edit', [$discount->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\DiscountController@view', [$discount->id]) }}">Ver PDF</a>
 		              	</td>
 	          		</tr>
 	          	@endforeach

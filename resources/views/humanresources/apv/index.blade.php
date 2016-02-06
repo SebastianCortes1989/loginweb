@@ -33,7 +33,8 @@
 		              	<td></td>
 		              	<td>{{ $saving->ammount }}</td>
 		              	<td>
-		              		<a href="{{ action('HumanResources\Pdf\ApvController@view', [$saving->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\ApvController@edit', [$saving->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\ApvController@view', [$saving->id]) }}">Ver PDF</a>
 		              	</td>
 		          	</tr>
 	          	@endforeach

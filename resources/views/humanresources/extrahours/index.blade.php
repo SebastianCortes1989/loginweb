@@ -40,7 +40,8 @@
 	        			<td>{{ $extraHour->hours }}</td>
 	        			<td>{{ $extraHour->minutes }}</td>
 	        			<td>
-		              		<a href="{{ action('HumanResources\Pdf\ExtraHourController@view', [$extraHour->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\ExtraHourController@edit', [$extraHour->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\ExtraHourController@view', [$extraHour->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach  	       

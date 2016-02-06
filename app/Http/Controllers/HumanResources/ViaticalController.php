@@ -15,19 +15,23 @@ use App\Models\HumanResources\ViaticalType;
 use App\Models\HumanResources\Viatical;
 
 use App\Http\Requests\HumanResources\ViaticalFormRequest;
+use App\Http\Requests\HumanResources\ViaticalEditFormRequest;
 
 class ViaticalController extends Controller
 {
     protected $viatical;
+    protected $employee;
 
-    public function __construct(Viatical $viatical){
+    public function __construct(Viatical $viatical, Employee $employee)
+    {
         $this->viatical = $viatical;
+        $this->employee = $employee;
     }
 
     /**
-     *listar viaticos por empresa
+     * listar viaticos por empresa
 	 *
-	 *return Response
+	 * @return Response
     */
     public function index()
     {
@@ -37,25 +41,22 @@ class ViaticalController extends Controller
     }
 
     /**
-     *crear viatico
+     * crear viatico
 	 *
-	 *return Response
+	 * @return Response
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();
         $viaticalsTypes = ViaticalType::orderBy('name')->lists('name', 'id');
 
         return view('humanresources.viaticals.create', compact('employees', 'viaticalsTypes'));
     }
 
     /**
-     *registrar viatico
+     * registrar viatico
      *
-     *return Response
+     * @return Response
     */
     public function store(ViaticalFormRequest $request){
         $data = $request->except('_token');
@@ -63,18 +64,37 @@ class ViaticalController extends Controller
         $contract = Contract::whereEmployeeId($data['employee_id'])->first();
         $data['contract_id'] = $contract->id;
         
-        $viaticals = $this->viatical->create($data);
+        $viatical = $this->viatical->create($data);
 
         return redirect()->action('HumanResources\ViaticalController@index');
     }
 
     /**
-     *editar viatico
+     * editar viatico
 	 *
-	 *return Response
+	 * @return Response
     */
     public function edit($viaticalId)
     {
-        return view('humanresources.viaticals.edit');
+        $viatical = $this->viatical->findOrFail($viaticalId);
+
+        $employees = $this->employee->getCmb();
+        $viaticalsTypes = ViaticalType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.viaticals.edit', compact('viatical', 'employees', 'viaticalsTypes'));
+    }
+
+    /**
+     * modificar viatico
+     *
+     * @return Response
+    */
+    public function update(ViaticalEditFormRequest $request){
+        $data = $request->except('_token');
+        
+        $viatical = $this->viatical->findOrFail($data['viatical_id']);
+        $viatical = $viatical->update($data);
+
+        return redirect()->action('HumanResources\ViaticalController@index');
     }
 }

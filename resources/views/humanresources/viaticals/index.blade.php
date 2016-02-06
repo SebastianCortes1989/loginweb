@@ -35,7 +35,8 @@
 	        			<td>{{ $viatical->date->format('d/m/Y') }}</td>
 	        			<td>{{ $viatical->ammount }}</td>
 	        			<td>
-		              		<a href="{{ action('HumanResources\Pdf\ViaticalController@view', [$viatical->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\ViaticalController@edit', [$viatical->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\ViaticalController@view', [$viatical->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach  	       

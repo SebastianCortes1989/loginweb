@@ -14,13 +14,17 @@ use App\Models\HumanResources\Contract;
 use App\Models\HumanResources\Discount;
 
 use App\Http\Requests\HumanResources\DiscountFormRequest;
+use App\Http\Requests\HumanResources\DiscountEditFormRequest;
 
 class DiscountController extends Controller
 {
     protected $discount;
+    protected $employee;
 
-    public function __construct(Discount $discount){
+    public function __construct(Discount $discount, Employee $employee)
+    {
         $this->discount = $discount;
+        $this->employee = $employee;
     }
 
     /**
@@ -42,9 +46,7 @@ class DiscountController extends Controller
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
+        $employees = $this->employee->getCmb();          
 
         return view('humanresources.discounts.create', compact('employees'));
     }
@@ -54,9 +56,13 @@ class DiscountController extends Controller
 	 *
 	 * @return Response
     */
-    public function edit($discutionId)
+    public function edit($discountId)
     {
-        return view('humanresources.discounts.edit');
+        $discount = $this->discount->findOrFail($discountId);
+
+        $employees = $this->employee->getCmb();
+
+        return view('humanresources.discounts.edit', compact('discount', 'employees'));
     }
 
     /**
@@ -72,6 +78,21 @@ class DiscountController extends Controller
         $data['contract_id'] = $contract->id;
         
         $discount = $this->discount->create($data);
+
+        return redirect()->action('HumanResources\DiscountController@index');
+    }
+
+    /**
+     * modificar descuento
+     *
+     * @return Response
+    */
+    public function update(DiscountEditFormRequest $request)
+    {
+        $data = $request->except('_token');
+
+        $discount = $this->discount->findOrFail($data['discount_id']);
+        $discount = $discount->update($data);
 
         return redirect()->action('HumanResources\DiscountController@index');
     }

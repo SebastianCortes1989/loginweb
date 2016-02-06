@@ -15,14 +15,17 @@ use App\Models\HumanResources\SavingType;
 use App\Models\HumanResources\Saving;
 
 use App\Http\Requests\HumanResources\ApvFormRequest;
+use App\Http\Requests\HumanResources\ApvEditFormRequest;
 
 class ApvController extends Controller
 {
     protected $saving;
+    protected $employee;
 
-    public function __construct(Saving $saving)
+    public function __construct(Saving $saving, Employee $employee)
     {
         $this->saving = $saving;
+        $this->employee = $employee;
     }
 
     /**
@@ -44,10 +47,7 @@ class ApvController extends Controller
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();
         $savingTypes = SavingType::orderBy('name')->lists('name', 'id');
 
         return view('humanresources.apv.create', compact('employees', 'savingTypes'));
@@ -60,7 +60,12 @@ class ApvController extends Controller
     */
     public function edit($apvId)
     {
-        return view('humanresources.apv.edit');
+        $saving = $this->saving->findOrFail($apvId);
+
+        $employees = $this->employee->getCmb();
+        $savingTypes = SavingType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.apv.edit', compact('saving', 'employees', 'savingTypes'));
     }
 
     /**
@@ -76,6 +81,21 @@ class ApvController extends Controller
         $data['contract_id'] = $contract->id;
 
         $saving = $this->saving->create($data);
+
+        return redirect()->action('HumanResources\ApvController@index');
+    }
+
+    /**
+     * modificar ahorro apv
+     *
+     * @return Response
+    */
+    public function update(ApvEditFormRequest $request)
+    {
+        $data = $request->except('_token');
+
+        $saving = $this->saving->findOrFail($data['saving_id']);
+        $saving = $saving->update($data);
 
         return redirect()->action('HumanResources\ApvController@index');
     }

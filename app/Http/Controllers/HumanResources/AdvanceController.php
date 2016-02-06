@@ -15,14 +15,17 @@ use App\Models\HumanResources\AdvanceType;
 use App\Models\HumanResources\Advance;
 
 use App\Http\Requests\HumanResources\AdvanceFormRequest;
+use App\Http\Requests\HumanResources\AdvanceEditFormRequest;
 
 class AdvanceController extends Controller
 {
     protected $advance;
+    protected $employee;
 
-    public function __construct(Advance $advance)
+    public function __construct(Advance $advance, Employee $employee)
     {
         $this->advance = $advance;
+        $this->employee = $employee;
     }
 
     /**
@@ -44,10 +47,7 @@ class AdvanceController extends Controller
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();
         $advancesTypes = AdvanceType::orderBy('name')->lists('name', 'id');
 
         return view('humanresources.advances.create', compact('employees', 'advancesTypes'));
@@ -60,7 +60,12 @@ class AdvanceController extends Controller
     */
     public function edit($advanceId)
     {
-        return view('humanresources.advances.edit');
+        $advance = $this->advance->findOrFail($advanceId);
+
+        $employees = $this->employee->getCmb();
+        $advancesTypes = AdvanceType::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.advances.edit', compact('advance', 'employees', 'advancesTypes'));
     }
 
     /**
@@ -76,6 +81,21 @@ class AdvanceController extends Controller
         $data['contract_id'] = $contract->id;
 
         $advance = $this->advance->create($data);
+
+        return redirect()->action('HumanResources\AdvanceController@index');
+    }
+
+    /**
+     * modificar anticipo
+     *
+     * @return Response
+    */
+    public function update(AdvanceEditFormRequest $request)
+    {
+        $data = $request->except('_token');
+
+        $advance = $this->advance->findOrFail($data['advance_id']);
+        $advance = $advance->update($data);
 
         return redirect()->action('HumanResources\AdvanceController@index');
     }

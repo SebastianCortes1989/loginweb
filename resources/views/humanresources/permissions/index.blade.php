@@ -41,7 +41,8 @@
 		              	<td></td>
 		              	<td></td>
 		              	<td>
-		              		<a href="{{ action('HumanResources\Pdf\PermissionController@view', [$permission->id]) }}">Ver PDF</a>
+							<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\PermissionController@edit', [$permission->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\PermissionController@view', [$permission->id]) }}">Ver PDF</a>
 		              	</td>
 		          	</tr>
 	        	@endforeach
