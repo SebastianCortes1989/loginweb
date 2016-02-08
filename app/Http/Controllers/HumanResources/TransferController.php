@@ -16,14 +16,17 @@ use App\Models\HumanResources\Transfer;
 use App\Models\HumanResources\TransferCause;
 
 use App\Http\Requests\HumanResources\TransferFormRequest;
+use App\Http\Requests\HumanResources\TransferEditFormRequest;
 
 class TransferController extends Controller
 {
     protected $transfer;
+    protected $employee;
 
-    public function __construct(Transfer $transfer)
+    public function __construct(Transfer $transfer, Employee $employee)
     {
         $this->transfer = $transfer;
+        $this->employee = $employee;
     }
 
     /**
@@ -45,12 +48,8 @@ class TransferController extends Controller
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
-        $branchs = Branch::whereClientId(Auth::user()->client_id)->lists('name', 'id');
-        
+        $employees = $this->employee->getCmb();
+        $branchs = Branch::whereClientId(Auth::user()->client_id)->lists('name', 'id');        
         $causes = TransferCause::lists('name', 'id');
 
         return view('humanresources.transfers.create', compact('employees', 'branchs', 'causes'));
@@ -61,9 +60,15 @@ class TransferController extends Controller
 	 *
 	 * @return Response
     */
-    public function edit($licensingId)
+    public function edit($transferId)
     {
-        return view('humanresources.transfers.edit');
+        $transfer = $this->transfer->findOrFail($transferId);
+
+        $employees = $this->employee->getCmb();
+        $branchs = Branch::whereClientId(Auth::user()->client_id)->lists('name', 'id');        
+        $causes = TransferCause::lists('name', 'id');
+
+        return view('humanresources.transfers.edit', compact('transfer', 'employees', 'branchs', 'causes'));
     }
 
     /**
@@ -79,6 +84,21 @@ class TransferController extends Controller
         $data['contract_id'] = $contract->id;
         
         $transfer = $this->transfer->create($data);
+
+        return redirect()->action('HumanResources\TransferController@index');
+    }
+
+    /**
+     * modificar traslado
+     *
+     * @return Response
+    */
+    public function update(TransferEditFormRequest $request)
+    {
+        $data = $request->except('_token');
+        
+        $transfer = $this->transfer->findOrFail($data['transfer_id']);
+        $transfer = $transfer->update($data);
 
         return redirect()->action('HumanResources\TransferController@index');
     }

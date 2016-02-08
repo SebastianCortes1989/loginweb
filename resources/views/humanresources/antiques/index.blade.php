@@ -31,7 +31,8 @@
 		              	<td>{{ $antique->employee->name }}</td>
 		              	<td>{{ $antique->date->format('d/m/Y') }}</td>
 		              	<td>
-		              		<a href="{{ action('HumanResources\Pdf\AntiqueController@view', [$antique->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\AntiqueController@edit', [$antique->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\AntiqueController@view', [$antique->id]) }}">Ver PDF</a>
 		              	</td>
 		          	</tr>
 	        	@endforeach

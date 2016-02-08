@@ -36,7 +36,8 @@
 	        			<td>{{ $loan->ammount }}</td>
 	        			<td>{{ $loan->compensacion->name }}</td>
 	        			<td>
-		              		<a href="{{ action('HumanResources\Pdf\CcafController@view', [$loan->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\CcafController@edit', [$loan->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\CcafController@view', [$loan->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach		       

@@ -16,13 +16,17 @@ use App\Models\HumanResources\LoanType;
 use App\Models\HumanResources\Loan;
 
 use App\Http\Requests\HumanResources\LoanFormRequest;
+use App\Http\Requests\HumanResources\LoanEditFormRequest;
 
 class LoanController extends Controller
 {
     protected $loan;
+    protected $employee;
 
-    public function __construct(Loan $loan){
+    public function __construct(Loan $loan, Employee $employee)
+    {
         $this->loan = $loan;
+        $this->employee = $employee;
     }
 
     /**
@@ -44,10 +48,7 @@ class LoanController extends Controller
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();
         $loanTypes = LoanType::orderBy('name')->lists('name', 'id');
         
         return view('humanresources.loans.create', compact('employees', 'loanTypes'));
@@ -60,7 +61,12 @@ class LoanController extends Controller
     */
     public function edit($loanId)
     {
-        return view('humanresources.loans.edit');
+        $loan = $this->loan->findOrFail($loanId);
+
+        $employees = $this->employee->getCmb();
+        $loanTypes = LoanType::orderBy('name')->lists('name', 'id');
+        
+        return view('humanresources.loans.edit', compact('loan', 'employees', 'loanTypes'));
     }
 
     /**
@@ -77,6 +83,31 @@ class LoanController extends Controller
         
         $loan = $this->loan->create($data);
         $loan->createQuotas();
+
+        return redirect()->action('HumanResources\LoanController@index');
+    }
+
+    /**
+     * modificar prestamo
+     *
+     * @return Response
+    */
+    public function update(LoanEditFormRequest $request)
+    {
+        $data = $request->except('_token');
+        
+        $loan = $this->loan->findOrFail($data['loan_id']);
+
+        if($data['quotas'] != $loan->quotas)
+        {
+            $loan->update($data);
+            $loan->deleteQuotas();
+            $loan->createQuotas();
+        }
+        else
+        {
+            $loan = $loan->update($data);
+        }
 
         return redirect()->action('HumanResources\LoanController@index');
     }

@@ -15,7 +15,12 @@ class Loan extends Model
     public function employee()
     {
         return $this->belongsTo('App\Models\Entity\Employee', 'employee_id');
-    } 
+    }
+
+    public function rQuotas()
+    {
+        return $this->hasMany('App\Models\HumanResources\LoanQuota', 'loan_id');
+    }
 
     // mutators
     public function setGrantDateAttribute($value)
@@ -28,6 +33,11 @@ class Loan extends Model
     public function code()
     {
         return 'PP-'.$this->client_id.'-'.$this->id;
+    }
+
+    public function deleteQuotas()
+    {
+        $quotas = $this->rQuotas()->delete();
     }
 
     public function createQuotas()

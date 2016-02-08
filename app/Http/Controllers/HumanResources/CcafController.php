@@ -16,13 +16,17 @@ use App\Models\Admin\Compensacion;
 use App\Models\HumanResources\Ccaf;
 
 use App\Http\Requests\HumanResources\CcafFormRequest;
+use App\Http\Requests\HumanResources\CcafEditFormRequest;
 
 class CcafController extends Controller
 {
     protected $ccaf;
+    protected $employee;
 
-    public function __construct(Ccaf $ccaf){
+    public function __construct(Ccaf $ccaf, Employee $employee)
+    {
         $this->ccaf = $ccaf;
+        $this->employee = $employee;
     }
 
     /**
@@ -44,10 +48,7 @@ class CcafController extends Controller
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();
         $types = CcafType::orderBy('name')->lists('name', 'id');
         $compensacions = Compensacion::orderBy('name')->lists('name', 'id');
 
@@ -61,7 +62,13 @@ class CcafController extends Controller
     */
     public function edit($ccafId)
     {
-        return view('humanresources.ccaf.edit');
+        $ccaf = $this->ccaf->findOrFail($ccafId);
+
+        $employees = $this->employee->getCmb();
+        $types = CcafType::orderBy('name')->lists('name', 'id');
+        $compensacions = Compensacion::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.ccaf.edit', compact('ccaf', 'employees', 'types', 'compensacions'));
     }
 
     /**
@@ -78,6 +85,31 @@ class CcafController extends Controller
 
         $ccaf = $this->ccaf->create($data);
         $quotas = $ccaf->createQuotas();
+
+        return redirect()->action('HumanResources\CcafController@index');
+    }
+
+    /**
+     * registrar prestamo ccaf
+     *
+     * @return Response
+    */
+    public function update(CcafEditFormRequest $request)
+    {
+        $data = $request->except('_token');
+
+        $ccaf = $this->ccaf->findOrFail($data['ccaf_id']);    
+        
+        if($data['quotas'] != $ccaf->quotas)
+        {
+            $ccaf->update($data);
+            $ccaf->deleteQuotas();
+            $ccaf->createQuotas();
+        }
+        else
+        {
+            $ccaf = $ccaf->update($data);
+        }
 
         return redirect()->action('HumanResources\CcafController@index');
     }

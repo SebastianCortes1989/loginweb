@@ -9,9 +9,7 @@ class Ccaf extends Model
     protected $table = 'rrhh_ccaf';
     protected $fillable = ['client_id', 'employee_id', 'compensacion_id', 'month', 'year', 'type_id', 'quotas', 'ammount', 'contract_id'];
 
-    /*
-     * relaciones
-    */
+    // relaciones
     public function employee()
     {
         return $this->belongsTo('App\Models\Entity\Employee', 'employee_id');
@@ -22,10 +20,20 @@ class Ccaf extends Model
         return $this->belongsTo('App\Models\Admin\Compensacion', 'compensacion_id');
     }
 
+    public function rQuotas()
+    {
+        return $this->hasMany('App\Models\HumanResources\CcafQuota', 'ccaf_id');
+    }
+
     // funciones
     public function code()
     {
         return 'CCAF-'.$this->client_id.'-'.$this->id;
+    }
+
+    public function deleteQuotas()
+    {
+        $quotas = $this->rQuotas()->delete();
     }
 
     public function createQuotas()

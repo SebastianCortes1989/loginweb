@@ -36,7 +36,8 @@
 	        			<td>{{ $loan->ammount }}</td>
 	        			<td>{{ $loan->grant_date->format('d/m/Y') }}</td>
 	        			<td>
-		              		<a href="{{ action('HumanResources\Pdf\LoanController@view', [$loan->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\LoanController@edit', [$loan->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\LoanController@view', [$loan->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach		       

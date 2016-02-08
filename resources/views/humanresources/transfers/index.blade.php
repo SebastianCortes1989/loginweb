@@ -31,14 +31,15 @@
 	        <tbody>
 	        	@foreach($transfers as $transfer)
 	        		<tr>
-		          		<td></td>
+		          		<td>{{ $transfer->code() }}</td>
 		              	<td>{{ $transfer->employee->name }}</td>
-		              	<td>{{ $transfer->start_date }}</td>
-		              	<td>{{ $transfer->end_date }}</td>
-		          		<td></td>
-		          		<td></td>
+		              	<td>{{ $transfer->start_date->format('d/m/Y') }}</td>
+		              	<td>{{ $transfer->end_date->format('d/m/Y') }}</td>
+		              	<td>{{ $transfer->fromBranch->name }}</td>
+		              	<td>{{ $transfer->toBranch->name }}</td>
 		          		<td>
-		              		<a href="{{ action('HumanResources\Pdf\TransferController@view', [$transfer->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\TransferController@edit', [$transfer->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\TransferController@view', [$transfer->id]) }}">Ver PDF</a>
 		              	</td>
 		          	</tr>
 	        	@endforeach
