@@ -26,6 +26,10 @@ class AdvanceController extends Controller
     {
         $this->advance = $advance;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

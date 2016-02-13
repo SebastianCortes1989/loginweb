@@ -27,6 +27,10 @@ class LoanController extends Controller
     {
         $this->loan = $loan;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

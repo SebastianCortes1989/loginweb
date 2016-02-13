@@ -26,6 +26,10 @@ class ViaticalController extends Controller
     {
         $this->viatical = $viatical;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

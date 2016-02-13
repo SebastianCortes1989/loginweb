@@ -26,6 +26,10 @@ class CommissionController extends Controller
     {
         $this->commission = $commission;
         $this->employee = $employee;
+        
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

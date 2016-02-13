@@ -26,6 +26,10 @@ class ExtraHourController extends Controller
     {
         $this->extraHour = $extraHour;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

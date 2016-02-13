@@ -18,13 +18,20 @@ use App\Http\Requests\HumanResources\LetterFormRequest;
 class LetterController extends Controller
 {
     protected $letter;
+    protected $employee;
 
-    public function __construct(Letter $letter){
+    public function __construct(Letter $letter, Employee $employee)
+    {
         $this->letter = $letter;
+        $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**
-     * listar prestamos ccaf por empresa
+     * listar cartas por empresa
 	 *
 	 * @return Response
     */
@@ -36,33 +43,35 @@ class LetterController extends Controller
     }
 
     /**
-     * crear prestamo ccaf
+     * crear carta
 	 *
 	 * @return Response
     */
     public function create()
     {
-        $employees = Contract::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();
         $causals = Causal::orderBy('name')->lists('name', 'id');
 
         return view('humanresources.letters.create', compact('employees', 'causals'));
     }
 
     /**
-     * editar prestamo ccaf
+     * editar carta
 	 *
 	 * @return Response
     */
     public function edit($letterId)
     {
-        return view('humanresources.letters.edit');
+        $letter = $this->letter->findOrFail($letterId);
+
+        $employees = $this->employee->getCmb();
+        $causals = Causal::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.letters.edit', compact('letter', 'employees', 'causals'));
     }
 
     /**
-     * registrar prestamo ccaf
+     * registrar carta
      *
      * @return Response
     */
@@ -74,6 +83,24 @@ class LetterController extends Controller
         $data['contract_id'] = $contract->id;
         
         $letter = $this->letter->create($data);
+
+        return redirect()->action('HumanResources\LetterController@index');
+    }
+
+    /**
+     * modificar carta
+     *
+     * @return Response
+    */
+    public function update(LetterEditFormRequest $request)
+    {
+        $data = $request->except('_token');
+
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $data['contract_id'] = $contract->id;
+        
+        $letter = $this->letter->findOrFail($data['letter_id']);
+        $letter = $this->letter->update($data);
 
         return redirect()->action('HumanResources\LetterController@index');
     }

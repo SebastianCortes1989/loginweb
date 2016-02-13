@@ -50,8 +50,8 @@ class ContractController extends Controller
     */
     public function create()
     {
-        $contracts = $this->contract->whereClientId(Auth::user()->client_id)->lists('employee_id');
-        $employees = Employee::whereClientId(Auth::user()->client_id)->whereNotIn('id', $contracts)->orderBy('name')->lists('name', 'id');
+        $contracts = $this->contract->whereClientId(Auth::user()->client_id)->whereStatus('Vigente')->lists('employee_id');
+        $employees = $this->employee->whereClientId(Auth::user()->client_id)->whereNotIn('id', $contracts)->orderBy('name')->lists('name', 'id');
 
         if(count($employees) == 0)
         {

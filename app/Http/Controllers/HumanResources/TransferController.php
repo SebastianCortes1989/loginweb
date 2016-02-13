@@ -27,6 +27,10 @@ class TransferController extends Controller
     {
         $this->transfer = $transfer;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

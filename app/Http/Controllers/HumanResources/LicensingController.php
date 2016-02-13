@@ -25,6 +25,10 @@ class LicensingController extends Controller
     {
         $this->licensing = $licensing;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

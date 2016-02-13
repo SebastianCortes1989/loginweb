@@ -28,7 +28,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth
 });
 
 //entidades de clientes
-Route::group(['namespace' => 'Entity', 'prefix' => 'entidades', 'middleware' => 'auth'], function () {
+Route::group([
+    'namespace' => 'Entity', 
+    'prefix' => 'entidades', 
+    'middleware' => 'auth'
+    ], function () {
 
     Route::resource('trabajadores', 'EmployeeController');
     Route::resource('cargos', 'ChargeController');
@@ -39,7 +43,11 @@ Route::group(['namespace' => 'Entity', 'prefix' => 'entidades', 'middleware' => 
 });
 
 //recursos humanos
-Route::group(['namespace' => 'HumanResources', 'prefix' => 'rrhh', 'middleware' => 'auth'], function () {
+Route::group([
+    'namespace' => 'HumanResources', 
+    'prefix' => 'rrhh', 
+    'middleware' => ['auth'] 
+    ], function () {
 
     Route::get('contratos/jornada/{id}', 'ContractController@workingType');
     Route::post('contratos/jornada', 'ContractController@workingTypeStore');

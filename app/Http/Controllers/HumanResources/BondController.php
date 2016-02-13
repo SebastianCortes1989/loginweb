@@ -26,6 +26,10 @@ class BondController extends Controller
     {
         $this->bond = $bond;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

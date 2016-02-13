@@ -25,6 +25,10 @@ class DiscountController extends Controller
     {
         $this->discount = $discount;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

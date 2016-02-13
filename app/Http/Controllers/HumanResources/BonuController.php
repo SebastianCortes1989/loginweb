@@ -26,6 +26,10 @@ class BonuController extends Controller
     {
         $this->bonus = $bonus;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

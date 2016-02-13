@@ -43,7 +43,8 @@
 	        			<td></td>
 	        			<td></td>
 	        			<td>
-		              		<a href="{{ action('HumanResources\Pdf\SettlementController@view', [$settlement->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\SettlementController@edit', [$settlement->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\SettlementController@view', [$settlement->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach  	       

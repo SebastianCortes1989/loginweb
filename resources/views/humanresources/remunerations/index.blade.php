@@ -43,7 +43,7 @@
 			@foreach($contracts as $contract)
 				<tr>
 					<td>{{ $contract->employee ? $contract->employee->name : '' }}</td>
-					<td></td>
+					<td>{{ $contract->status }}</td>
 					<td>{{ $contract->base }}</td>
 					<td>{{ $contract->totalNotWorkedDays($month, $year) }}</td>
 					<td>{{ $contract->totalCommissions($month, $year) }}</td>

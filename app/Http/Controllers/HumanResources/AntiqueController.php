@@ -24,6 +24,10 @@ class AntiqueController extends Controller
     {
         $this->antique = $antique;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

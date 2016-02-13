@@ -26,6 +26,10 @@ class PermissionController extends Controller
     {
         $this->permission = $permission;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

@@ -20,13 +20,20 @@ use App\Http\Requests\HumanResources\SettlementFormRequest;
 class SettlementController extends Controller
 {
     protected $settlement;
+    protected $employee;
 
-    public function __construct(Settlement $settlement){
+    public function __construct(Settlement $settlement, Employee $employee)
+    {
         $this->settlement = $settlement;
+        $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**
-     * listar prestamos ccaf por empresa
+     * listar finiquitos
 	 *
 	 * @return Response
     */
@@ -38,7 +45,7 @@ class SettlementController extends Controller
     }
 
     /**
-     * crear prestamo ccaf
+     * crear finiquito
 	 *
 	 * @return Response
     */
@@ -46,27 +53,29 @@ class SettlementController extends Controller
     {
         //$letters = Letter::whereClientId(Auth::user()->client_id)->lists('employee_id');
 
-        $employees = Letter::whereClientId(Auth::user()->client_id)
-                    ->with('employee')->get()
-                    ->lists('employee.name', 'employee.id');
-
+        $employees = $this->employee->getCmb();
         $causals = Causal::orderBy('name')->lists('name', 'id');
 
         return view('humanresources.settlements.create', compact('employees', 'causals'));
     }
 
     /**
-     * editar prestamo ccaf
+     * editar finiquito
 	 *
 	 * @return Response
     */
-    public function edit($letterId)
+    public function edit($settlementId)
     {
-        return view('humanresources.settlements.edit');
+        $settlement = $this->settlement->findOrFail($settlementId);
+
+        $employees = $this->employee->getCmb();
+        $causals = Causal::orderBy('name')->lists('name', 'id');
+
+        return view('humanresources.settlements.edit', compact('settlement', 'employees', 'causals'));
     }
 
     /**
-     * registrar prestamo ccaf
+     * registrar finiquito
      *
      * @return Response
     */
@@ -74,13 +83,28 @@ class SettlementController extends Controller
     {
         $data = $request->except('_token');
 
-        $contract = Contract::whereEmployeeId($data['employee_id'])->first();
+        $contract = Contract::whereEmployeeId($data['employee_id'])->first()->finalizes();
         $data['contract_id'] = $contract->id;
 
         $letter = Letter::whereEmployeeId($data['employee_id'])->first();
         $data['letter_id'] = $letter->id;
         
         $settlement = $this->settlement->create($data);
+
+        return redirect()->action('HumanResources\SettlementController@index');
+    }
+
+    /**
+     * modificar finiquito
+     *
+     * @return Response
+    */
+    public function update(SettlementEditFormRequest $request)
+    {
+        $data = $request->except('_token');
+        
+        $settlement = $this->settlement->findOrFail($data['settlement_id']);
+        $settlement = $settlement->update($data);
 
         return redirect()->action('HumanResources\SettlementController@index');
     }

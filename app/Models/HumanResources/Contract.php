@@ -328,4 +328,12 @@ class Contract extends Model
 
         return $this;
     }
+
+    public function finalizes()
+    {
+        $this->status = 'Finiquitado';
+        $this->save();
+
+        return $this;
+    }
 }

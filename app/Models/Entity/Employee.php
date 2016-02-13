@@ -44,6 +44,7 @@ class Employee extends Model
     public function getCmb()
     {
         $employees = Contract::whereClientId(Auth::user()->client_id)
+                    ->whereStatus('Vigente')
                     ->with('employee')->get()
                     ->lists('employee.name', 'employee.id');
 

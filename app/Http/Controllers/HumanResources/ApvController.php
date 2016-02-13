@@ -26,6 +26,10 @@ class ApvController extends Controller
     {
         $this->saving = $saving;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

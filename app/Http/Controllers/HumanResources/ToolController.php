@@ -25,6 +25,10 @@ class ToolController extends Controller
     {
         $this->tool = $tool;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**

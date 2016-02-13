@@ -33,12 +33,13 @@
 	        		<tr>
 	        			<td>{{ $letter->code() }}</td>
 	        			<td>{{ $letter->employee->name }}</td>
-	        			<td>{{ $letter->contract->code() }}</td>
+	        			<td>{{ $letter->contract ? $letter->contract->code() : '' }}</td>
 	        			<td>{{ $letter->notice_date->format('d/m/Y') }}</td>
 	        			<td>{{ $letter->settlement_date->format('d/m/Y') }}</td>
 	        			<td></td>
 	        			<td>
-		              		<a href="{{ action('HumanResources\Pdf\LetterController@view', [$letter->id]) }}">Ver PDF</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\LetterController@edit', [$letter->id]) }}">Editar</a>
+		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\LetterController@view', [$letter->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach  	       

@@ -27,6 +27,10 @@ class CcafController extends Controller
     {
         $this->ccaf = $ccaf;
         $this->employee = $employee;
+
+        $this->middleware('contracts', ['only' => [
+            'create',
+        ]]);
     }
 
     /**
