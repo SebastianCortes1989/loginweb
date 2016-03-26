@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
   
-<h5 class="purple-text center-align">Editar Certificado</h5>
+<h3 class="text-center">Editar Certificado</h3>
 
 {!! Form::open(['action' => 'HumanResources\AntiqueController@update', 'method' => 'PUT']) !!}
 

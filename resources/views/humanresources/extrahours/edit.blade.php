@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Editar Hora Extra</h5>
+<h3 class="text-center">Editar Hora Extra</h3>
 
 {!! Form::open(['action' => 'HumanResources\ExtraHourController@update', 'method' => 'PUT']) !!}
 

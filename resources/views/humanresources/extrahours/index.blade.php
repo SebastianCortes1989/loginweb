@@ -2,20 +2,20 @@
 
 @section('content')
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('HumanResources\ExtraHourController@create') }}" class="btn-floating btn-large purple darken-1">
-    	<i class="large material-icons">add</i>
-    </a>				    
-</div>
 
 @include('humanresources.menu')
 
 <div class="row">
-	<div class="col s12 m12">	    	
-    	<h5 class="deep-purple-text center-align">Horas Extras</h5>
-    	<hr>
+	<div class="col-md-12">	    	
+    	<h5 class="text-center">
+    		Horas Extras
+    		<a href="{{ action('HumanResources\ExtraHourController@create') }}" class="btn btn-primary btn-rrhh pull-right">
+    			Nuevo
+    		</a>
+    	</h3>
+    	<br>
     	
-    	<table>
+    	<table class="table table-bordered">
 	        <thead>
 	          	<tr>
 	          		<th>Código</th>
@@ -40,8 +40,8 @@
 	        			<td>{{ $extraHour->hours }}</td>
 	        			<td>{{ $extraHour->minutes }}</td>
 	        			<td>
-		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\ExtraHourController@edit', [$extraHour->id]) }}">Editar</a>
-		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\ExtraHourController@view', [$extraHour->id]) }}">Ver PDF</a>
+		              		<a class="btn btn-xs btn-rrhh btn-primary" href="{{ action('HumanResources\ExtraHourController@edit', [$extraHour->id]) }}">Editar</a>
+		              		<a class="btn btn-xs btn-rrhh btn-primary" href="{{ action('HumanResources\Pdf\ExtraHourController@view', [$extraHour->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach  	       

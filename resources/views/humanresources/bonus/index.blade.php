@@ -2,19 +2,19 @@
 
 @section('content')
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('HumanResources\BonuController@create') }}" class="btn-floating btn-large purple darken-1">
-    	<i class="large material-icons">add</i>
-    </a>				    
-</div>
-
 @include('humanresources.menu')
 
 <div class="row">
-	<div class="col s12 m12">
-    	<h5 class="deep-purple-text center-align">Aguinaldos</h5>
-    	
-    	<table>
+	<div class="col-md-12">
+    	<h5 class="text-center">
+    		Aguinaldos
+    		<a href="{{ action('HumanResources\BonuController@create') }}" class="btn btn-primary btn-rrhh pull-right">
+    			Nuevo
+    		</a>
+    	</h3>
+    	<br>
+
+    	<table class="table table-bordered">
 	        <thead>
 	          	<tr>
 	          		<th>Código</th>
@@ -35,8 +35,8 @@
 	        			<td>{{ $bonu->date->format('d/m/Y') }}</td>
 	        			<td>{{ $bonu->ammount }}</td>
 	        			<td>
-		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\BonuController@edit', [$bonu->id]) }}">Editar</a>
-		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\BonuController@view', [$bonu->id]) }}">Ver PDF</a>
+		              		<a class="btn btn-primary btn-xs" href="{{ action('HumanResources\BonuController@edit', [$bonu->id]) }}">Editar</a>
+		              		<a class="btn btn-primary btn-xs" href="{{ action('HumanResources\Pdf\BonuController@view', [$bonu->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach

@@ -2,19 +2,20 @@
 
 @section('content')
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('HumanResources\AdvanceController@create') }}" class="btn-floating btn-large purple darken-1">
-    	<i class="large material-icons">add</i>
-    </a>				    
-</div>
 
 @include('humanresources.menu')
 
 <div class="row">
-	<div class="col s12 m12">	    	
-    	<h5 class="deep-purple-text center-align">Anticipos</h5>
-    	
-    	<table>
+	<div class="col-md-12">	    	
+    	<h5 class="text-center">
+    		Anticipos
+    		<a href="{{ action('HumanResources\AdvanceController@create') }}" class="btn btn-primary btn-rrhh pull-right">
+    			Nuevo
+    		</a>
+    	</h3>
+    	<br>
+
+    	<table class="table table-bordered">
 	        <thead>
 	          	<tr>
 	          		<th>Código</th>
@@ -35,16 +36,17 @@
 	        			<td>{{ $advance->date->format('d/m/Y') }}</td>
 	        			<td>{{ $advance->ammount }}</td>
 	        			<td>
-			              <a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\AdvanceController@edit', [$advance->id]) }}">Editar</a>
-			              <a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\AdvanceController@view', [$advance->id]) }}">Ver PDF</a>
+			              	<a class="btn btn-xs btn-rrhh btn-primary" href="{{ action('HumanResources\AdvanceController@edit', [$advance->id]) }}">Editar</a>
+			              	<a class="btn btn-xs btn-rrhh btn-primary" href="{{ action('HumanResources\Pdf\AdvanceController@view', [$advance->id]) }}">Ver PDF</a>
+							<a class="btn btn-xs btn-rrhh btn-primary" href="#dlgDelete" data-delete="{{ $advance->id }}">Eliminar</a>
 	        			</td>
 	        		</tr>
 	        	@endforeach		       
 	        </tbody>
 	    </table>
-
-    		    
 	</div>
 </div>
+
+@include('humanresources.advances.modal')
 
 @endsection

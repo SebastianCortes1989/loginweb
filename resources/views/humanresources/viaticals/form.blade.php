@@ -1,50 +1,38 @@
 <div class="row">
-		<div class="col m3">
-      
-        <div class="input-field">
-          {!! Form::number('ammount', isset($viatical) ? $viatical->ammount : '', ['class' => 'validate']) !!}
-          {!! Form::label('ammount', 'Monto') !!}
-          <span class="red-text">{{ $errors->first('ammount') }}</span>
-        </div>
+		<div class="col-md-4">
         
-		</div>
+      {!! Form::label('ammount', 'Monto') !!}
+      {!! Form::number('ammount', isset($viatical) ? $viatical->ammount : '', ['class' => 'form-control']) !!}
+      <span class="help-block">{{ $errors->first('ammount') }}</span>
 
-    <div class="col m4">
+      {!! Form::label('employee_id', 'Trabajador') !!}
+      {!! Form::select('employee_id', $employees, isset($viatical) ? $viatical->employee_id : '', ['class' => 'form-control']) !!}
+      <span class="help-block">{{ $errors->first('employee_id') }}</span>
 
-        {!! Form::label('employee_id', 'Trabajador') !!}
-        {!! Form::select('employee_id', $employees, isset($viatical) ? $viatical->employee_id : '', ['class' => 'browser-default']) !!}
-        <span class="red-text">{{ $errors->first('employee_id') }}</span>
+      {!! Form::label('type_id', 'Tipo') !!}
+      {!! Form::select('type_id', $viaticalsTypes, isset($viatical) ? $viatical->type_id : '', ['class' => 'form-control']) !!}
+      <span class="help-block">{{ $errors->first('type_id') }}</span>
 
-        {!! Form::label('type_id', 'Tipo') !!}
-        {!! Form::select('type_id', $viaticalsTypes, isset($viatical) ? $viatical->type_id : '', ['class' => 'browser-default']) !!}
-        <span class="red-text">{{ $errors->first('type_id') }}</span>
+      {!! Form::label('date', 'Fecha') !!}
+      {!! Form::text('date', isset($viatical) ? $viatical->date->format('d/m/Y') : '', ['class' => 'form-control date']) !!}
+      <span class="help-block">{{ $errors->first('date') }}</span>
 
     </div>
 		
-		<div class="col m4">
-
-        <div class="input-field">
-          {!! Form::text('date', isset($viatical) ? $viatical->date->format('d/m/Y') : '', ['class' => 'validate date']) !!}
-          {!! Form::label('date', 'Fecha') !!}
-          <span class="red-text">{{ $errors->first('date') }}</span>
-        </div>
-
-      	<div class="input-field">
-        		{!! Form::textarea('description', isset($viatical) ? $viatical->description : '', ['class' => 'validate', 'rows' => 50]) !!}
-        		{!! Form::label('description', 'Descripción') !!}
-          <span class="red-text">{{ $errors->first('description') }}</span>
-    		</div> 
+		<div class="col-md-8">
+                    
+    	{!! Form::label('description', 'Descripción') !!}
+      {!! Form::textarea('description', isset($viatical) ? $viatical->description : '', ['class' => 'form-control', 'rows' => 50]) !!}
+      <span class="help-block">{{ $errors->first('description') }}</span>
         
 		</div>
 
 </div>
 
 <div class="row">
-	<div class="col s12 m12">	    	
-    	<div class="card-panel blue-grey lighten-5">
-      		<button class="btn btn-large waves-effect waves-light purple darken-1" type="submit" name="action">
+	<div class="col-md-12">	    	    	
+      <button class="btn btn-primary" type="submit" name="action">
       			Guardar
 			</button>
-    	</div>
     </div>
 </div>

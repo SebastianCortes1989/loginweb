@@ -2,19 +2,20 @@
 
 @section('content')
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('HumanResources\ViaticalController@create') }}" class="btn-floating btn-large purple darken-1">
-    	<i class="large material-icons">add</i>
-    </a>				    
-</div>
 
 @include('humanresources.menu')
 
 <div class="row">
-	<div class="col s12 m12">	    	
-    	<h5 class="deep-purple-text center-align">Viáticos</h5>
+	<div class="col-md-12">	    	
+    	<h5 class="text-center">
+    		Viáticos
+    		<a href="{{ action('HumanResources\ViaticalController@create') }}" class="btn btn-primary btn-rrhh pull-right">
+    			Nuevo
+    		</a>
+    	</h3>
+    	<br>
     	
-    	<table>
+    	<table class="table table-bordered">
 	        <thead>
 	          	<tr>
 	          		<th>Código</th>
@@ -35,8 +36,8 @@
 	        			<td>{{ $viatical->date->format('d/m/Y') }}</td>
 	        			<td>{{ $viatical->ammount }}</td>
 	        			<td>
-		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\ViaticalController@edit', [$viatical->id]) }}">Editar</a>
-		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\ViaticalController@view', [$viatical->id]) }}">Ver PDF</a>
+		              		<a class="btn btn-xs btn-rrhh btn-primary" href="{{ action('HumanResources\ViaticalController@edit', [$viatical->id]) }}">Editar</a>
+		              		<a class="btn btn-xs btn-rrhh btn-primary" href="{{ action('HumanResources\Pdf\ViaticalController@view', [$viatical->id]) }}">Ver PDF</a>
 		              	</td>
 	        		</tr>
 	        	@endforeach  	       

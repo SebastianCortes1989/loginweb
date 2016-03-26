@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Editar Préstamo Personal</h5>
+<h3 class="text-center">Editar Préstamo Personal</h3>
 
 {!! Form::open(['action' => 'HumanResources\LoanController@update', 'method' => 'PUT']) !!}
 

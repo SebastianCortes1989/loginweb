@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Registrar Hora Extra</h5>
+<h3 class="text-center">Registrar Hora Extra</h3>
 
 {!! Form::open(['action' => 'HumanResources\ExtraHourController@store']) !!}
 

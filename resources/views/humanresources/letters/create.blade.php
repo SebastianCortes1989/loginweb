@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Registrar Carta de Aviso</h5>
+<h3 class="text-center">Registrar Carta de Aviso</h3>
 
 {!! Form::open(['action' => 'HumanResources\LetterController@store']) !!}
 

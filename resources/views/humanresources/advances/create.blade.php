@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Registrar Anticipo</h5>
+<h3 class="text-center">Registrar Anticipo</h3>
 
 {!! Form::open(['action' => 'HumanResources\AdvanceController@store']) !!}
 

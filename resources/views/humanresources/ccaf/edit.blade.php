@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Editar Préstamo CCAF</h5>
+<h3 class="text-center">Editar Préstamo CCAF</h3>
 
 {!! Form::open(['action' => 'HumanResources\CcafController@update', 'method' => 'PUT']) !!}
 

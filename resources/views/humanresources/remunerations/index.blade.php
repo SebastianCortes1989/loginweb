@@ -5,14 +5,14 @@
 @include('humanresources.menu')
 
 <div class="row">
-	<div class="col s12 m12">	    	
-    	<h5 class="deep-purple-text center-align">Hoja de Trabajo</h5>    	    	  
+	<div class="col-md-12">	    	
+    	<h5 class="text-center">Hoja de Trabajo</h3>    	    	  
 	</div>
 </div>
 
 <div style="overflow:scroll; font-size:12px">
 
-	<table>
+	<table class="table table-condensed">
 		<thead>
 			<tr>
 				<th>Trabajador</th>

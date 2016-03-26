@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Editar Permiso</h5>
+<h3 class="text-center">Editar Permiso</h3>
 
 {!! Form::open(['action' => 'HumanResources\PermissionController@update', 'method' => 'PUT']) !!}
 

@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Editar Bono</h5>
+<h3 class="text-center">Editar Bono</h3>
 
 {!! Form::open(['action' => 'HumanResources\BondController@update', 'method' => 'PUT']) !!}
 

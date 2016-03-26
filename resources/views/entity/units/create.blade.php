@@ -2,13 +2,9 @@
 
 @section('content')
 
-<div class="row">
-	<div class="col s12 m12">	    	
-    	<div class="card-panel amber darken-2 white-text">
-      		<span class="card-title">Registrar Unidad</span> 	      		      		
-    	</div>
-    </div>
-</div>
+
+<h3 class="text-center">Registrar Unidad</h3>
+
 
 {!! Form::open(['action' => 'Entity\UnitController@store']) !!}
 
@@ -16,39 +12,36 @@
 
  <div class="row">
 
-    <div class="col m3">  		
-      <div class="input-field">
-          {!! Form::text('name', '', ['class' => 'validate']) !!}
+    <div class="col-md-3">      
+      <div class="form-group">
           {!! Form::label('name', 'Nombre') !!}
-          <span class="red-text">{{ $errors->first('name') }}</span>
+          {!! Form::text('name', '', ['class' => 'form-control']) !!}
+          <span class="help-text">{{ $errors->first('name') }}</span>
       </div>        		
   	</div>
 
-  	<div class="col m3">  		
+    <div class="col-md-3">      
       {!! Form::label('employee_id', 'Responsable') !!}
-      {!! Form::select('employee_id', $employees, '', ['class' => 'browser-default']) !!}
-      <span class="red-text">{{ $errors->first('employee_id') }}</span>
+      {!! Form::select('employee_id', $employees, '', ['class' => 'form-control']) !!}
+      <span class="help-text">{{ $errors->first('employee_id') }}</span>
   	</div>
 
-    <div class="col m3">      
+    <div class="col-md-3">      
       {!! Form::label('management_id', 'Gerencia') !!}
-      {!! Form::select('management_id', $managements, '', ['class' => 'browser-default']) !!}
-      <span class="red-text">{{ $errors->first('management_id') }}</span>
+      {!! Form::select('management_id', $managements, '', ['class' => 'form-control']) !!}
+      <span class="help-text">{{ $errors->first('management_id') }}</span>
     </div>
 
   </div>
 
-  	 
 </div>
 
-
 <div class="row">
-	<div class="col s12 m12">	    	
-    	<div class="card-panel blue-grey lighten-5">
-      		<button class="btn btn-large waves-effect waves-light amber darken-2" type="submit" name="action">
-      			Guardar
-			</button>
-    	</div>
+    <div class="col-md-12">           
+        <button class="btn btn-primary " type="submit" name="action">
+          Guardar
+        </button>
+      </div>
     </div>
 </div>
 

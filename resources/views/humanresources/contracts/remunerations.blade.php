@@ -5,43 +5,43 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Registrar Remuneración</h5>
+<h3 class="text-center">Registrar Remuneración</h3>
 
 {!! Form::open(['action' => 'HumanResources\ContractController@remunerationsStore']) !!}
 
   {!! Form::hidden('contract_id', $contract->id) !!}
 
 	<div class="row">
-      <div class="col m4">
-        <div class="input-field">
-              {!! Form::number('base', '', ['class' => 'validate']) !!}
+      <div class="col-md-4">
+        
+              {!! Form::number('base', '', ['class' => 'form-control']) !!}
               {!! Form::label('base', 'Sueldo Base') !!}
           </div>
 
-          <div class="input-field">
-              {!! Form::number('collation', '', ['class' => 'validate']) !!}
+          
+              {!! Form::number('collation', '', ['class' => 'form-control']) !!}
               {!! Form::label('collation', 'Colación') !!}
           </div>
       </div>
 
-      <div class="col m4">
-        <div class="input-field">
-              {!! Form::number('liquid', '', ['class' => 'validate']) !!}
+      <div class="col-md-4">
+        
+              {!! Form::number('liquid', '', ['class' => 'form-control']) !!}
               {!! Form::label('liquid', 'Sueldo Líquido') !!}
           </div>
 
-          <div class="input-field">
-              {!! Form::number('mobilization', '', ['class' => 'validate']) !!}
+          
+              {!! Form::number('mobilization', '', ['class' => 'form-control']) !!}
               {!! Form::label('mobilization', 'Movilización') !!}
           </div>
       </div>
 
-      <div class="col m4">
-          <div class="input-field">
+      <div class="col-md-4">
+          
           </div>
 
-          <div class="input-field">
-              {!! Form::number('tools', '', ['class' => 'validate']) !!}
+          
+              {!! Form::number('tools', '', ['class' => 'form-control']) !!}
               {!! Form::label('tools', 'Desgaste de Herramientas') !!}
           </div>
       </div>
@@ -50,9 +50,9 @@
 
 
   <div class="row">
-		<div class="col s12 m12">	    	
-	    	<div class="card-panel blue-grey lighten-5">
-	      		<button class="btn btn-large waves-effect waves-light purple darken-1" type="submit" name="action">
+		<div class="col-md-12">	    	
+	    	
+	      		<button class="btn btn-primary " type="submit" name="action">
 	      			Guardar
 				</button>
 	    	</div>

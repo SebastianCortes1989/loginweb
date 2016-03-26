@@ -2,19 +2,20 @@
 
 @section('content')
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('HumanResources\DiscountController@create') }}" class="btn-floating btn-large purple darken-1">
-    	<i class="large material-icons">add</i>
-    </a>				    
-</div>
 
 @include('humanresources.menu')
 
 <div class="row">
-	<div class="col s12 m12">	    	
-    	<h5 class="deep-purple-text center-align">Descuentos</h5>
+	<div class="col-md-12">	    	
+    	<h5 class="text-center">
+    		Descuentos
+    		<a href="{{ action('HumanResources\DiscountController@create') }}" class="btn btn-primary btn-rrhh pull-right">
+    			Nuevo
+    		</a>
+    	</h3>
+    	<br>
     	
-    	<table>
+    	<table class="table table-bordered">
 	        <thead>
 	          	<tr>
 	          		<th>Código</th>
@@ -37,8 +38,8 @@
 		              	<th>{{ $discount->ammount }}</th>
 						<th></th>
 						<td>
-							<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\DiscountController@edit', [$discount->id]) }}">Editar</a>
-		              		<a class="waves-effect waves-light btn purple" href="{{ action('HumanResources\Pdf\DiscountController@view', [$discount->id]) }}">Ver PDF</a>
+							<a class="btn btn-xs btn-rrhh btn-primary" href="{{ action('HumanResources\DiscountController@edit', [$discount->id]) }}">Editar</a>
+		              		<a class="btn btn-xs btn-rrhh btn-primary" href="{{ action('HumanResources\Pdf\DiscountController@view', [$discount->id]) }}">Ver PDF</a>
 		              	</td>
 	          		</tr>
 	          	@endforeach

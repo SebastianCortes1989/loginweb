@@ -4,7 +4,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Editar Ahorro APV</h5>
+<h3 class="text-center">Editar Ahorro APV</h3>
 
 {!! Form::open(['action' => 'HumanResources\ApvController@update', 'method' => 'PUT']) !!}
 

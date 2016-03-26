@@ -1,0 +1,38 @@
+/*GENERAL*/
+.menu-general {
+    background-color: #15187D !important;
+    border-color: #15187D !important;
+    border-radius: 0px;
+}
+
+.nav-general>li>a {
+    color: white !important;
+}
+
+/*RRHH*/
+.menu-rrhh {
+    background-color: #77386A !important;
+}
+
+.nav-rrhh>li>a {
+    color: white !important;
+}
+
+.btn-rrhh {
+	background-color: #77386A !important;
+	border-color: 	#77386A !important;
+}
+
+/*ENTIDADES*/
+.menu-entidades {
+	background-color: #EDDE45 !important;
+}
+
+.nav-entidades>li>a {
+    color: white !important;
+}
+
+.btn-entidades {
+	background-color: #EDDE45 !important;
+	border-color: 	#EDDE45 !important;
+}

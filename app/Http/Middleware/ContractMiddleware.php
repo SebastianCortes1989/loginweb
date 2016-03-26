@@ -9,12 +9,10 @@ use Closure, \Auth;
 
 class ContractMiddleware
 {
-    protected $contract;
     protected $employee;
 
-    public function __construct(Contract $contract, Employee $employee)
+    public function __construct(Employee $employee)
     {
-        $this->contract = $contract;
         $this->employee = $employee;
     }
 
@@ -27,12 +25,7 @@ class ContractMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $contracts = $this->contract->whereClientId(Auth::user()->client_id)
-                        ->whereStatus('Vigente')
-                        ->lists('employee_id');
-        $employees = $this->employee->whereClientId(Auth::user()->client_id)
-                        ->whereIn('id', $contracts)->orderBy('name')
-                        ->lists('name', 'id');
+        $employees = $this->employee->getCmb();    
 
         if(count($employees) == 0)
         {

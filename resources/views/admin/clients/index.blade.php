@@ -2,19 +2,18 @@
 
 @section('content')
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('Admin\ClientController@create') }}" class="btn-floating btn-large amber darken-2">
-    	<i class="large material-icons">add</i>
-    </a>				    
-</div>
-
 <div class="row">
-	<div class="col s12 m12">	    	
-    	<div class="card-panel amber darken-2 white-text">
-      		<span class="card-title">Administración de Clientes</span> 	      		      		
-    	</div>
+	<div class="col-md-12">	    	
 
-    	<table>
+    	<h5 class="text-center">
+    		Administración de Clientes
+    		<a href="{{ action('Admin\ClientController@create') }}" class="btn btn-primary pull-right">
+    			Nuevo
+    		</a>
+    	</h5>
+    	<br>
+
+    	<table class="table table-bordered">
 	        <thead>
 	          	<tr>
 	              	<th data-field="id">Nombre</th>

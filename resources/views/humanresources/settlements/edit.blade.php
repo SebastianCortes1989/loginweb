@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Editar Finiquito</h5>
+<h3 class="text-center">Editar Finiquito</h3>
 
 {!! Form::open(['action' => 'HumanResources\SettlementController@update', 'method' => 'PUT']) !!}
 

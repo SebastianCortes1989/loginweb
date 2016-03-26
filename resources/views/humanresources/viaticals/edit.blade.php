@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Editar Viático</h5>
+<h3 class="text-center">Editar Viático</h3>
 
 {!! Form::open(['action' => 'HumanResources\ViaticalController@update', 'method' => 'PUT']) !!}
 

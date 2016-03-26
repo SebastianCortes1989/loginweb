@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Registrar Préstamo CCAF</h5>
+<h3 class="text-center">Registrar Préstamo CCAF</h3>
 
 {!! Form::open(['action' => 'HumanResources\CcafController@store']) !!}
 

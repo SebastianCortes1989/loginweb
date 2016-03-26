@@ -2,22 +2,22 @@
 
 @section('content')
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="{{ action('Entity\UnitController@create') }}" class="btn-floating btn-large amber darken-2">
-    	<i class="large material-icons">add</i>
-    </a>				    
-</div>
 
 @include('entity.menu')
 
 <div class="row">
-	<div class="col s12 m12">	    	
+	<div class="col-md-12">	    	
 
-    	<h5 class="amber-text center-align">Administración de Unidades</h5>
-    	<hr>
+    	<h5 class="text-center">
+    		Administración de Unidades
+    		<a href="{{ action('Entity\UnitController@create') }}" class="btn btn-primary btn-entidades pull-right">
+    			Nueva
+    		</a>
+    	</h5>
+    	<br>
 
     	
-    	<table>
+    	<table class="table table-bordered">
 	        <thead>
 	          	<tr>
 	              	<th>Gerencia</th>

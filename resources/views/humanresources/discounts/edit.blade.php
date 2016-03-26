@@ -5,7 +5,7 @@
 
 @include('humanresources.menu')
 
-<h5 class="purple-text center-align">Editar Descuento</h5>
+<h3 class="text-center">Editar Descuento</h3>
 
 {!! Form::open(['action' => 'HumanResources\DiscountController@update', 'method' => 'PUT']) !!}
 
